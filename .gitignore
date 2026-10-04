@@ -1,0 +1,12 @@
+# Rust target build output
+/src-tauri/target/
+target/
+**/*.rs.bk
+
+# OS & IDE metadata
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.suo
+*.user
