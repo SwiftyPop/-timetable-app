@@ -54,7 +54,10 @@ $requiredPatterns = @(
     'EMK22003 / EMK31103',
     'set_desktop_wallpaper',
     'update_tray_status',
-    'timetable-v4'
+    'timetable-v5',
+    'mob-dock',
+    'class-sheet',
+    'jump-today'
 )
 
 foreach ($pat in $requiredPatterns) {
