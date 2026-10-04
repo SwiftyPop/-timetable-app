@@ -295,16 +295,16 @@ h1{font-size:24px;line-height:1.1;margin:3px 0 8px;font-weight:800;letter-spacin
 <script>
 var S={ctrl:{n:'Control System Technology',c:'EMK22003 / EMK31103',h:34},ect:{n:'Electric Circuit Theory 2',c:'EMK21203',h:268},el2:{n:'Electronics 2',c:'EMK21303',h:196},mi:{n:'Measurement & Instrumentation',c:'EMK21103',h:152},mt:{n:'Mathematics for Eng. Technology 3',c:'IMQ21303',h:345}};
 var E=[
-[1,8,11,'ctrl','Lab','FKTE 2 · Industrial Control Lab','Mazwin Binti Mazlan, Mardianaliza Binti Othman'],
-[2,14,17,'ect','Lab','FKTE 2 · Electrical Machines Simulator Lab','Mohamad Zhafran Bin Zakariya, Junaidah Binti Ali Mohd Jobran'],
-[2,17,19,'ect','Lecture C','FKTE 2 · BK 1','Mohamad Zhafran Bin Zakariya'],
-[3,8,11,'el2','Lab','FKTE 2 · Power Electronics Lab','Chanuri A/P Charin, Abdul Rahim Bin Abdul Razak'],
-[3,15,17,'mi','Lecture A','Pauh Putra · DK 3','Muhammad Shakir Bin Laili'],
-[3,18,19,'mt','Lecture · Online','Online','Zabidi Bin Abu Hasan'],
-[4,12,14,'mt','Lecture','Pauh Putra · DK 8','Zabidi Bin Abu Hasan'],
-[4,14,17,'mi','Lab','FKTE 2 · Electrical Technology Lab','Muhammad Shakir Bin Laili, Chanuri A/P Charin'],
-[5,8,10,'ctrl','Lecture A','Pauh Putra · DK 1','Mazwin Binti Mazlan'],
-[5,15,17,'el2','Lecture A','Pauh Putra · DK 3','Chanuri A/P Charin, Abdul Rahim Bin Abdul Razak']
+  [2,12,14,'ctrl','Lab','FKTE 2 · Industrial Control Lab','Mazwin Binti Mazlan, Mardianaliza Binti Othman'],
+  [2,15,17,'mt','Lecture','Pauh Putra · DK 3','Zabidi Bin Abu Hasan'],
+  [3,10,11,'mt','Lecture · Online','Online','Zabidi Bin Abu Hasan'],
+  [3,11,14,'el2','Lab','FKTE 2 · Power Electronics Lab','Chanuri A/P Charin, Abdul Rahim Bin Abdul Razak'],
+  [4,8,9,'ect','Lecture C','FKTE 2 · BK 1','Mohamad Zhafran Bin Zakariya'],
+  [4,12,14,'ect','Lab','FKTE 2 · Electrical Machines Simulator Lab','Mohamad Zhafran Bin Zakariya, Junaidah Binti Ali Mohd Jobran'],
+  [4,15,17,'mi','Lab','FKTE 2 · Electrical Technology Lab','Muhammad Shakir Bin Laili, Chanuri A/P Charin'],
+  [4,17,19,'mi','Lecture A','Pauh Putra · DK 4','Muhammad Shakir Bin Laili'],
+  [5,8,9,'el2','Lecture A','Pauh Putra · DK 3','Chanuri A/P Charin, Abdul Rahim Bin Abdul Razak'],
+  [5,15,17,'ctrl','Lecture A','Pauh Putra · DK 5','Mazwin Binti Mazlan']
 ];
 var D=['Mon','Tue','Wed','Thu','Fri'],DF=['Monday','Tuesday','Wednesday','Thursday','Friday'];
 var t=new Date().getDay(),today=(t>=1&&t<=5)?t:0,day=today||1,view='d';
@@ -314,7 +314,11 @@ function en(e){return p(e)+':00'}
 function dur(s,e){return (e-s)+(e-s>1?' hours':' hour')}
 function $(i){return document.getElementById(i)}
 var hrs=0;E.forEach(function(x){hrs+=x[2]-x[1]});
-$('stats').innerHTML='<div class="stat"><b>'+hrs+'</b> class hours</div><div class="stat"><b>5</b> subjects</div><div class="stat">First class <b>Mon 08:00</b></div><div class="stat">Last class <b>Wed 19:00</b></div>';
+var firstClass=E.slice().sort(function(a,b){return a[0]===b[0]?a[1]-b[1]:a[0]-b[0]})[0];
+var lastClass=E.slice().sort(function(a,b){return a[0]===b[0]?b[2]-a[2]:b[0]-a[0]})[0];
+var firstStr=firstClass?D[firstClass[0]-1]+' '+st(firstClass[1]):'—';
+var lastStr=lastClass?D[lastClass[0]-1]+' '+en(lastClass[2]):'—';
+$('stats').innerHTML='<div class="stat"><b>'+hrs+'</b> class hours</div><div class="stat"><b>'+Object.keys(S).length+'</b> subjects</div><div class="stat">First class <b>'+firstStr+'</b></div><div class="stat">Last class <b>'+lastStr+'</b></div>';
 $('legend').innerHTML=Object.keys(S).map(function(k){return '<span style="--h:'+S[k].h+'">'+S[k].c+' · '+S[k].n+'</span>'}).join('');
 
 function slots(a,b){var o='';for(var k=a;k<b;k++)o+='<span>'+st(k)+' – '+p(k+1)+':00</span>';return o}
@@ -332,6 +336,10 @@ var RM={'Industrial Control Lab':'IC Lab','Electrical Machines Simulator Lab':'E
 function dayHtml(){
   var I=nowInfo(),isT=I.td==day,m=I.m,placed=false;
   var ev=E.filter(function(x){return x[0]==day}),h='<div class="eyebrow" style="margin-bottom:10px">'+DF[day-1]+(isT?' · Today':'')+'</div>';
+  if(!ev.length){
+    h+='<div style="background:var(--card);border:1px solid var(--line);border-radius:18px;padding:36px 20px;text-align:center;color:var(--mute)"><div style="font-size:32px;margin-bottom:8px">🎉</div><b style="color:var(--ink);font-size:16px;display:block;margin-bottom:4px">No classes scheduled</b><span>Enjoy your free day for self-study or relaxation.</span></div>';
+    return h;
+  }
   var mark='<div class="nowm"><span class="dot"></span>Now · '+I.hm+'</div>';
   ev.forEach(function(x,i){
     var s=S[x[3]],live=isT&&m>=x[1]*60&&m<x[2]*60,past=isT&&m>=x[2]*60;
@@ -513,7 +521,8 @@ function banner(I){
     pg='<div class="prog"><i style="width:'+(done/tot*100).toFixed(1)+'%"></i></div>';
     if(I.nxt)sub+='<br>Then: '+S[I.nxt[3]].c.split(' / ')[0]+' at '+st(I.nxt[1]);
   }else if(I.nxt){var x=I.nxt,sj=S[x[3]],mins=I.nd*1440+x[1]*60-I.m,when=I.nd==0?'Today':I.nd==1?'Tomorrow':DF[x[0]-1];h=sj.h;
-    lb=(I.td?'Free now · up next':'No class today · up next');title=sj.n;
+    var hasToday=E.some(function(c){return c[0]==I.td});
+    lb=(hasToday?'Free now · up next':'No class today · up next');title=sj.n;
     sub=when+' · '+st(x[1])+' – '+en(x[2])+'<br>'+x[4]+' · '+rmOf(x)+' · starts in '+dl(mins);
   }
   el.className=cls;el.style.setProperty('--h',h);
