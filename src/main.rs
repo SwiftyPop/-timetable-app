@@ -19,6 +19,7 @@ fn main() -> eframe::Result<()> {
             .with_min_inner_size(vec2(420.0, 600.0))
             .with_title("My Timetable · UniMAP")
             .with_resizable(true),
+        renderer: eframe::Renderer::Glow,
         ..Default::default()
     };
 
