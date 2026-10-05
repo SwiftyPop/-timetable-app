@@ -172,6 +172,29 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
 .cs-btn.primary{background:var(--ac);color:var(--acink);border-color:var(--ac);box-shadow:0 4px 14px -2px color-mix(in srgb,var(--ac) 40%,transparent)}
 .cs-btn:active{transform:scale(0.95)}
 @media(hover:hover){.cs-btn:hover{box-shadow:var(--sh-md);transform:translateY(-1px)}}
+.cs-btn.wa{background:hsl(142 70% 40%);color:#ffffff!important;border-color:hsl(142 70% 36%);box-shadow:0 4px 14px -2px hsl(142 70% 35% / .45);text-decoration:none}
+.cs-btn.wa:active{transform:scale(0.95)}
+@media(hover:hover){.cs-btn.wa:hover{background:hsl(142 70% 35%);box-shadow:var(--sh-md);transform:translateY(-1px)}}
+.cs-btn.wa.disabled{background:var(--card);color:var(--mute)!important;border-color:var(--line);box-shadow:var(--sh-sm);opacity:.85}
+.cs-chip-link{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:999px;background:hsl(142 70% 40%);color:#fff!important;text-decoration:none;font-size:11.5px;font-weight:700;transition:all .15s ease}
+.cs-chip-link:hover{filter:brightness(1.08)}
+.cs-chip-btn{display:inline-flex;align-items:center;padding:4px 9px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--mute);cursor:pointer;font:inherit;font-size:11px;font-weight:600;transition:all .15s ease}
+.cs-chip-btn:hover{background:var(--line);color:var(--ink)}
+.grp-list{display:flex;flex-direction:column;gap:10px}
+.grp-card-item{background:hsl(var(--h,8) 85% 55% / .08);border:1px solid hsl(var(--h,8) 80% 55% / .22);border-left:4px solid hsl(var(--h,8) 70% 50%);border-radius:var(--r-md);padding:12px 14px;transition:all .15s ease}
+.grp-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.grp-badge{font-size:10px;font-weight:800;padding:2px 7px;border-radius:999px;background:hsl(var(--h,8) 75% 50% / .14);color:hsl(var(--h,8) 70% var(--tl));text-transform:uppercase}
+.grp-badge.verified{background:hsl(142 65% 42% / .16);color:hsl(142 75% 36%)}
+:root[data-theme="dark"] .grp-badge.verified,:root[data-theme="oled"] .grp-badge.verified{color:hsl(142 75% 65%)}
+.grp-title{font-size:14px;font-weight:800;margin:0 0 2px;letter-spacing:-.01em}
+.grp-meta{font-size:11.5px;color:var(--mute);margin-bottom:8px}
+.grp-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.grp-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:var(--r-sm);font-size:12px;font-weight:700;text-decoration:none;cursor:pointer;border:0;transition:all .15s ease}
+.grp-btn.wa{background:hsl(142 70% 40%);color:#fff!important}
+.grp-btn.wa:hover{background:hsl(142 70% 35%)}
+.grp-btn.alt{background:var(--card);border:1px solid var(--line);color:var(--ink)!important}
+.grp-btn.alt:hover{background:var(--line)}
+.grp-btn:active{transform:scale(0.96)}
 .cs-grid{display:flex;flex-direction:column;gap:8px}
 .cs-card{background:hsl(var(--h,8) 85% 55% / .07);border:1px solid hsl(var(--h,8) 80% 55% / .18);border-radius:var(--r-md);padding:10px 14px}
 .cs-card label{display:block;font-size:10px;font-weight:800;color:var(--mute);margin-bottom:5px;text-transform:uppercase;letter-spacing:.06em}
@@ -973,6 +996,7 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
       <div class="tabs" id="tabs"></div>
     </div>
     <div class="act-grp">
+      <button class="pb" id="grpb" title="Class WhatsApp &amp; Telegram Groups">💬 Groups</button>
       <button class="pb" id="pr">🖨 Print week</button>
       <button class="pb" id="wb">🖼 Wallpaper</button>
       <button class="pb" id="setb" title="Preferences &amp; Display Settings">⚙ Settings</button>
@@ -1039,6 +1063,24 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
       </div>
     </div>
   </div>
+  <div class="android-expand" id="grp-sheet">
+    <div class="android-expand-inner">
+      <div class="set-card" id="grp-card">
+        <div class="set-head">
+          <div>
+            <div class="eyebrow" style="margin:0">Class WhatsApp &amp; Telegram Groups</div>
+            <div style="font-size:12px;color:var(--mute);margin-top:2px">Official and cohort group chats for your subjects</div>
+          </div>
+          <button class="wp-close" id="grpx" title="Close" aria-label="Close">✕</button>
+        </div>
+        <div id="grp-list" class="grp-list"></div>
+        <div class="note" style="margin-top:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+          <span>Official JSM/FKC Maths group list (Sem 1 2026/27)</span>
+          <a href="https://docs.google.com/spreadsheets/d/1-fxIQbSA-8m0zZHZliX4qZ44PXrOizmRJ57FzN8rjPE/edit?gid=2015827709#gid=2015827709" target="_blank" rel="noopener noreferrer" class="cs-chip-link" style="font-size:11px;padding:3px 9px">📊 View JSM Google Sheet</a>
+        </div>
+      </div>
+    </div>
+  </div>
   <div id="day"></div>
   <div id="week" class="hide"></div>
   <div class="legend" id="legend"></div>
@@ -1047,6 +1089,7 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
   <nav class="mob-dock" id="mob-dock" aria-label="Mobile Navigation">
     <button id="md-d" class="on"><span class="dock-icon">🗓</span><span>Day</span></button>
     <button id="md-w"><span class="dock-icon">📊</span><span>Week</span></button>
+    <button id="md-grp"><span class="dock-icon">💬</span><span>Groups</span></button>
     <button id="md-wb"><span class="dock-icon">🖼</span><span>Wall</span></button>
     <button id="md-set"><span class="dock-icon">⚙</span><span>Set</span></button>
     <button id="md-tb" title="Switch Theme"><span class="dock-icon" id="md-tbi">🌓</span><span>Theme</span></button>
@@ -1063,6 +1106,9 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
       <div class="sheet-time" id="cs-time">11:00 AM – 2:00 PM (3 hours)</div>
       
       <div class="cs-actions">
+        <a class="cs-btn wa" id="cs-wa" target="_blank" rel="noopener noreferrer">
+          <span class="cs-icon">💬</span><span id="cs-wa-text">Join Group</span>
+        </a>
         <button class="cs-btn primary" id="cs-copy-room">
           <span class="cs-icon">📍</span><span id="cs-room-btn-text">Copy Room</span>
         </button>
@@ -1075,6 +1121,16 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
       </div>
 
       <div class="cs-grid">
+        <div class="cs-card" id="cs-wa-card">
+          <label>💬 WhatsApp Group</label>
+          <div id="cs-wa-info" style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
+            <span id="cs-wa-status" style="font-size:12.5px;font-weight:600"></span>
+            <div style="display:flex;gap:6px">
+              <a id="cs-wa-link" href="#" target="_blank" rel="noopener noreferrer" class="cs-chip-link hide">Open ↗</a>
+              <button id="cs-wa-edit" class="cs-chip-btn" title="Set custom group link">Edit ✏️</button>
+            </div>
+          </div>
+        </div>
         <div class="cs-card">
           <label>📍 Room / Venue</label>
           <b id="cs-loc">FKTE 2 · Industrial Control Lab</b>
@@ -1102,6 +1158,179 @@ var E=[
   [5,8,10,'el2','Lecture A','Pauh Putra · DK 3','Chanuri A/P Charin, Abdul Rahim Bin Abdul Razak'],
   [5,15,17,'ctrl','Lecture A','Pauh Putra · DK 5','Mazwin Binti Mazlan']
 ];
+var DEFAULT_WA={
+  mt:{code:'IMQ21303 / IMQ20303',name:'Mathematics for Eng. Technology 3',verified:true,cohort:'Class 1 (Y2G1, Y2G2, Y2G3)',url:'https://chat.whatsapp.com/GJidiHvjb0mBU2D6KnXw7C',altUrl:'https://chat.whatsapp.com/Fxkk5AK7x1X9dNLzyB4zVH',altLabel:'Class 2 (Y2G4–G6)',lecturer:'Dr. Nurhidayah binti Omar (019-7903682)',source:'JSM/FKC Official Math List'},
+  ctrl:{code:'EMK22003 / EMK31103',name:'Control System Technology',cohort:'Cohort Y2G3',lecturer:'Mazwin Binti Mazlan',source:'FKTE Course'},
+  ect:{code:'EMK21203',name:'Electric Circuit Theory 2',cohort:'Cohort Y2G3',lecturer:'Mohamad Zhafran Bin Zakariya',source:'FKTE Course'},
+  el2:{code:'EMK21303',name:'Electronics 2',cohort:'Cohort Y2G3',lecturer:'Chanuri A/P Charin',source:'FKTE Course'},
+  mi:{code:'EMK21103',name:'Measurement & Instrumentation',cohort:'Cohort Y2G3',lecturer:'Muhammad Shakir Bin Laili',source:'FKTE Course'}
+};
+
+function getCustomWALinks(){
+  try{
+    return JSON.parse(localStorage.getItem('tt_wa_links')||'{}');
+  }catch(e){return {};}
+}
+
+function getWASubject(k){
+  var def=DEFAULT_WA[k];
+  if(!def)return null;
+  var custom=getCustomWALinks();
+  var customUrl=custom[k];
+  return {
+    key:k,
+    code:def.code,
+    name:def.name,
+    verified:!customUrl&&!!def.verified,
+    isCustom:!!customUrl,
+    cohort:def.cohort,
+    url:customUrl||def.url||'',
+    altUrl:def.altUrl||'',
+    altLabel:def.altLabel||'',
+    lecturer:def.lecturer||'',
+    source:def.source||''
+  };
+}
+
+function saveWALink(k,url){
+  var custom=getCustomWALinks();
+  if(!url){
+    delete custom[k];
+  }else{
+    custom[k]=url.trim();
+  }
+  try{
+    localStorage.setItem('tt_wa_links',JSON.stringify(custom));
+  }catch(e){}
+  renderGroupsList();
+  if(curClassEvent&&curClassEvent[3]===k){
+    updateClassSheetWA(k);
+  }
+}
+
+function renderGroupsList(){
+  var container=$('grp-list');
+  if(!container)return;
+  var keys=['mt','ctrl','ect','el2','mi'];
+  container.innerHTML=keys.map(function(k){
+    var item=getWASubject(k);
+    var sj=S[k];
+    var badge=item.verified?'<span class="grp-badge verified">✓ Verified Official</span>':item.isCustom?'<span class="grp-badge">✏️ Custom Link</span>':'<span class="grp-badge">FKTE Course</span>';
+    var joinBtn=item.url?'<a href="'+item.url+'" target="_blank" rel="noopener noreferrer" class="grp-btn wa">💬 Join WhatsApp</a>':'<span style="font-size:12px;color:var(--mute);padding:6px 0">No link set yet</span>';
+    var altBtn=item.altUrl?'<a href="'+item.altUrl+'" target="_blank" rel="noopener noreferrer" class="grp-btn alt">Class 2 ↗</a>':'';
+    var editBtn='<button class="grp-btn alt" data-waedit="'+k+'">'+(item.isCustom?'Edit Link ✏️':'Set Link ➕')+'</button>';
+    if(item.isCustom){
+      editBtn+='<button class="grp-btn alt" data-wares="'+k+'" title="Reset to default">Reset ↺</button>';
+    }
+    return '<div class="grp-card-item" style="--h:'+sj.h+'">'
+      +'<div class="grp-head">'
+        +'<div>'
+          +'<span class="sheet-code" style="color:hsl('+sj.h+' 70% var(--tl));background:hsl('+sj.h+' 70% 50% / .14)">'+sj.c.split(' / ')[0]+'</span>'
+          +'<h3 class="grp-title" style="margin-top:4px">'+sj.n+'</h3>'
+        +'</div>'
+        +badge
+      +'</div>'
+      +'<div class="grp-meta">'
+        +'<div><strong>Cohort:</strong> '+(item.cohort||'Y2G3')+'</div>'
+        +'<div><strong>Lecturer:</strong> '+(item.lecturer||'—')+'</div>'
+      +'</div>'
+      +'<div class="grp-actions">'
+        +joinBtn
+        +altBtn
+        +editBtn
+      +'</div>'
+    +'</div>';
+  }).join('');
+
+  [].forEach.call(container.querySelectorAll('[data-waedit]'),function(btn){
+    btn.onclick=function(){promptSetWALink(btn.dataset.waedit)};
+  });
+  [].forEach.call(container.querySelectorAll('[data-wares]'),function(btn){
+    btn.onclick=function(){resetWALink(btn.dataset.wares)};
+  });
+}
+
+function promptSetWALink(k){
+  var current=getWASubject(k);
+  var val=prompt('Enter WhatsApp / Telegram group invite link for '+S[k].n+':',current.url||'');
+  if(val===null)return;
+  if(!val.trim()){
+    if(confirm('Clear custom link for '+S[k].n+'?')){
+      saveWALink(k,'');
+      showToast('Link reset','↺');
+      vibSuccess();
+    }
+    return;
+  }
+  var vTrim=val.trim();
+  if(vTrim.indexOf('http://')!==0&&vTrim.indexOf('https://')!==0){
+    alert('Please enter a valid link starting with http:// or https://');
+    return;
+  }
+  saveWALink(k,vTrim);
+  showToast('Group link saved!','💬');
+  vibSuccess();
+}
+
+function resetWALink(k){
+  saveWALink(k,'');
+  showToast('Reset to default link','↺');
+  vibSuccess();
+}
+
+function updateClassSheetWA(subjKey){
+  var waSubj=getWASubject(subjKey);
+  var csWa=$('cs-wa');
+  var csWaText=$('cs-wa-text');
+  var csWaStatus=$('cs-wa-status');
+  var csWaLink=$('cs-wa-link');
+  var csWaEdit=$('cs-wa-edit');
+
+  if(!waSubj){
+    if(csWa)csWa.classList.add('hide');
+    if($('cs-wa-card'))$('cs-wa-card').classList.add('hide');
+    return;
+  }
+  if($('cs-wa-card'))$('cs-wa-card').classList.remove('hide');
+
+  if(waSubj.url){
+    if(csWa){
+      csWa.classList.remove('hide','disabled');
+      csWa.href=waSubj.url;
+    }
+    if(csWaText)csWaText.textContent='Join Group';
+    if(csWaStatus){
+      csWaStatus.innerHTML=waSubj.verified 
+        ? '<span style="color:hsl(142 75% 36%)">✓ Verified Official Class 1 Group</span>' 
+        : '<span style="color:var(--ink)">Active Group Link</span>';
+    }
+    if(csWaLink){
+      csWaLink.classList.remove('hide');
+      csWaLink.href=waSubj.url;
+      csWaLink.textContent='Open ↗';
+    }
+  }else{
+    if(csWa){
+      csWa.classList.remove('hide');
+      csWa.classList.add('disabled');
+      csWa.removeAttribute('href');
+    }
+    if(csWaText)csWaText.textContent='No Group Link';
+    if(csWaStatus){
+      csWaStatus.textContent='No link set yet for this subject';
+    }
+    if(csWaLink){
+      csWaLink.classList.add('hide');
+    }
+  }
+
+  if(csWaEdit){
+    csWaEdit.onclick=function(){
+      promptSetWALink(subjKey);
+    };
+  }
+}
+
 var D=['Mon','Tue','Wed','Thu','Fri'],DF=['Monday','Tuesday','Wednesday','Thursday','Friday'];
 var t=new Date().getDay(),today=(t>=1&&t<=5)?t:0,day=today||1;
 var view=localStorage.getItem('tt_view')||'d';
@@ -1373,6 +1602,7 @@ $('vd').onclick=function(){vib(10);setView('d')};
 $('vw').onclick=function(){vib(10);setView('w')};
 if($('md-d'))$('md-d').onclick=function(){vib(10);setView('d')};
 if($('md-w'))$('md-w').onclick=function(){vib(10);setView('w')};
+if($('md-grp'))$('md-grp').onclick=function(){toggleGroups()};
 if($('md-wb'))$('md-wb').onclick=function(){toggleWallpaper()};
 if($('md-set'))$('md-set').onclick=function(){toggleSettings()};
 if($('md-tb'))$('md-tb').onclick=function(){$('tb').click()};
@@ -1412,6 +1642,8 @@ function openClassDetails(x){
       }).join('')+'</div>';
     }
   }
+
+  updateClassSheetWA(x[3]);
 
   var sheet=$('class-sheet');
   if(sheet){
@@ -1470,6 +1702,15 @@ function fallbackCopy(txt,successMsg){
     showToast('Failed to copy','⚠️');
   }
 }
+
+if($('cs-wa'))$('cs-wa').onclick=function(e){
+  if(this.classList.contains('disabled')){
+    e.preventDefault();
+    if(curClassEvent){
+      promptSetWALink(curClassEvent[3]);
+    }
+  }
+};
 
 if($('cs-copy-room'))$('cs-copy-room').onclick=function(){
   if(!curClassEvent)return;
@@ -1610,6 +1851,7 @@ function toggleWallpaper(open){
   vib(willOpen?14:10);
   if(willOpen){
     if($('set-sheet')&&$('set-sheet').classList.contains('open'))toggleSettings(false);
+    if($('grp-sheet')&&$('grp-sheet').classList.contains('open'))toggleGroups(false);
     sheet.classList.add('open');
     btn.classList.add('on');
     draw();
@@ -1634,6 +1876,7 @@ function toggleSettings(open){
   vib(willOpen?14:10);
   if(willOpen){
     if($('wp-sheet')&&$('wp-sheet').classList.contains('open'))toggleWallpaper(false);
+    if($('grp-sheet')&&$('grp-sheet').classList.contains('open'))toggleGroups(false);
     sheet.classList.add('open');
     if(btn)btn.classList.add('on');
     updateSettingsUI();
@@ -1644,6 +1887,27 @@ function toggleSettings(open){
 }
 if($('setb'))$('setb').onclick=function(){toggleSettings()};
 if($('setx'))$('setx').onclick=function(){toggleSettings(false)};
+
+function toggleGroups(open){
+  var sheet=$('grp-sheet'),btn=$('grpb'),mobBtn=$('md-grp');
+  if(!sheet)return;
+  var willOpen=(typeof open==='boolean')?open:!sheet.classList.contains('open');
+  vib(willOpen?14:10);
+  if(willOpen){
+    if($('wp-sheet')&&$('wp-sheet').classList.contains('open'))toggleWallpaper(false);
+    if($('set-sheet')&&$('set-sheet').classList.contains('open'))toggleSettings(false);
+    renderGroupsList();
+    sheet.classList.add('open');
+    if(btn)btn.classList.add('on');
+    if(mobBtn)mobBtn.classList.add('on');
+  }else{
+    sheet.classList.remove('open');
+    if(btn)btn.classList.remove('on');
+    if(mobBtn)mobBtn.classList.remove('on');
+  }
+}
+if($('grpb'))$('grpb').onclick=function(){toggleGroups()};
+if($('grpx'))$('grpx').onclick=function(){toggleGroups(false)};
 
 if($('tf-24'))$('tf-24').onclick=function(){
   vib(12);
@@ -1864,6 +2128,7 @@ dayEl.addEventListener('touchend',function(e){
 window.addEventListener('keydown',function(e){
   if(e.key==='Escape'){
     if($('class-sheet')&&$('class-sheet').classList.contains('open')){closeClassDetails();return}
+    if($('grp-sheet')&&$('grp-sheet').classList.contains('open')){toggleGroups(false);return}
     if($('set-sheet')&&$('set-sheet').classList.contains('open')){toggleSettings(false);return}
     if($('wp-sheet')&&$('wp-sheet').classList.contains('open')){toggleWallpaper(false);return}
   }

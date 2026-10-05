@@ -49,8 +49,18 @@
       "code": "IMQ21303",
       "name": "Mathematics for Eng. Technology 3",
       "shortName": "Maths Eng Tech 3",
-      "faculty": "Centre for Mathematical Sciences"
+      "faculty": "Centre for Mathematical Sciences (JSM / FKC)",
+      "whatsappGroup": "https://chat.whatsapp.com/GJidiHvjb0mBU2D6KnXw7C",
+      "whatsappGroupAlt": "https://chat.whatsapp.com/Fxkk5AK7x1X9dNLzyB4zVH",
+      "cohort": "Class 1 (Y2G1, Y2G2, Y2G3)",
+      "lecturer": "Dr. Nurhidayah binti Omar",
+      "lecturerPhone": "019-7903682"
     }
+  },
+  "communityChannels": {
+    "officialMathSheet": "https://docs.google.com/spreadsheets/d/1-fxIQbSA-8m0zZHZliX4qZ44PXrOizmRJ57FzN8rjPE/edit?gid=2015827709#gid=2015827709",
+    "mathClass1WhatsApp": "https://chat.whatsapp.com/GJidiHvjb0mBU2D6KnXw7C",
+    "mathClass2WhatsApp": "https://chat.whatsapp.com/Fxkk5AK7x1X9dNLzyB4zVH"
   },
   "schedule": [
     {

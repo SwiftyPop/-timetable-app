@@ -62,7 +62,11 @@ $requiredPatterns = @(
     'timetable-data',
     'ai-timetable-summary',
     'schedule.json',
-    'llms.txt'
+    'llms.txt',
+    'grp-sheet',
+    'cs-wa',
+    'chat.whatsapp.com/GJidiHvjb0mBU2D6KnXw7C',
+    'md-grp'
 )
 
 foreach ($pat in $requiredPatterns) {
