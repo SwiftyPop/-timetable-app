@@ -10,6 +10,14 @@
 @font-face{font-family:'Plus Jakarta Sans';font-weight:800;font-display:swap;src:url(fonts/pjs-800.woff2) format('woff2')}
 </style>
 <meta name="theme-color" content="#262c18">
+<meta name="description" content="Official academic timetable for UniMAP UR6522002 Year 2 Group 3 (Y2G3), Semester 1 2026/2027. Includes full class schedules, venues, and lecturers for Control System, Circuit Theory, Electronics, Instrumentation, and Mathematics.">
+<meta name="keywords" content="UniMAP, timetable, UR6522002, Y2G3, FKTE, Semester 1 2026/2027, schedule">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="UniMAP Academic Timetable · Sem 1 2026/27 (UR6522002 Y2G3)">
+<meta property="og:description" content="Weekly academic schedule with 5 subjects, 23 contact hours, venues, and lecturers. Machine-readable formats available.">
+<meta property="og:type" content="website">
+<link rel="alternate" type="application/json" href="schedule.json" title="Machine-readable Timetable JSON">
+<link rel="alternate" type="text/markdown" href="llms.txt" title="AI Model Context (llms.txt)">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -33,8 +41,8 @@ button:active,.pb:active,.seg button:active,.tabs button:active,.opt button:acti
 :root[data-theme="dark"] #ib,:root[data-theme="oled"] #ib{color:hsl(145 75% 68%)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;transition:background-color .25s ease,color .25s ease;overscroll-behavior-y:contain}
 .wrap{max-width:1100px;width:100%;margin:0 auto;padding:0 18px 28px}
-.site-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(16px) saturate(180%);-webkit-backdrop-filter:blur(16px) saturate(180%);border-bottom:1px solid var(--line);padding:10px 18px 8px;margin:0 -18px 16px;max-width:none;width:calc(100% + 36px);box-shadow:0 1px 0 var(--line)}
-.site-brand{margin-bottom:2px}
+.site-header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(16px) saturate(180%);-webkit-backdrop-filter:blur(16px) saturate(180%);border-bottom:1px solid var(--line);padding:12px 0 10px;margin-bottom:16px;box-shadow:0 1px 0 var(--line)}
+.site-brand{max-width:1100px;margin:0 auto;padding:0 18px}
 .eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
 h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:-.03em}
 .stats{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
@@ -168,10 +176,10 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
 .cs-card{background:hsl(var(--h,8) 85% 55% / .07);border:1px solid hsl(var(--h,8) 80% 55% / .18);border-radius:var(--r-md);padding:10px 14px}
 .cs-card label{display:block;font-size:10px;font-weight:800;color:var(--mute);margin-bottom:5px;text-transform:uppercase;letter-spacing:.06em}
 .cs-card b{display:block;font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.3}
-.cs-card span{display:block;font-size:12px;color:var(--mute);line-height:1.4}
-.lect-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
-.lect-chip{display:inline-flex;align-items:center;gap:6px;background:hsl(var(--h,8) 80% 55% / .1);border-radius:999px;padding:3px 10px 3px 3px;font-size:11.5px;font-weight:600;color:var(--ink)}
-.lect-avatar{width:22px;height:22px;border-radius:50%;background:hsl(var(--h,8) 70% 52%);color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cs-card p{margin:0;font-size:12px;color:var(--mute);line-height:1.4}
+.lect-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.lect-chip{display:inline-flex;align-items:center;gap:7px;background:hsl(var(--h,8) 80% 55% / .18);border:1px solid hsl(var(--h,8) 75% 50% / .3);border-radius:999px;padding:4px 12px 4px 4px;font-size:12px;font-weight:700;color:var(--ink)}
+.lect-avatar{width:22px;height:22px;border-radius:50%;background:hsl(var(--h,8) 75% 50%);color:#ffffff!important;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 1px 3px rgba(0,0,0,.25)}
 .toast{position:fixed;top:max(16px,env(safe-area-inset-top,16px));left:50%;transform:translateX(-50%) translateY(-100px);background:var(--ink);color:var(--bg);padding:9px 18px 11px;border-radius:999px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:7px;box-shadow:0 8px 24px -2px rgba(0,0,0,.32);z-index:110;opacity:0;pointer-events:none;transition:transform 300ms cubic-bezier(0.1,0.9,0.2,1),opacity 240ms ease;overflow:hidden;min-width:160px;justify-content:center}
 .toast::after{content:'';position:absolute;bottom:0;left:0;height:3px;background:var(--bg);border-radius:0;opacity:.4;animation:none}
 .toast.show{transform:translateX(-50%) translateY(0);opacity:1}
@@ -263,7 +271,8 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
   .jump-pill{display:none}
   .week-hint{display:none;align-items:center;justify-content:center;gap:6px;font-size:11px;font-weight:600;color:var(--mute);margin-bottom:8px;text-align:center}
   @media(max-width:680px){
-  .site-header{padding:8px 14px 6px;margin:0 -14px 12px;width:calc(100% + 28px)}
+  .site-header{padding:10px 0 8px;margin:0 0 12px;width:100%}
+  .site-brand{padding:0 14px}
   .wrap{padding:0 14px calc(env(safe-area-inset-bottom, 0px) + 82px);padding-left:max(14px,env(safe-area-inset-left,14px));padding-right:max(14px,env(safe-area-inset-right,14px))}
   .eyebrow{font-size:10px;line-height:1.35;letter-spacing:.09em}
   h1{font-size:20px;margin:1px 0 0;letter-spacing:-.025em}
@@ -433,14 +442,529 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
   .blk,.v-blk{font-size:8.5px;padding:3px 4px;line-height:1.25;margin:3px 2px}
   .blk b,.v-blk b{font-size:9px}
   .legend{margin-top:10px;font-size:10px}
+  .legend span{background:none!important;border:none!important;box-shadow:none!important;padding:2px 6px!important}
   .note{margin-top:6px;font-size:9.5px}
+  .note::before{display:none!important}
+  .site-header{position:static!important;background:none!important;border:none!important;box-shadow:none!important;padding:0!important;margin:0!important}
+  .site-brand{padding:0!important}
+  .mob-dock,.jump-pill{display:none!important}
 }
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:normal;border:0}
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollegeOrUniversity",
+      "@id": "https://www.unimap.edu.my/#organization",
+      "name": "Universiti Malaysia Perlis (UniMAP)",
+      "alternateName": "UniMAP",
+      "url": "https://www.unimap.edu.my",
+      "department": {
+        "@type": "Organization",
+        "name": "Faculty of Electronic Engineering Technology (FKTE)"
+      }
+    },
+    {
+      "@type": "EducationalOccupationalProgram",
+      "@id": "https://timetable.unimap.edu.my/#program",
+      "name": "Electronic Engineering Technology UR6522002",
+      "programType": "Bachelor of Electronic Engineering Technology",
+      "educationalProgramMode": "Full-time",
+      "provider": {
+        "@id": "https://www.unimap.edu.my/#organization"
+      }
+    },
+    {
+      "@type": "Schedule",
+      "@id": "https://timetable.unimap.edu.my/#schedule",
+      "name": "Academic Timetable Semester 1 2026/2027",
+      "description": "Weekly class schedule for UniMAP programme UR6522002 Year 2 Group 3 (Y2G3), Semester 1 2026/2027. 23 class hours across 5 subjects.",
+      "startDate": "2026-10-01",
+      "repeatFrequency": "P1W",
+      "byDay": [
+        "https://schema.org/Tuesday",
+        "https://schema.org/Wednesday",
+        "https://schema.org/Thursday",
+        "https://schema.org/Friday"
+      ]
+    },
+    {
+      "@type": "EducationEvent",
+      "name": "Control System Technology (Lab)",
+      "course": {
+        "@type": "Course",
+        "courseCode": "EMK22003 / EMK31103",
+        "name": "Control System Technology"
+      },
+      "dayOfWeek": "Tuesday",
+      "startTime": "11:00",
+      "endTime": "14:00",
+      "duration": "PT3H",
+      "location": {
+        "@type": "Place",
+        "name": "Industrial Control Lab",
+        "containedInPlace": {
+          "@type": "Place",
+          "name": "FKTE 2, UniMAP"
+        }
+      },
+      "instructor": [
+        {
+          "@type": "Person",
+          "name": "Mazwin Binti Mazlan"
+        },
+        {
+          "@type": "Person",
+          "name": "Mardianaliza Binti Othman"
+        }
+      ]
+    },
+    {
+      "@type": "EducationEvent",
+      "name": "Mathematics for Eng. Technology 3 (Lecture)",
+      "course": {
+        "@type": "Course",
+        "courseCode": "IMQ21303",
+        "name": "Mathematics for Eng. Technology 3"
+      },
+      "dayOfWeek": "Tuesday",
+      "startTime": "15:00",
+      "endTime": "17:00",
+      "duration": "PT2H",
+      "location": {
+        "@type": "Place",
+        "name": "DK 3",
+        "containedInPlace": {
+          "@type": "Place",
+          "name": "Pauh Putra, UniMAP"
+        }
+      },
+      "instructor": [
+        {
+          "@type": "Person",
+          "name": "Zabidi Bin Abu Hasan"
+        }
+      ]
+    },
+    {
+      "@type": "EducationEvent",
+      "name": "Mathematics for Eng. Technology 3 (Lecture · Online)",
+      "course": {
+        "@type": "Course",
+        "courseCode": "IMQ21303",
+        "name": "Mathematics for Eng. Technology 3"
+      },
+      "dayOfWeek": "Wednesday",
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "duration": "PT1H",
+      "location": {
+        "@type": "VirtualLocation",
+        "name": "Online"
+      },
+      "instructor": [
+        {
+          "@type": "Person",
+          "name": "Zabidi Bin Abu Hasan"
+        }
+      ]
+    },
+    {
+      "@type": "EducationEvent",
+      "name": "Electronics 2 (Lab)",
+      "course": {
+        "@type": "Course",
+        "courseCode": "EMK21303",
+        "name": "Electronics 2"
+      },
+      "dayOfWeek": "Wednesday",
+      "startTime": "11:00",
+      "endTime": "14:00",
+      "duration": "PT3H",
+      "location": {
+        "@type": "Place",
+        "name": "Power Electronics Lab",
+        "containedInPlace": {
+          "@type": "Place",
+          "name": "FKTE 2, UniMAP"
+        }
+      },
+      "instructor": [
+        {
+          "@type": "Person",
+          "name": "Chanuri A/P Charin"
+        },
+        {
+          "@type": "Person",
+          "name": "Abdul Rahim Bin Abdul Razak"
+        }
+      ]
+    },
+    {
+      "@type": "EducationEvent",
+      "name": "Electric Circuit Theory 2 (Lecture C)",
+      "course": {
+        "@type": "Course",
+        "courseCode": "EMK21203",
+        "name": "Electric Circuit Theory 2"
+      },
+      "dayOfWeek": "Thursday",
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "duration": "PT2H",
+      "location": {
+        "@type": "Place",
+        "name": "BK 1",
+        "containedInPlace": {
+          "@type": "Place",
+          "name": "FKTE 2, UniMAP"
+        }
+      },
+      "instructor": [
+        {
+          "@type": "Person",
+          "name": "Mohamad Zhafran Bin Zakariya"
+        }
+      ]
+    },
+    {
+      "@type": "EducationEvent",
+      "name": "Electric Circuit Theory 2 (Lab)",
+      "course": {
+        "@type": "Course",
+        "courseCode": "EMK21203",
+        "name": "Electric Circuit Theory 2"
+      },
+      "dayOfWeek": "Thursday",
+      "startTime": "11:00",
+      "endTime": "14:00",
+      "duration": "PT3H",
+      "location": {
+        "@type": "Place",
+        "name": "Electrical Machines Simulator Lab",
+        "containedInPlace": {
+          "@type": "Place",
+          "name": "FKTE 2, UniMAP"
+        }
+      },
+      "instructor": [
+        {
+          "@type": "Person",
+          "name": "Mohamad Zhafran Bin Zakariya"
+        },
+        {
+          "@type": "Person",
+          "name": "Junaidah Binti Ali Mohd Jobran"
+        }
+      ]
+    },
+    {
+      "@type": "EducationEvent",
+      "name": "Measurement & Instrumentation (Lab)",
+      "course": {
+        "@type": "Course",
+        "courseCode": "EMK21103",
+        "name": "Measurement & Instrumentation"
+      },
+      "dayOfWeek": "Thursday",
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "duration": "PT3H",
+      "location": {
+        "@type": "Place",
+        "name": "Electrical Technology Lab",
+        "containedInPlace": {
+          "@type": "Place",
+          "name": "FKTE 2, UniMAP"
+        }
+      },
+      "instructor": [
+        {
+          "@type": "Person",
+          "name": "Muhammad Shakir Bin Laili"
+        },
+        {
+          "@type": "Person",
+          "name": "Chanuri A/P Charin"
+        }
+      ]
+    },
+    {
+      "@type": "EducationEvent",
+      "name": "Measurement & Instrumentation (Lecture A)",
+      "course": {
+        "@type": "Course",
+        "courseCode": "EMK21103",
+        "name": "Measurement & Instrumentation"
+      },
+      "dayOfWeek": "Thursday",
+      "startTime": "17:00",
+      "endTime": "19:00",
+      "duration": "PT2H",
+      "location": {
+        "@type": "Place",
+        "name": "DK 4",
+        "containedInPlace": {
+          "@type": "Place",
+          "name": "Pauh Putra, UniMAP"
+        }
+      },
+      "instructor": [
+        {
+          "@type": "Person",
+          "name": "Muhammad Shakir Bin Laili"
+        }
+      ]
+    },
+    {
+      "@type": "EducationEvent",
+      "name": "Electronics 2 (Lecture A)",
+      "course": {
+        "@type": "Course",
+        "courseCode": "EMK21303",
+        "name": "Electronics 2"
+      },
+      "dayOfWeek": "Friday",
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "duration": "PT2H",
+      "location": {
+        "@type": "Place",
+        "name": "DK 3",
+        "containedInPlace": {
+          "@type": "Place",
+          "name": "Pauh Putra, UniMAP"
+        }
+      },
+      "instructor": [
+        {
+          "@type": "Person",
+          "name": "Chanuri A/P Charin"
+        },
+        {
+          "@type": "Person",
+          "name": "Abdul Rahim Bin Abdul Razak"
+        }
+      ]
+    },
+    {
+      "@type": "EducationEvent",
+      "name": "Control System Technology (Lecture A)",
+      "course": {
+        "@type": "Course",
+        "courseCode": "EMK22003 / EMK31103",
+        "name": "Control System Technology"
+      },
+      "dayOfWeek": "Friday",
+      "startTime": "15:00",
+      "endTime": "17:00",
+      "duration": "PT2H",
+      "location": {
+        "@type": "Place",
+        "name": "DK 5",
+        "containedInPlace": {
+          "@type": "Place",
+          "name": "Pauh Putra, UniMAP"
+        }
+      },
+      "instructor": [
+        {
+          "@type": "Person",
+          "name": "Mazwin Binti Mazlan"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script type="application/json" id="timetable-data">
+{
+  "title": "UniMAP Academic Timetable",
+  "program": "UR6522002",
+  "group": "Y2G3",
+  "term": "Semester 1 2026/2027",
+  "totalHours": 23,
+  "subjects": {
+    "EMK22003": {"code": "EMK22003 / EMK31103", "name": "Control System Technology", "short": "Control System"},
+    "EMK21203": {"code": "EMK21203", "name": "Electric Circuit Theory 2", "short": "Circuit Theory 2"},
+    "EMK21303": {"code": "EMK21303", "name": "Electronics 2", "short": "Electronics 2"},
+    "EMK21103": {"code": "EMK21103", "name": "Measurement & Instrumentation", "short": "Measurement & Instrum."},
+    "IMQ21303": {"code": "IMQ21303", "name": "Mathematics for Eng. Technology 3", "short": "Maths Eng Tech 3"}
+  },
+  "sessions": [
+    {"day": "Tuesday", "dayIndex": 2, "start": "11:00", "end": "14:00", "hours": 3, "code": "EMK22003 / EMK31103", "subject": "Control System Technology", "type": "Lab", "venue": "FKTE 2 · Industrial Control Lab", "lecturers": ["Mazwin Binti Mazlan", "Mardianaliza Binti Othman"]},
+    {"day": "Tuesday", "dayIndex": 2, "start": "15:00", "end": "17:00", "hours": 2, "code": "IMQ21303", "subject": "Mathematics for Eng. Technology 3", "type": "Lecture", "venue": "Pauh Putra · DK 3", "lecturers": ["Zabidi Bin Abu Hasan"]},
+    {"day": "Wednesday", "dayIndex": 3, "start": "10:00", "end": "11:00", "hours": 1, "code": "IMQ21303", "subject": "Mathematics for Eng. Technology 3", "type": "Lecture · Online", "venue": "Online", "lecturers": ["Zabidi Bin Abu Hasan"]},
+    {"day": "Wednesday", "dayIndex": 3, "start": "11:00", "end": "14:00", "hours": 3, "code": "EMK21303", "subject": "Electronics 2", "type": "Lab", "venue": "FKTE 2 · Power Electronics Lab", "lecturers": ["Chanuri A/P Charin", "Abdul Rahim Bin Abdul Razak"]},
+    {"day": "Thursday", "dayIndex": 4, "start": "08:00", "end": "10:00", "hours": 2, "code": "EMK21203", "subject": "Electric Circuit Theory 2", "type": "Lecture C", "venue": "FKTE 2 · BK 1", "lecturers": ["Mohamad Zhafran Bin Zakariya"]},
+    {"day": "Thursday", "dayIndex": 4, "start": "11:00", "end": "14:00", "hours": 3, "code": "EMK21203", "subject": "Electric Circuit Theory 2", "type": "Lab", "venue": "FKTE 2 · Electrical Machines Simulator Lab", "lecturers": ["Mohamad Zhafran Bin Zakariya", "Junaidah Binti Ali Mohd Jobran"]},
+    {"day": "Thursday", "dayIndex": 4, "start": "14:00", "end": "17:00", "hours": 3, "code": "EMK21103", "subject": "Measurement & Instrumentation", "type": "Lab", "venue": "FKTE 2 · Electrical Technology Lab", "lecturers": ["Muhammad Shakir Bin Laili", "Chanuri A/P Charin"]},
+    {"day": "Thursday", "dayIndex": 4, "start": "17:00", "end": "19:00", "hours": 2, "code": "EMK21103", "subject": "Measurement & Instrumentation", "type": "Lecture A", "venue": "Pauh Putra · DK 4", "lecturers": ["Muhammad Shakir Bin Laili"]},
+    {"day": "Friday", "dayIndex": 5, "start": "08:00", "end": "10:00", "hours": 2, "code": "EMK21303", "subject": "Electronics 2", "type": "Lecture A", "venue": "Pauh Putra · DK 3", "lecturers": ["Chanuri A/P Charin", "Abdul Rahim Bin Abdul Razak"]},
+    {"day": "Friday", "dayIndex": 5, "start": "15:00", "end": "17:00", "hours": 2, "code": "EMK22003 / EMK31103", "subject": "Control System Technology", "type": "Lecture A", "venue": "Pauh Putra · DK 5", "lecturers": ["Mazwin Binti Mazlan"]}
+  ]
+}
+</script>
 </head>
 <body>
+<header class="site-header">
+  <div class="site-brand">
+    <div class="eyebrow">UniMAP · UR6522002 · Y2G3 · Semester 1 2026/27</div>
+    <h1>My Timetable</h1>
+  </div>
+</header>
+<section id="ai-timetable-summary" class="sr-only" aria-label="Official Academic Timetable for AI Models, Agents, and Screen Readers">
+  <h2>UniMAP Academic Timetable · Semester 1 2026/2027</h2>
+  <p>Programme: UR6522002 · Year 2 Group 3 (Y2G3). Universiti Malaysia Perlis (UniMAP), Faculty of Electronic Engineering Technology (FKTE).</p>
+  <p>Summary: 5 core subjects, 23 total weekly class hours. First class is Tuesday at 11:00 AM; last class is Friday at 5:00 PM. Note: English, Malay and Philosophy classes are omitted.</p>
+  <p>Machine-readable endpoints: <a href="schedule.json">schedule.json</a> | <a href="llms.txt">llms.txt</a></p>
+  <table summary="Full weekly schedule breakdown by day, time, duration, course code, course name, session type, venue, and instructors">
+    <caption>Weekly Class Schedule (Semester 1 2026/2027)</caption>
+    <thead>
+      <tr>
+        <th scope="col">Day</th>
+        <th scope="col">Time</th>
+        <th scope="col">Duration</th>
+        <th scope="col">Course Code</th>
+        <th scope="col">Subject Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Venue</th>
+        <th scope="col">Instructors / Lecturers</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Monday</td>
+        <td>All day</td>
+        <td>—</td>
+        <td>—</td>
+        <td>Free Day</td>
+        <td>Self-Study</td>
+        <td>—</td>
+        <td>No classes scheduled</td>
+      </tr>
+      <tr>
+        <td>Tuesday</td>
+        <td>11:00 – 14:00</td>
+        <td>3 hours</td>
+        <td>EMK22003 / EMK31103</td>
+        <td>Control System Technology</td>
+        <td>Lab</td>
+        <td>FKTE 2 · Industrial Control Lab</td>
+        <td>Mazwin Binti Mazlan, Mardianaliza Binti Othman</td>
+      </tr>
+      <tr>
+        <td>Tuesday</td>
+        <td>15:00 – 17:00</td>
+        <td>2 hours</td>
+        <td>IMQ21303</td>
+        <td>Mathematics for Eng. Technology 3</td>
+        <td>Lecture</td>
+        <td>Pauh Putra · DK 3</td>
+        <td>Zabidi Bin Abu Hasan</td>
+      </tr>
+      <tr>
+        <td>Wednesday</td>
+        <td>10:00 – 11:00</td>
+        <td>1 hour</td>
+        <td>IMQ21303</td>
+        <td>Mathematics for Eng. Technology 3</td>
+        <td>Lecture · Online</td>
+        <td>Online</td>
+        <td>Zabidi Bin Abu Hasan</td>
+      </tr>
+      <tr>
+        <td>Wednesday</td>
+        <td>11:00 – 14:00</td>
+        <td>3 hours</td>
+        <td>EMK21303</td>
+        <td>Electronics 2</td>
+        <td>Lab</td>
+        <td>FKTE 2 · Power Electronics Lab</td>
+        <td>Chanuri A/P Charin, Abdul Rahim Bin Abdul Razak</td>
+      </tr>
+      <tr>
+        <td>Thursday</td>
+        <td>08:00 – 10:00</td>
+        <td>2 hours</td>
+        <td>EMK21203</td>
+        <td>Electric Circuit Theory 2</td>
+        <td>Lecture C</td>
+        <td>FKTE 2 · BK 1</td>
+        <td>Mohamad Zhafran Bin Zakariya</td>
+      </tr>
+      <tr>
+        <td>Thursday</td>
+        <td>11:00 – 14:00</td>
+        <td>3 hours</td>
+        <td>EMK21203</td>
+        <td>Electric Circuit Theory 2</td>
+        <td>Lab</td>
+        <td>FKTE 2 · Electrical Machines Simulator Lab</td>
+        <td>Mohamad Zhafran Bin Zakariya, Junaidah Binti Ali Mohd Jobran</td>
+      </tr>
+      <tr>
+        <td>Thursday</td>
+        <td>14:00 – 17:00</td>
+        <td>3 hours</td>
+        <td>EMK21103</td>
+        <td>Measurement &amp; Instrumentation</td>
+        <td>Lab</td>
+        <td>FKTE 2 · Electrical Technology Lab</td>
+        <td>Muhammad Shakir Bin Laili, Chanuri A/P Charin</td>
+      </tr>
+      <tr>
+        <td>Thursday</td>
+        <td>17:00 – 19:00</td>
+        <td>2 hours</td>
+        <td>EMK21103</td>
+        <td>Measurement &amp; Instrumentation</td>
+        <td>Lecture A</td>
+        <td>Pauh Putra · DK 4</td>
+        <td>Muhammad Shakir Bin Laili</td>
+      </tr>
+      <tr>
+        <td>Friday</td>
+        <td>08:00 – 10:00</td>
+        <td>2 hours</td>
+        <td>EMK21303</td>
+        <td>Electronics 2</td>
+        <td>Lecture A</td>
+        <td>Pauh Putra · DK 3</td>
+        <td>Chanuri A/P Charin, Abdul Rahim Bin Abdul Razak</td>
+      </tr>
+      <tr>
+        <td>Friday</td>
+        <td>12:00 – 15:00</td>
+        <td>3 hours</td>
+        <td>—</td>
+        <td>Friday Prayer &amp; Lunch Break</td>
+        <td>Break</td>
+        <td>Campus</td>
+        <td>No classes scheduled</td>
+      </tr>
+      <tr>
+        <td>Friday</td>
+        <td>15:00 – 17:00</td>
+        <td>2 hours</td>
+        <td>EMK22003 / EMK31103</td>
+        <td>Control System Technology</td>
+        <td>Lecture A</td>
+        <td>Pauh Putra · DK 5</td>
+        <td>Mazwin Binti Mazlan</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<noscript>
+  <div style="max-width:1100px;margin:16px auto;padding:16px 20px;background:#fff8db;border:1px solid #e6cb62;border-radius:12px;color:#4f3d00;font-family:sans-serif">
+    <h2 style="margin:0 0 8px;font-size:18px">JavaScript Disabled / Static Scraper View</h2>
+    <p style="margin:0 0 8px;font-size:14px">This timetable is fully accessible in machine-readable formats: <a href="schedule.json" style="font-weight:bold;color:#1e40af">schedule.json</a> and <a href="llms.txt" style="font-weight:bold;color:#1e40af">llms.txt</a>.</p>
+  </div>
+</noscript>
 <div class="wrap">
-  <div class="eyebrow">UniMAP · UR6522002 · Y2G3 · Semester 1 2026/27</div>
-  <h1>My Timetable</h1>
   <div class="stats" id="stats"></div>
   <div class="now" id="now"></div>
   <div class="bar">
@@ -521,11 +1045,11 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
   <div class="note">English, Malay and Philosophy classes left out.</div>
   <button class="jump-pill" id="jump-today" title="Jump to Today">⚡ Today</button>
   <nav class="mob-dock" id="mob-dock" aria-label="Mobile Navigation">
-    <button id="md-d" class="on">🗓 Day</button>
-    <button id="md-w">📊 Week</button>
-    <button id="md-wb">🖼 Wall</button>
-    <button id="md-set">⚙ Set</button>
-    <button id="md-tb" title="Switch Theme"><span id="md-tbi">🌓</span></button>
+    <button id="md-d" class="on"><span class="dock-icon">🗓</span><span>Day</span></button>
+    <button id="md-w"><span class="dock-icon">📊</span><span>Week</span></button>
+    <button id="md-wb"><span class="dock-icon">🖼</span><span>Wall</span></button>
+    <button id="md-set"><span class="dock-icon">⚙</span><span>Set</span></button>
+    <button id="md-tb" title="Switch Theme"><span class="dock-icon" id="md-tbi">🌓</span><span>Theme</span></button>
   </nav>
   <div class="sheet-scrim" id="sheet-scrim"></div>
   <div class="bottom-sheet" id="class-sheet" role="dialog" aria-modal="true">
@@ -540,13 +1064,13 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
       
       <div class="cs-actions">
         <button class="cs-btn primary" id="cs-copy-room">
-          <span>📍</span> <span id="cs-room-btn-text">Copy Room</span>
+          <span class="cs-icon">📍</span><span id="cs-room-btn-text">Copy Room</span>
         </button>
         <button class="cs-btn" id="cs-share">
-          <span>📤</span> <span>Share</span>
+          <span class="cs-icon">📤</span><span>Share</span>
         </button>
         <button class="cs-btn" id="cs-cal">
-          <span>📅</span> <span>Add to Cal</span>
+          <span class="cs-icon">📅</span><span>Add to Cal</span>
         </button>
       </div>
 
@@ -557,7 +1081,7 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
         </div>
         <div class="cs-card">
           <label>👨‍🏫 Lecturers</label>
-          <span id="cs-lecturers">Mazwin Binti Mazlan, Mardianaliza Binti Othman</span>
+          <div id="cs-lecturers">Mazwin Binti Mazlan, Mardianaliza Binti Othman</div>
         </div>
       </div>
     </div>
@@ -669,9 +1193,10 @@ function dayHtml(){
       }
     }
 
+    var cardDesc=DF[day-1]+', '+st(x[1])+' to '+en(x[2])+': '+s.n+' ('+s.c.split(' / ')[0]+'), '+x[4]+' at '+x[5]+'. Lecturers: '+(x[6]||'None');
     h+='<div class="timeline-item'+(live?' live':past?' past':'')+'">';
-    h+='<div class="card'+(live?' live':'')+(past?' past':'')+'" data-idx="'+eIdx+'" role="button" tabindex="0">';
-    h+='<div class="time"><b>'+st(x[1])+'</b><span>'+en(x[2])+'</span><em>'+dur(x[1],x[2])+'</em></div>';
+    h+='<div class="card'+(live?' live':'')+(past?' past':'')+'" data-idx="'+eIdx+'" role="button" tabindex="0" aria-label="'+cardDesc+'" data-day="'+DF[day-1]+'" data-start="'+st(x[1])+'" data-end="'+en(x[2])+'" data-code="'+s.c+'" data-title="'+s.n+'" data-venue="'+x[5]+'" data-lecturers="'+(x[6]||'')+'">';
+    h+='<div class="time"><time datetime="'+p(x[1])+':00"><b>'+st(x[1])+'</b></time><span><time datetime="'+p(x[2])+':00">'+en(x[2])+'</time></span><em>'+dur(x[1],x[2])+'</em></div>';
     h+='<div class="ev" style="--h:'+s.h+'">';
     h+='<div class="tag">'+s.c+' · '+x[4].toUpperCase()+(live?' · LIVE':'')+'</div>';
     h+='<h3>'+s.n+'</h3>';
@@ -706,7 +1231,8 @@ function weekHorizontalHtml(){
     for(k=8;k<19;k++)h+='<div class="cell" style="grid-column:'+(k-6)+'"></div>';
     if(d==5)h+='<div class="blk brk" style="grid-column:6/span 3">Break<br>'+st(12)+' – '+en(15)+'</div>';
     E.filter(function(x){return x[0]==d}).forEach(function(x){var eIdx=E.indexOf(x),s=S[x[3]],l=x[2]-x[1];
-      h+='<div class="blk'+(l==1?' s':'')+'" data-d="'+d+'" data-s="'+x[1]+'" data-e="'+x[2]+'" data-idx="'+eIdx+'" style="--h:'+s.h+';grid-column:'+(x[1]-6)+'/span '+l+'"><b>'+s.c.split(' / ')[0]+'</b><div class="tm">'+st(x[1])+' – '+en(x[2])+'</div><div class="nm">'+s.n+'</div><div class="rm">'+x[4]+' · '+x[5].split(' · ').pop()+'</div></div>'});
+      var cardDesc=DF[d-1]+', '+st(x[1])+' to '+en(x[2])+': '+s.n+' ('+x[4]+') at '+x[5]+'. Lecturers: '+(x[6]||'—');
+      h+='<div class="blk'+(l==1?' s':'')+'" data-d="'+d+'" data-s="'+x[1]+'" data-e="'+x[2]+'" data-idx="'+eIdx+'" role="button" tabindex="0" aria-label="'+cardDesc+'" data-day="'+DF[d-1]+'" data-code="'+s.c+'" data-title="'+s.n+'" data-venue="'+x[5]+'" style="--h:'+s.h+';grid-column:'+(x[1]-6)+'/span '+l+'"><b>'+s.c.split(' / ')[0]+'</b><div class="tm">'+st(x[1])+' – '+en(x[2])+'</div><div class="nm">'+s.n+'</div><div class="rm">'+x[4]+' · '+x[5].split(' · ').pop()+'</div></div>'});
     h+='<div class="nowl" data-d="'+d+'" style="display:none"><span class="nl"><i></i></span></div></div>';
   }
   return h+'</div></div>';
@@ -741,7 +1267,8 @@ function weekVerticalHtml(){
     var s=S[x[3]];
     var live=I.td===d&&I.m>=x[1]*60&&I.m<x[2]*60;
     var past=I.td&&(d<I.td||(d===I.td&&I.m>=x[2]*60));
-    h+='<div class="v-blk'+(live?' live':past?' past':'')+'" data-d="'+d+'" data-s="'+x[1]+'" data-e="'+x[2]+'" data-idx="'+eIdx+'" style="--h:'+s.h+';grid-column:'+col+';grid-row:'+row+'/span '+span+'">';
+    var cardDesc=DF[d-1]+', '+st(x[1])+' to '+en(x[2])+': '+s.n+' ('+x[4]+') at '+x[5]+'. Lecturers: '+(x[6]||'—');
+    h+='<div class="v-blk'+(live?' live':past?' past':'')+'" data-d="'+d+'" data-s="'+x[1]+'" data-e="'+x[2]+'" data-idx="'+eIdx+'" role="button" tabindex="0" aria-label="'+cardDesc+'" data-day="'+DF[d-1]+'" data-code="'+s.c+'" data-title="'+s.n+'" data-venue="'+x[5]+'" style="--h:'+s.h+';grid-column:'+col+';grid-row:'+row+'/span '+span+'">';
     h+='<b>'+s.c.split(' / ')[0]+'</b>';
     h+='<div class="tm">'+st(x[1])+' – '+en(x[2])+'</div>';
     h+='<div class="nm">'+s.n+'</div>';
@@ -849,7 +1376,18 @@ function openClassDetails(x){
   if($('cs-title'))$('cs-title').textContent=s.n;
   if($('cs-time'))$('cs-time').textContent=timeStr;
   if($('cs-loc'))$('cs-loc').textContent=venue;
-  if($('cs-lecturers'))$('cs-lecturers').textContent=lects;
+  var csLect=$('cs-lecturers');
+  if(csLect){
+    if(!x[6]||x[6]==='—'){
+      csLect.textContent='—';
+    }else{
+      var names=x[6].split(',').map(function(s){return s.trim()}).filter(Boolean);
+      csLect.innerHTML='<div class="lect-chips">'+names.map(function(nm){
+        var initial=nm.charAt(0).toUpperCase();
+        return '<span class="lect-chip"><span class="lect-avatar">'+initial+'</span>'+nm+'</span>';
+      }).join('')+'</div>';
+    }
+  }
 
   var sheet=$('class-sheet');
   if(sheet){

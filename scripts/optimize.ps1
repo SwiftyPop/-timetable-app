@@ -28,6 +28,15 @@ foreach ($f in $fontsToKeep) {
 # 3. Copy icons
 Copy-Item (Join-Path (Join-Path $root "icons") "*") (Join-Path $dist "icons") -Force
 
+# 3b. Copy AI & machine-readable data files
+$aiFiles = @("schedule.json", "llms.txt", "robots.txt")
+foreach ($af in $aiFiles) {
+    $srcAf = Join-Path $root $af
+    if (Test-Path $srcAf) {
+        Copy-Item $srcAf $dist -Force
+    }
+}
+
 # 4. Read source index.html
 $srcHtml = Get-Content (Join-Path $root "index.html") -Raw -Encoding UTF8
 $origLength = [System.Text.Encoding]::UTF8.GetByteCount($srcHtml)
@@ -115,7 +124,7 @@ function Minify-JS([string]$code) {
             if ($isPlusMinus -or ($isWordPrev -and $isWordNext)) {
                 [void]$sb.Append(' ')
                 $prev = ' '
-            } elseif ($hasNewline -and $prev -ne [char]0 -and $prev -ne ';' -and $prev -ne '{' -and $prev -ne '}' -and -not ($delims.IndexOf($next) -ge 0)) {
+            } elseif ($hasNewline -and $prev -ne [char]0 -and $delims.IndexOf($prev) -lt 0 -and $delims.IndexOf($next) -lt 0) {
                 # Safe statement boundary
                 [void]$sb.Append(';')
                 $prev = ';'
@@ -173,11 +182,14 @@ function Pre-Compress-GZip([string]$filePath) {
 Pre-Compress-GZip $distHtmlPath
 Pre-Compress-GZip (Join-Path $dist "sw.js")
 Pre-Compress-GZip (Join-Path $dist "manifest.webmanifest")
+if (Test-Path (Join-Path $dist "schedule.json")) { Pre-Compress-GZip (Join-Path $dist "schedule.json") }
+if (Test-Path (Join-Path $dist "llms.txt")) { Pre-Compress-GZip (Join-Path $dist "llms.txt") }
+if (Test-Path (Join-Path $dist "robots.txt")) { Pre-Compress-GZip (Join-Path $dist "robots.txt") }
 
 $gzLength = (Get-Item ($distHtmlPath + ".gz")).Length
 
 # 8. Calculate total asset weight comparison
-$origFiles = Get-ChildItem -Path $root -Include *.html,*.js,*.webmanifest,*.woff2,*.png -Recurse -File | Where-Object { $_.FullName -notmatch '[\\/](target|dist|\.cargo)[\\/]' }
+$origFiles = Get-ChildItem -Path $root -Include *.html,*.js,*.webmanifest,*.woff2,*.png,*.json,*.txt -Recurse -File | Where-Object { $_.FullName -notmatch '[\\/](target|dist|\.cargo)[\\/]' }
 $origTotal = ($origFiles | Measure-Object -Property Length -Sum).Sum
 $distTotal = (Get-ChildItem -Path $dist -Recurse -File -Exclude *.gz | Measure-Object -Property Length -Sum).Sum
 

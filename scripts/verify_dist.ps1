@@ -57,7 +57,12 @@ $requiredPatterns = @(
     'timetable-v5',
     'mob-dock',
     'class-sheet',
-    'jump-today'
+    'jump-today',
+    'application/ld+json',
+    'timetable-data',
+    'ai-timetable-summary',
+    'schedule.json',
+    'llms.txt'
 )
 
 foreach ($pat in $requiredPatterns) {
@@ -65,6 +70,16 @@ foreach ($pat in $requiredPatterns) {
         throw "Required pattern missing: $pat"
     }
     Write-Host "Found required pattern: $pat" -ForegroundColor Green
+}
+
+# Verify AI files exist in dist
+$requiredAiFiles = @("schedule.json", "llms.txt", "robots.txt")
+foreach ($f in $requiredAiFiles) {
+    $fPath = Join-Path $dist $f
+    if (-not (Test-Path $fPath)) {
+        throw "Missing AI distribution file: $f"
+    }
+    Write-Host "Found distribution file: $f" -ForegroundColor Green
 }
 
 Write-Host "`nAll verification checks PASSED!" -ForegroundColor Green

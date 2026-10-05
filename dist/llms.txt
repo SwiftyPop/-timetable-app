@@ -1,0 +1,89 @@
+# UniMAP Academic Timetable · Semester 1 2026/2027
+
+> Official academic timetable for Universiti Malaysia Perlis (UniMAP), Faculty of Electronic Engineering Technology (FKTE), Programme UR6522002, Year 2 Group 3 (Y2G3).
+
+## Overview
+- **Institution**: Universiti Malaysia Perlis (UniMAP)
+- **Faculty**: Faculty of Electronic Engineering Technology (FKTE)
+- **Programme**: UR6522002 (Year 2, Group 3 / Y2G3)
+- **Academic Term**: Semester 1, 2026/2027
+- **Total Class Hours**: 23 hours per week
+- **Total Subjects**: 5 core subjects
+- **First Class of Week**: Tuesday at 11:00 AM
+- **Last Class of Week**: Friday at 5:00 PM (17:00)
+- **Note**: English, Malay and Philosophy classes are omitted from this timetable.
+
+## Core Subject Directory
+
+| Code | Subject Name | Contact Hours | Primary Venue |
+| :--- | :--- | :--- | :--- |
+| **EMK22003 / EMK31103** | Control System Technology | 5 hrs (3h Lab + 2h Lec) | FKTE 2 / Pauh Putra DK 5 |
+| **EMK21203** | Electric Circuit Theory 2 | 5 hrs (3h Lab + 2h Lec) | FKTE 2 (BK 1 & Simulator Lab) |
+| **EMK21303** | Electronics 2 | 5 hrs (3h Lab + 2h Lec) | FKTE 2 / Pauh Putra DK 3 |
+| **EMK21103** | Measurement & Instrumentation | 5 hrs (3h Lab + 2h Lec) | FKTE 2 / Pauh Putra DK 4 |
+| **IMQ21303** | Mathematics for Eng. Technology 3 | 3 hrs (2h Lec + 1h Online) | Pauh Putra DK 3 / Online |
+
+---
+
+## Weekly Schedule Day-by-Day
+
+### Monday
+- **Status**: Free day (No classes scheduled). Allocated for independent study, revision, and assignments.
+
+### Tuesday (5 class hours)
+1. **11:00 – 14:00 (3 hours)**: Control System Technology (Lab)
+   - **Course Code**: EMK22003 / EMK31103
+   - **Venue**: FKTE 2 · Industrial Control Lab
+   - **Lecturers**: Mazwin Binti Mazlan, Mardianaliza Binti Othman
+2. *14:00 – 15:00*: Free Time (1 hour)
+3. **15:00 – 17:00 (2 hours)**: Mathematics for Eng. Technology 3 (Lecture)
+   - **Course Code**: IMQ21303
+   - **Venue**: Pauh Putra · Dewan Kuliah 3 (DK 3)
+   - **Lecturer**: Zabidi Bin Abu Hasan
+
+### Wednesday (4 class hours)
+1. **10:00 – 11:00 (1 hour)**: Mathematics for Eng. Technology 3 (Lecture · Online)
+   - **Course Code**: IMQ21303
+   - **Venue**: Online
+   - **Lecturer**: Zabidi Bin Abu Hasan
+2. **11:00 – 14:00 (3 hours)**: Electronics 2 (Lab)
+   - **Course Code**: EMK21303
+   - **Venue**: FKTE 2 · Power Electronics Lab
+   - **Lecturers**: Chanuri A/P Charin, Abdul Rahim Bin Abdul Razak
+
+### Thursday (10 class hours)
+1. **08:00 – 10:00 (2 hours)**: Electric Circuit Theory 2 (Lecture C)
+   - **Course Code**: EMK21203
+   - **Venue**: FKTE 2 · Bilik Kuliah 1 (BK 1)
+   - **Lecturer**: Mohamad Zhafran Bin Zakariya
+2. *10:00 – 11:00*: Free Time (1 hour)
+3. **11:00 – 14:00 (3 hours)**: Electric Circuit Theory 2 (Lab)
+   - **Course Code**: EMK21203
+   - **Venue**: FKTE 2 · Electrical Machines Simulator Lab
+   - **Lecturers**: Mohamad Zhafran Bin Zakariya, Junaidah Binti Ali Mohd Jobran
+4. **14:00 – 17:00 (3 hours)**: Measurement & Instrumentation (Lab)
+   - **Course Code**: EMK21103
+   - **Venue**: FKTE 2 · Electrical Technology Lab
+   - **Lecturers**: Muhammad Shakir Bin Laili, Chanuri A/P Charin
+5. **17:00 – 19:00 (2 hours)**: Measurement & Instrumentation (Lecture A)
+   - **Course Code**: EMK21103
+   - **Venue**: Pauh Putra · Dewan Kuliah 4 (DK 4)
+   - **Lecturer**: Muhammad Shakir Bin Laili
+
+### Friday (4 class hours)
+1. **08:00 – 10:00 (2 hours)**: Electronics 2 (Lecture A)
+   - **Course Code**: EMK21303
+   - **Venue**: Pauh Putra · Dewan Kuliah 3 (DK 3)
+   - **Lecturers**: Chanuri A/P Charin, Abdul Rahim Bin Abdul Razak
+2. *10:00 – 15:00*: Break (including Friday prayer & lunch break 12:00 – 15:00)
+3. **15:00 – 17:00 (2 hours)**: Control System Technology (Lecture A)
+   - **Course Code**: EMK22003 / EMK31103
+   - **Venue**: Pauh Putra · Dewan Kuliah 5 (DK 5)
+   - **Lecturer**: Mazwin Binti Mazlan
+
+---
+
+## Machine-Readable API & Endpoints
+- **Raw JSON Schedule**: `/schedule.json`
+- **Schema.org Structured Data**: Embedded in `index.html` as `application/ld+json`
+- **iCalendar Subscriptions**: Individual `.ics` event downloads available via the application

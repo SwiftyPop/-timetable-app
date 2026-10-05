@@ -21,6 +21,7 @@ $mime = @{
     ".png"  = "image/png"
     ".woff2"= "font/woff2"
     ".ics"  = "text/calendar; charset=utf-8"
+    ".txt"  = "text/plain; charset=utf-8"
 }
 
 while ($listener.IsListening) {
