@@ -1103,7 +1103,8 @@ var E=[
   [5,15,17,'ctrl','Lecture A','Pauh Putra · DK 5','Mazwin Binti Mazlan']
 ];
 var D=['Mon','Tue','Wed','Thu','Fri'],DF=['Monday','Tuesday','Wednesday','Thursday','Friday'];
-var t=new Date().getDay(),today=(t>=1&&t<=5)?t:0,day=today||1,view='d';
+var t=new Date().getDay(),today=(t>=1&&t<=5)?t:0,day=today||1;
+var view=localStorage.getItem('tt_view')||'d';
 if(location.search.indexOf('v=w')!==-1){view='w'}
 if(location.search.indexOf('v=d')!==-1){view='d'}
 var timeFormat=localStorage.getItem('tt_time_format')||'24h';
@@ -1223,17 +1224,28 @@ function dayHtml(){
 }
 
 function weekHorizontalHtml(){
+  var I=nowInfo();
   var h='<div class="week-hint"><span>←</span> Swipe horizontally to view hours <span>→</span></div><div class="scroll"><div class="tt"><div class="row hd"><div class="dl"></div>';
-  for(var k=8;k<19;k++)h+='<div class="sh" data-h="'+k+'" style="grid-column:'+(k-6)+'">'+fmtTime(k,0)+'<span>'+fmtTime(k+1,0)+'</span></div>';
+  for(var k=8;k<19;k++){
+    var isCurHour=(I.td>0&&I.m>=k*60&&I.m<(k+1)*60);
+    h+='<div class="sh'+(isCurHour?' cur':'')+'" data-h="'+k+'" style="grid-column:'+(k-6)+'">'+fmtTime(k,0)+'<span>'+fmtTime(k+1,0)+'</span></div>';
+  }
   h+='</div>';
   for(var d=1;d<=5;d++){
-    h+='<div class="row"><div class="dl" data-d="'+d+'"><span class="dl-full">'+DF[d-1]+'</span><span class="dl-short">'+D[d-1]+'</span></div>';
+    var isToday=I.td===d;
+    h+='<div class="row"><div class="dl'+(isToday?' today':'')+'" data-d="'+d+'"><span class="dl-full">'+DF[d-1]+'</span><span class="dl-short">'+D[d-1]+'</span></div>';
     for(k=8;k<19;k++)h+='<div class="cell" style="grid-column:'+(k-6)+'"></div>';
     if(d==5)h+='<div class="blk brk" style="grid-column:6/span 3">Break<br>'+st(12)+' – '+en(15)+'</div>';
-    E.filter(function(x){return x[0]==d}).forEach(function(x){var eIdx=E.indexOf(x),s=S[x[3]],l=x[2]-x[1];
+    E.filter(function(x){return x[0]==d}).forEach(function(x){
+      var eIdx=E.indexOf(x),s=S[x[3]],l=x[2]-x[1];
+      var live=isToday&&I.m>=x[1]*60&&I.m<x[2]*60;
+      var past=I.td&&(d<I.td||(d===I.td&&I.m>=x[2]*60));
       var cardDesc=DF[d-1]+', '+st(x[1])+' to '+en(x[2])+': '+s.n+' ('+x[4]+') at '+x[5]+'. Lecturers: '+(x[6]||'—');
-      h+='<div class="blk'+(l==1?' s':'')+'" data-d="'+d+'" data-s="'+x[1]+'" data-e="'+x[2]+'" data-idx="'+eIdx+'" role="button" tabindex="0" aria-label="'+cardDesc+'" data-day="'+DF[d-1]+'" data-code="'+s.c+'" data-title="'+s.n+'" data-venue="'+x[5]+'" style="--h:'+s.h+';grid-column:'+(x[1]-6)+'/span '+l+'"><b>'+s.c.split(' / ')[0]+'</b><div class="tm">'+st(x[1])+' – '+en(x[2])+'</div><div class="nm">'+s.n+'</div><div class="rm">'+x[4]+' · '+x[5].split(' · ').pop()+'</div></div>'});
-    h+='<div class="nowl" data-d="'+d+'" style="display:none"><span class="nl"><i></i></span></div></div>';
+      h+='<div class="blk'+(l==1?' s':'')+(live?' live':past?' past':'')+'" data-d="'+d+'" data-s="'+x[1]+'" data-e="'+x[2]+'" data-idx="'+eIdx+'" role="button" tabindex="0" aria-label="'+cardDesc+'" data-day="'+DF[d-1]+'" data-code="'+s.c+'" data-title="'+s.n+'" data-venue="'+x[5]+'" style="--h:'+s.h+';grid-column:'+(x[1]-6)+'/span '+l+'"><b>'+s.c.split(' / ')[0]+'</b><div class="tm">'+st(x[1])+' – '+en(x[2])+'</div><div class="nm">'+s.n+'</div><div class="rm">'+x[4]+' · '+x[5].split(' · ').pop()+'</div></div>';
+    });
+    var on=isToday&&I.m>=480&&I.m<1140;
+    var pc=on?((I.m-480)/660)*100:0;
+    h+='<div class="nowl" data-d="'+d+'" style="display:'+(on?'block':'none')+'"><span class="nl'+(pc>82?' r':'')+'" style="left:'+pc.toFixed(2)+'%"><i>'+I.hm+'</i></span></div></div>';
   }
   return h+'</div></div>';
 }
@@ -1345,10 +1357,22 @@ function render(){
   }
 }
 $('week').innerHTML=weekHtml();
-$('vd').onclick=function(){vib(10);if(view!='d'){view='d';transitionView(render)}};
-$('vw').onclick=function(){vib(10);if(view!='w'){view='w';transitionView(function(){render();setTimeout(autoCenterWeek,80)})}};
-if($('md-d'))$('md-d').onclick=function(){vib(10);if(view!='d'){view='d';transitionView(render)}};
-if($('md-w'))$('md-w').onclick=function(){vib(10);if(view!='w'){view='w';transitionView(function(){render();setTimeout(autoCenterWeek,80)})}};
+function setView(v){
+  if(v===view)return;
+  view=v;
+  try{localStorage.setItem('tt_view',v)}catch(e){}
+  transitionView(function(){
+    render();
+    tick(true);
+    if(view==='w'){
+      setTimeout(autoCenterWeek,80);
+    }
+  });
+}
+$('vd').onclick=function(){vib(10);setView('d')};
+$('vw').onclick=function(){vib(10);setView('w')};
+if($('md-d'))$('md-d').onclick=function(){vib(10);setView('d')};
+if($('md-w'))$('md-w').onclick=function(){vib(10);setView('w')};
 if($('md-wb'))$('md-wb').onclick=function(){toggleWallpaper()};
 if($('md-set'))$('md-set').onclick=function(){toggleSettings()};
 if($('md-tb'))$('md-tb').onclick=function(){$('tb').click()};
@@ -1738,11 +1762,11 @@ function banner(I){
   el.className=cls;el.style.setProperty('--h',h);
   el.innerHTML='<div class="clk"><b>'+I.hm+'</b><span>'+dateS+'</span></div><div class="st"><div class="lb">'+lb+'</div><h2>'+title+'</h2><p>'+sub+'</p>'+pg+'</div>';
 }
-function tick(){
+function tick(skipRender){
   var I=nowInfo();
-  if(I.td!=today){today=I.td;render()}
+  if(!skipRender && I.td!=today){today=I.td;render()}
   banner(I);
-  if(view=='d')$('day').innerHTML=dayHtml();
+  if(!skipRender && view=='d')$('day').innerHTML=dayHtml();
   if(view=='w'){
     if(weekLayout==='vertical'){
       [].forEach.call(document.querySelectorAll('#week .v-blk[data-d]'),function(b){
@@ -1777,7 +1801,7 @@ function tick(){
     tauriInvoke('update_tray_status',{statusText:tMsg}).catch(function(){});
   }
 }
-render();tick();setInterval(tick,20000);
+render();tick();setInterval(tick,10000);
 document.addEventListener('visibilitychange',function(){if(!document.hidden)tick()});
 
 // Theme switcher & persistence
