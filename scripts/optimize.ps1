@@ -1,5 +1,10 @@
 # Automated Web Optimization, Minification & Pre-compression Script
 
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseDeclaredVarsMoreThanAssignments', '')]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseApprovedVerbs', '')]
+[CmdletBinding()]
+param()
+
 $ErrorActionPreference = "Stop"
 
 $root = $PSScriptRoot + "\.."
@@ -61,7 +66,7 @@ $minHtml = [System.Text.RegularExpressions.Regex]::Replace($minHtml, '(?s)<style
 })
 
 # C. Minify JavaScript inside <script> blocks (Token-aware to preserve string literals)
-function Minify-JS([string]$code) {
+function Invoke-MinifyJs([string]$code) {
     $sb = New-Object System.Text.StringBuilder
     $len = $code.Length
     $i = 0
@@ -143,7 +148,7 @@ function Minify-JS([string]$code) {
 $minHtml = [System.Text.RegularExpressions.Regex]::Replace($minHtml, '(?s)<script>(.*?)</script>', {
     param($match)
     $js = $match.Groups[1].Value
-    $minJs = Minify-JS $js
+    $minJs = Invoke-MinifyJs $js
     return "<script>" + $minJs + "</script>"
 })
 
@@ -157,7 +162,7 @@ $minLength = (Get-Item $distHtmlPath).Length
 
 # 6. Minify and copy sw.js and manifest.webmanifest
 $rawSw = Get-Content (Join-Path $root "sw.js") -Raw -Encoding UTF8
-$minSw = Minify-JS $rawSw
+$minSw = Invoke-MinifyJs $rawSw
 $distSwPath = Join-Path $dist "sw.js"
 [System.IO.File]::WriteAllText($distSwPath, $minSw, [System.Text.Encoding]::UTF8)
 
@@ -169,7 +174,7 @@ $distManifestPath = Join-Path $dist "manifest.webmanifest"
 [System.IO.File]::WriteAllText($distManifestPath, $minManifest.Trim(), [System.Text.Encoding]::UTF8)
 
 # 7. Pre-compress text assets with Gzip (Level 9)
-function Pre-Compress-GZip([string]$filePath) {
+function Invoke-GzipCompression([string]$filePath) {
     $bytes = [System.IO.File]::ReadAllBytes($filePath)
     $gzPath = $filePath + ".gz"
     $outStream = [System.IO.File]::Create($gzPath)
@@ -179,12 +184,12 @@ function Pre-Compress-GZip([string]$filePath) {
     $outStream.Close()
 }
 
-Pre-Compress-GZip $distHtmlPath
-Pre-Compress-GZip (Join-Path $dist "sw.js")
-Pre-Compress-GZip (Join-Path $dist "manifest.webmanifest")
-if (Test-Path (Join-Path $dist "schedule.json")) { Pre-Compress-GZip (Join-Path $dist "schedule.json") }
-if (Test-Path (Join-Path $dist "llms.txt")) { Pre-Compress-GZip (Join-Path $dist "llms.txt") }
-if (Test-Path (Join-Path $dist "robots.txt")) { Pre-Compress-GZip (Join-Path $dist "robots.txt") }
+Invoke-GzipCompression $distHtmlPath
+Invoke-GzipCompression (Join-Path $dist "sw.js")
+Invoke-GzipCompression (Join-Path $dist "manifest.webmanifest")
+if (Test-Path (Join-Path $dist "schedule.json")) { Invoke-GzipCompression (Join-Path $dist "schedule.json") }
+if (Test-Path (Join-Path $dist "llms.txt")) { Invoke-GzipCompression (Join-Path $dist "llms.txt") }
+if (Test-Path (Join-Path $dist "robots.txt")) { Invoke-GzipCompression (Join-Path $dist "robots.txt") }
 
 $gzLength = (Get-Item ($distHtmlPath + ".gz")).Length
 
