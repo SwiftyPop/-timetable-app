@@ -1,25 +1,5 @@
 User-agent: *
-Allow: /
+Disallow: /
 
-# AI Crawlers and Search Agents
-User-agent: GPTBot
-Allow: /
-
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Applebot-Extended
-Allow: /
-
-User-agent: CCBot
-Allow: /
-
-# LLM Context & Structured Endpoints
-# Markdown specification: /llms.txt
-# Machine-readable JSON: /schedule.json
+# Private / Unofficial Personal Copy
+# Machine-readable files for local personal agents only

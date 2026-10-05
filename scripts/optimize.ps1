@@ -42,6 +42,14 @@ foreach ($af in $aiFiles) {
     }
 }
 
+# 3c. Copy shortlink redirect pages
+$linksDir = Join-Path $root "links"
+if (Test-Path $linksDir) {
+    $distLinks = Join-Path $dist "links"
+    New-Item -ItemType Directory -Path $distLinks -Force | Out-Null
+    Copy-Item (Join-Path $linksDir "*") $distLinks -Force
+}
+
 # 4. Read source index.html
 $srcHtml = Get-Content (Join-Path $root "index.html") -Raw -Encoding UTF8
 $origLength = [System.Text.Encoding]::UTF8.GetByteCount($srcHtml)

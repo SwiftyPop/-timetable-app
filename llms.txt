@@ -1,6 +1,6 @@
-# UniMAP Academic Timetable · Semester 1 2026/2027
+# UniMAP Academic Timetable · Semester 1 2026/2027 (Unofficial Personal Copy)
 
-> Official academic timetable for Universiti Malaysia Perlis (UniMAP), Faculty of Electronic Engineering Technology (FKTE), Programme UR6522002, Year 2 Group 3 (Y2G3).
+> Academic timetable (unofficial personal copy) for Universiti Malaysia Perlis (UniMAP), Faculty of Electronic Engineering Technology (FKTE), Programme UR6522002, Year 2 Group 3 (Y2G3).
 
 ## Overview
 - **Institution**: Universiti Malaysia Perlis (UniMAP)
@@ -15,38 +15,37 @@
 
 ## Core Subject Directory
 
-| Code | Subject Name | Contact Hours | Primary Venue | WhatsApp Group / Coordinator |
+| Code | Subject Name | Contact Hours | Primary Venue | Class Group / Coordinator |
 | :--- | :--- | :--- | :--- | :--- |
-| **EMK22003 / EMK31103** | Control System Technology | 5 hrs (3h Lab + 2h Lec) | FKTE 2 / Pauh Putra DK 5 | [Control System WhatsApp](https://chat.whatsapp.com/GWuccedaPUg9zUO28M5JBr) · Mazwin Binti Mazlan (013-5852354) |
-| **EMK21203** | Electric Circuit Theory 2 | 5 hrs (3h Lab + 2h Lec) | FKTE 2 (BK 1 & Simulator Lab) | [Circuit Theory 2 WhatsApp](https://chat.whatsapp.com/ENHgwoUmslh8aZuuk5agcN) · Yazhar Bin Yatim (013-9755628) |
-| **EMK21303** | Electronics 2 | 5 hrs (3h Lab + 2h Lec) | FKTE 2 / Pauh Putra DK 3 | [Electronics 2 WhatsApp](https://chat.whatsapp.com/EDGDKnA63F95EIEBXTPTRC) · Chanuri A/P Charin (019-5644578) |
-| **EMK21103** | Measurement & Instrumentation | 5 hrs (3h Lab + 2h Lec) | FKTE 2 / Pauh Putra DK 4 | [Measurement & Instrum WhatsApp](https://chat.whatsapp.com/HyxDCggW5Go5zsBNVDNi4r) · Muhammad Shakir (017-6856157) |
-| **IMQ21303** | Mathematics for Eng. Technology 3 | 3 hrs (2h Lec + 1h Online) | Pauh Putra DK 3 / Online | [Class 1 Telegram](https://t.me/c/3988723362/1) · Dr. Nurhidayah (019-7903682) |
+| **EMK22003 / EMK31103** | Control System Technology | 5 hrs (3h Lab + 2h Lec) | FKTE 2 / Pauh Putra DK 5 | [Control System Group](links/ctrl.html) · Coordinator: Mazwin Binti Mazlan |
+| **EMK21203** | Electric Circuit Theory 2 | 5 hrs (3h Lab + 2h Lec) | FKTE 2 (BK 1 & Simulator Lab) | [Circuit Theory 2 Group](links/ect.html) · Coordinator: Yazhar Bin Yatim |
+| **EMK21303** | Electronics 2 | 5 hrs (3h Lab + 2h Lec) | FKTE 2 / Pauh Putra DK 3 | [Electronics 2 Group](links/el2.html) · Coordinator: Chanuri A/P Charin |
+| **EMK21103** | Measurement & Instrumentation | 5 hrs (3h Lab + 2h Lec) | FKTE 2 / Pauh Putra DK 4 | [Measurement & Instrum Group](links/mi.html) · Coordinator: Muhammad Shakir Bin Laili |
+| **IMQ21303** | Mathematics for Eng. Technology 3 | 3 hrs (2h Lec + 1h Online) | Pauh Putra DK 3 / Online | [Mathematics Class 1 Group](links/mt.html) · Coordinator: Dr. Nurhidayah binti Omar |
 
 ---
 
-## Class WhatsApp & Communication Channels
+## Class Groups & Communication Channels
 - **EMK22003 / EMK31103 (Control System Technology)**:
-  - Official WhatsApp Group: https://chat.whatsapp.com/GWuccedaPUg9zUO28M5JBr
-  - Coordinator: Mazwin Binti Mazlan (Phone: 013-5852354)
+  - Class Group Shortlink: links/ctrl.html
+  - Coordinator: Mazwin Binti Mazlan
   - URLearn: `Control System Technology (EMK22003)`
 - **EMK21203 (Electric Circuit Theory 2)**:
-  - Official WhatsApp Group: https://chat.whatsapp.com/ENHgwoUmslh8aZuuk5agcN
-  - Coordinator: Yazhar Bin Yatim (Phone: 013-9755628)
+  - Class Group Shortlink: links/ect.html
+  - Coordinator: Yazhar Bin Yatim
   - URLearn: `Electric Circuit Theory 2 (EMK21203)`
 - **EMK21303 (Electronics 2)**:
-  - Official WhatsApp Group: https://chat.whatsapp.com/EDGDKnA63F95EIEBXTPTRC
-  - Coordinator: Chanuri A/P Charin (Phone: 019-5644578)
+  - Class Group Shortlink: links/el2.html
+  - Coordinator: Chanuri A/P Charin
   - URLearn: `Electronics 2 (EMK21303)`
 - **EMK21103 (Measurement & Instrumentation)**:
-  - Official WhatsApp Group: https://chat.whatsapp.com/HyxDCggW5Go5zsBNVDNi4r
-  - Coordinator: Muhammad Shakir Bin Laili (Phone: 017-6856157)
+  - Class Group Shortlink: links/mi.html
+  - Coordinator: Muhammad Shakir Bin Laili
   - URLearn: `EMK21103 (RY31)(Sem 1-2026/2027)`
 - **IMQ21303 / IMQ20303 (Mathematics for Eng. Technology 3)**:
-  - Verified Class 1 Telegram Group: https://t.me/c/3988723362/1
-  - Alternative Class 2 WhatsApp Group (Y2G4, Y2G5, Y2G6): https://chat.whatsapp.com/Fxkk5AK7x1X9dNLzyB4zVH
-  - Course Coordinator: Dr. Nurhidayah binti Omar (Phone: 019-7903682)
-  - Official Source: Centre for Mathematical Sciences (JSM/FKC) Google Sheet (https://docs.google.com/spreadsheets/d/1-fxIQbSA-8m0zZHZliX4qZ44PXrOizmRJ57FzN8rjPE/edit?gid=2015827709#gid=2015827709)
+  - Class 1 Group Shortlink: links/mt.html
+  - Alternative Class 2 Group Shortlink (Y2G4, Y2G5, Y2G6): links/mt-class2.html
+  - Course Coordinator: Dr. Nurhidayah binti Omar
 
 ---
 
@@ -108,7 +107,7 @@
 
 ---
 
-## Machine-Readable API & Endpoints
+## Machine-Readable Endpoints
 - **Raw JSON Schedule**: `/schedule.json`
 - **Schema.org Structured Data**: Embedded in `index.html` as `application/ld+json`
-- **iCalendar Subscriptions**: Individual `.ics` event downloads available via the application
+- **iCalendar Subscriptions**: Individual and full semester `.ics` event downloads available via the application

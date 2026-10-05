@@ -54,7 +54,7 @@ $requiredPatterns = @(
     'EMK22003 / EMK31103',
     'set_desktop_wallpaper',
     'update_tray_status',
-    'timetable-v5',
+    'timetable-v6',
     'mob-dock',
     'class-sheet',
     'jump-today',
@@ -65,11 +65,11 @@ $requiredPatterns = @(
     'llms.txt',
     'grp-sheet',
     'cs-wa',
-    'chat.whatsapp.com/GWuccedaPUg9zUO28M5JBr',
-    'chat.whatsapp.com/ENHgwoUmslh8aZuuk5agcN',
-    'chat.whatsapp.com/EDGDKnA63F95EIEBXTPTRC',
-    'chat.whatsapp.com/HyxDCggW5Go5zsBNVDNi4r',
-    't.me/c/3988723362/1',
+    'links/ctrl.html',
+    'links/ect.html',
+    'links/el2.html',
+    'links/mi.html',
+    'links/mt.html',
     'md-grp'
 )
 
