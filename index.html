@@ -1159,11 +1159,68 @@ var E=[
   [5,15,17,'ctrl','Lecture A','Pauh Putra · DK 5','Mazwin Binti Mazlan']
 ];
 var DEFAULT_WA={
-  mt:{code:'IMQ21303 / IMQ20303',name:'Mathematics for Eng. Technology 3',verified:true,cohort:'Class 1 (Y2G1, Y2G2, Y2G3)',url:'https://chat.whatsapp.com/GJidiHvjb0mBU2D6KnXw7C',altUrl:'https://chat.whatsapp.com/Fxkk5AK7x1X9dNLzyB4zVH',altLabel:'Class 2 (Y2G4–G6)',lecturer:'Dr. Nurhidayah binti Omar (019-7903682)',source:'JSM/FKC Official Math List'},
-  ctrl:{code:'EMK22003 / EMK31103',name:'Control System Technology',cohort:'Cohort Y2G3',lecturer:'Mazwin Binti Mazlan',source:'FKTE Course'},
-  ect:{code:'EMK21203',name:'Electric Circuit Theory 2',cohort:'Cohort Y2G3',lecturer:'Mohamad Zhafran Bin Zakariya',source:'FKTE Course'},
-  el2:{code:'EMK21303',name:'Electronics 2',cohort:'Cohort Y2G3',lecturer:'Chanuri A/P Charin',source:'FKTE Course'},
-  mi:{code:'EMK21103',name:'Measurement & Instrumentation',cohort:'Cohort Y2G3',lecturer:'Muhammad Shakir Bin Laili',source:'FKTE Course'}
+  ctrl:{
+    code:'EMK22003 / EMK31103',
+    name:'Control System Technology',
+    verified:true,
+    cohort:'Cohort Y2G3',
+    url:'https://chat.whatsapp.com/GWuccedaPUg9zUO28M5JBr',
+    coordinator:'Mazwin Binti Mazlan',
+    phone:'013-5852354',
+    rawPhone:'0135852354',
+    urlearn:'Control System Technology (EMK22003)',
+    source:'FKTE Official Subject Groups (Sem 1 2026/27)'
+  },
+  ect:{
+    code:'EMK21203',
+    name:'Electric Circuit Theory 2',
+    verified:true,
+    cohort:'Cohort Y2G3',
+    url:'https://chat.whatsapp.com/ENHgwoUmslh8aZuuk5agcN',
+    coordinator:'Yazhar Bin Yatim',
+    phone:'013-9755628',
+    rawPhone:'0139755628',
+    urlearn:'Electric Circuit Theory 2 (EMK21203)',
+    source:'FKTE Official Subject Groups (Sem 1 2026/27)'
+  },
+  el2:{
+    code:'EMK21303',
+    name:'Electronics 2',
+    verified:true,
+    cohort:'Cohort Y2G3',
+    url:'https://chat.whatsapp.com/EDGDKnA63F95EIEBXTPTRC',
+    coordinator:'Chanuri A/P Charin',
+    phone:'019-5644578',
+    rawPhone:'0195644578',
+    urlearn:'Electronics 2 (EMK21303)',
+    source:'FKTE Official Subject Groups (Sem 1 2026/27)'
+  },
+  mi:{
+    code:'EMK21103',
+    name:'Measurement & Instrumentation',
+    verified:true,
+    cohort:'Cohort Y2G3',
+    url:'https://chat.whatsapp.com/HyxDCggW5Go5zsBNVDNi4r',
+    coordinator:'Muhammad Shakir Bin Laili',
+    phone:'017-6856157',
+    rawPhone:'0176856157',
+    urlearn:'EMK21103 (RY31)(Sem 1-2026/2027)',
+    source:'FKTE Official Subject Groups (Sem 1 2026/27)'
+  },
+  mt:{
+    code:'IMQ21303 / IMQ20303',
+    name:'Mathematics for Eng. Technology 3',
+    verified:true,
+    cohort:'Class 1 (Y2G1, Y2G2, Y2G3)',
+    url:'https://chat.whatsapp.com/GJidiHvjb0mBU2D6KnXw7C',
+    altUrl:'https://chat.whatsapp.com/Fxkk5AK7x1X9dNLzyB4zVH',
+    altLabel:'Class 2 (Y2G4–G6)',
+    coordinator:'Dr. Nurhidayah binti Omar',
+    phone:'019-7903682',
+    rawPhone:'0197903682',
+    urlearn:'Maths for Eng. Technology 3 (IMQ21303)',
+    source:'JSM/FKC Official Math List (Sem 1 2026/27)'
+  }
 };
 
 function getCustomWALinks(){
@@ -1187,7 +1244,10 @@ function getWASubject(k){
     url:customUrl||def.url||'',
     altUrl:def.altUrl||'',
     altLabel:def.altLabel||'',
-    lecturer:def.lecturer||'',
+    coordinator:def.coordinator||'',
+    phone:def.phone||'',
+    rawPhone:def.rawPhone||'',
+    urlearn:def.urlearn||'',
     source:def.source||''
   };
 }
@@ -1217,11 +1277,13 @@ function renderGroupsList(){
     var sj=S[k];
     var badge=item.verified?'<span class="grp-badge verified">✓ Verified Official</span>':item.isCustom?'<span class="grp-badge">✏️ Custom Link</span>':'<span class="grp-badge">FKTE Course</span>';
     var joinBtn=item.url?'<a href="'+item.url+'" target="_blank" rel="noopener noreferrer" class="grp-btn wa">💬 Join WhatsApp</a>':'<span style="font-size:12px;color:var(--mute);padding:6px 0">No link set yet</span>';
-    var altBtn=item.altUrl?'<a href="'+item.altUrl+'" target="_blank" rel="noopener noreferrer" class="grp-btn alt">Class 2 ↗</a>':'';
-    var editBtn='<button class="grp-btn alt" data-waedit="'+k+'">'+(item.isCustom?'Edit Link ✏️':'Set Link ➕')+'</button>';
+    var altBtn=item.altUrl?'<a href="'+item.altUrl+'" target="_blank" rel="noopener noreferrer" class="grp-btn alt">'+(item.altLabel||'Class 2 ↗')+'</a>':'';
+    var editBtn='<button class="grp-btn alt" data-waedit="'+k+'">'+(item.isCustom?'Edit Link ✏️':'Custom Link ✏️')+'</button>';
     if(item.isCustom){
-      editBtn+='<button class="grp-btn alt" data-wares="'+k+'" title="Reset to default">Reset ↺</button>';
+      editBtn+='<button class="grp-btn alt" data-wares="'+k+'" title="Reset to default official link">Reset ↺</button>';
     }
+    var phoneHtml=item.phone?' · <a href="tel:'+(item.rawPhone||item.phone)+'" style="color:var(--ac);text-decoration:none;font-weight:700">📞 '+item.phone+'</a>':'';
+    var urlearnHtml=item.urlearn?'<div><strong>URLearn:</strong> <span style="font-size:11px;color:var(--mute)">'+item.urlearn+'</span></div>':'';
     return '<div class="grp-card-item" style="--h:'+sj.h+'">'
       +'<div class="grp-head">'
         +'<div>'
@@ -1232,7 +1294,8 @@ function renderGroupsList(){
       +'</div>'
       +'<div class="grp-meta">'
         +'<div><strong>Cohort:</strong> '+(item.cohort||'Y2G3')+'</div>'
-        +'<div><strong>Lecturer:</strong> '+(item.lecturer||'—')+'</div>'
+        +'<div><strong>Coordinator:</strong> '+(item.coordinator||'—')+phoneHtml+'</div>'
+        +urlearnHtml
       +'</div>'
       +'<div class="grp-actions">'
         +joinBtn
@@ -1274,7 +1337,7 @@ function promptSetWALink(k){
 
 function resetWALink(k){
   saveWALink(k,'');
-  showToast('Reset to default link','↺');
+  showToast('Reset to default official link','↺');
   vibSuccess();
 }
 
@@ -1300,9 +1363,13 @@ function updateClassSheetWA(subjKey){
     }
     if(csWaText)csWaText.textContent='Join Group';
     if(csWaStatus){
-      csWaStatus.innerHTML=waSubj.verified 
-        ? '<span style="color:hsl(142 75% 36%)">✓ Verified Official Class 1 Group</span>' 
-        : '<span style="color:var(--ink)">Active Group Link</span>';
+      var statusHtml=waSubj.verified 
+        ? '<span style="color:hsl(142 75% 36%)">✓ Verified Official Group</span>' 
+        : '<span style="color:var(--ink)">Active Custom Group Link</span>';
+      if(waSubj.coordinator){
+        statusHtml+='<div style="font-size:11.5px;color:var(--mute);margin-top:2px">Coordinator: '+waSubj.coordinator+(waSubj.phone?' ('+waSubj.phone+')':'')+'</div>';
+      }
+      csWaStatus.innerHTML=statusHtml;
     }
     if(csWaLink){
       csWaLink.classList.remove('hide');

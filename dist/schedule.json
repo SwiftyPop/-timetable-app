@@ -25,25 +25,41 @@
       "code": "EMK22003 / EMK31103",
       "name": "Control System Technology",
       "shortName": "Control System",
-      "faculty": "FKTE"
+      "faculty": "FKTE",
+      "whatsappGroup": "https://chat.whatsapp.com/GWuccedaPUg9zUO28M5JBr",
+      "coordinator": "Mazwin Binti Mazlan",
+      "coordinatorPhone": "013-5852354",
+      "urlearnSubject": "Control System Technology (EMK22003)"
     },
     "EMK21203": {
       "code": "EMK21203",
       "name": "Electric Circuit Theory 2",
       "shortName": "Circuit Theory 2",
-      "faculty": "FKTE"
+      "faculty": "FKTE",
+      "whatsappGroup": "https://chat.whatsapp.com/ENHgwoUmslh8aZuuk5agcN",
+      "coordinator": "Yazhar Bin Yatim",
+      "coordinatorPhone": "013-9755628",
+      "urlearnSubject": "Electric Circuit Theory 2 (EMK21203)"
     },
     "EMK21303": {
       "code": "EMK21303",
       "name": "Electronics 2",
       "shortName": "Electronics 2",
-      "faculty": "FKTE"
+      "faculty": "FKTE",
+      "whatsappGroup": "https://chat.whatsapp.com/EDGDKnA63F95EIEBXTPTRC",
+      "coordinator": "Chanuri A/P Charin",
+      "coordinatorPhone": "019-5644578",
+      "urlearnSubject": "Electronics 2 (EMK21303)"
     },
     "EMK21103": {
       "code": "EMK21103",
       "name": "Measurement & Instrumentation",
       "shortName": "Measurement & Instrum.",
-      "faculty": "FKTE"
+      "faculty": "FKTE",
+      "whatsappGroup": "https://chat.whatsapp.com/HyxDCggW5Go5zsBNVDNi4r",
+      "coordinator": "Muhammad Shakir Bin Laili",
+      "coordinatorPhone": "017-6856157",
+      "urlearnSubject": "EMK21103 (RY31)(Sem 1-2026/2027)"
     },
     "IMQ21303": {
       "code": "IMQ21303",
@@ -53,12 +69,18 @@
       "whatsappGroup": "https://chat.whatsapp.com/GJidiHvjb0mBU2D6KnXw7C",
       "whatsappGroupAlt": "https://chat.whatsapp.com/Fxkk5AK7x1X9dNLzyB4zVH",
       "cohort": "Class 1 (Y2G1, Y2G2, Y2G3)",
-      "lecturer": "Dr. Nurhidayah binti Omar",
-      "lecturerPhone": "019-7903682"
+      "coordinator": "Dr. Nurhidayah binti Omar",
+      "coordinatorPhone": "019-7903682",
+      "urlearnSubject": "Maths for Eng. Technology 3 (IMQ21303)"
     }
   },
   "communityChannels": {
-    "officialMathSheet": "https://docs.google.com/spreadsheets/d/1-fxIQbSA-8m0zZHZliX4qZ44PXrOizmRJ57FzN8rjPE/edit?gid=2015827709#gid=2015827709",
+    "fkteSubjectsSheet": "GROUP SUBJEK SEM 1, 2026-2027",
+    "jsmMathsSheetUrl": "https://docs.google.com/spreadsheets/d/1-fxIQbSA-8m0zZHZliX4qZ44PXrOizmRJ57FzN8rjPE/edit?gid=2015827709#gid=2015827709",
+    "controlSystemWhatsApp": "https://chat.whatsapp.com/GWuccedaPUg9zUO28M5JBr",
+    "circuitTheory2WhatsApp": "https://chat.whatsapp.com/ENHgwoUmslh8aZuuk5agcN",
+    "electronics2WhatsApp": "https://chat.whatsapp.com/EDGDKnA63F95EIEBXTPTRC",
+    "measurementInstrumWhatsApp": "https://chat.whatsapp.com/HyxDCggW5Go5zsBNVDNi4r",
     "mathClass1WhatsApp": "https://chat.whatsapp.com/GJidiHvjb0mBU2D6KnXw7C",
     "mathClass2WhatsApp": "https://chat.whatsapp.com/Fxkk5AK7x1X9dNLzyB4zVH"
   },
@@ -79,6 +101,7 @@
       "building": "FKTE 2",
       "room": "Industrial Control Lab",
       "roomShort": "IC Lab",
+      "whatsappGroup": "https://chat.whatsapp.com/GWuccedaPUg9zUO28M5JBr",
       "instructors": [
         "Mazwin Binti Mazlan",
         "Mardianaliza Binti Othman"
@@ -100,6 +123,7 @@
       "building": "Pauh Putra",
       "room": "DK 3",
       "roomShort": "DK 3",
+      "whatsappGroup": "https://chat.whatsapp.com/GJidiHvjb0mBU2D6KnXw7C",
       "instructors": [
         "Zabidi Bin Abu Hasan"
       ]
@@ -120,6 +144,7 @@
       "building": "Online",
       "room": "Online",
       "roomShort": "Online",
+      "whatsappGroup": "https://chat.whatsapp.com/GJidiHvjb0mBU2D6KnXw7C",
       "instructors": [
         "Zabidi Bin Abu Hasan"
       ]
@@ -140,6 +165,7 @@
       "building": "FKTE 2",
       "room": "Power Electronics Lab",
       "roomShort": "Power Elec Lab",
+      "whatsappGroup": "https://chat.whatsapp.com/EDGDKnA63F95EIEBXTPTRC",
       "instructors": [
         "Chanuri A/P Charin",
         "Abdul Rahim Bin Abdul Razak"
@@ -161,6 +187,7 @@
       "building": "FKTE 2",
       "room": "BK 1",
       "roomShort": "BK 1",
+      "whatsappGroup": "https://chat.whatsapp.com/ENHgwoUmslh8aZuuk5agcN",
       "instructors": [
         "Mohamad Zhafran Bin Zakariya"
       ]
@@ -181,6 +208,7 @@
       "building": "FKTE 2",
       "room": "Electrical Machines Simulator Lab",
       "roomShort": "EM Sim Lab",
+      "whatsappGroup": "https://chat.whatsapp.com/ENHgwoUmslh8aZuuk5agcN",
       "instructors": [
         "Mohamad Zhafran Bin Zakariya",
         "Junaidah Binti Ali Mohd Jobran"
@@ -202,6 +230,7 @@
       "building": "FKTE 2",
       "room": "Electrical Technology Lab",
       "roomShort": "Elec Tech Lab",
+      "whatsappGroup": "https://chat.whatsapp.com/HyxDCggW5Go5zsBNVDNi4r",
       "instructors": [
         "Muhammad Shakir Bin Laili",
         "Chanuri A/P Charin"
@@ -223,6 +252,7 @@
       "building": "Pauh Putra",
       "room": "DK 4",
       "roomShort": "DK 4",
+      "whatsappGroup": "https://chat.whatsapp.com/HyxDCggW5Go5zsBNVDNi4r",
       "instructors": [
         "Muhammad Shakir Bin Laili"
       ]
@@ -243,6 +273,7 @@
       "building": "Pauh Putra",
       "room": "DK 3",
       "roomShort": "DK 3",
+      "whatsappGroup": "https://chat.whatsapp.com/EDGDKnA63F95EIEBXTPTRC",
       "instructors": [
         "Chanuri A/P Charin",
         "Abdul Rahim Bin Abdul Razak"
@@ -264,6 +295,7 @@
       "building": "Pauh Putra",
       "room": "DK 5",
       "roomShort": "DK 5",
+      "whatsappGroup": "https://chat.whatsapp.com/GWuccedaPUg9zUO28M5JBr",
       "instructors": [
         "Mazwin Binti Mazlan"
       ]
