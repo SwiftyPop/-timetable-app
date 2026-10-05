@@ -53,7 +53,7 @@ $minHtml = $srcHtml
 $minHtml = [System.Text.RegularExpressions.Regex]::Replace($minHtml, '<!--(?!\[if).*?-->', '', [System.Text.RegularExpressions.RegexOptions]::Singleline)
 
 # B. Minify CSS inside <style> blocks
-$minHtml = [System.Text.RegularExpressions.Regex]::Replace($minHtml, '(?s)<style>(.*?)</style>', {
+$styleEvaluator = [System.Text.RegularExpressions.MatchEvaluator]{
     param($match)
     $css = $match.Groups[1].Value
     # Remove CSS comments
@@ -63,7 +63,8 @@ $minHtml = [System.Text.RegularExpressions.Regex]::Replace($minHtml, '(?s)<style
     $css = [System.Text.RegularExpressions.Regex]::Replace($css, ';\}', '}')
     $css = [System.Text.RegularExpressions.Regex]::Replace($css, '\s+', ' ')
     return "<style>" + $css.Trim() + "</style>"
-})
+}
+$minHtml = [System.Text.RegularExpressions.Regex]::Replace($minHtml, '(?s)<style>(.*?)</style>', $styleEvaluator)
 
 # C. Minify JavaScript inside <script> blocks (Token-aware to preserve string literals)
 function Invoke-MinifyJs([string]$code) {
@@ -145,12 +146,13 @@ function Invoke-MinifyJs([string]$code) {
     return $sb.ToString().Trim()
 }
 
-$minHtml = [System.Text.RegularExpressions.Regex]::Replace($minHtml, '(?s)<script>(.*?)</script>', {
+$scriptEvaluator = [System.Text.RegularExpressions.MatchEvaluator]{
     param($match)
     $js = $match.Groups[1].Value
     $minJs = Invoke-MinifyJs $js
     return "<script>" + $minJs + "</script>"
-})
+}
+$minHtml = [System.Text.RegularExpressions.Regex]::Replace($minHtml, '(?s)<script>(.*?)</script>', $scriptEvaluator)
 
 # D. Strip intra-tag formatting whitespace
 $minHtml = [System.Text.RegularExpressions.Regex]::Replace($minHtml, '>\s+<', '><')
