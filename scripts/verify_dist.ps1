@@ -69,7 +69,7 @@ $requiredPatterns = @(
     'chat.whatsapp.com/ENHgwoUmslh8aZuuk5agcN',
     'chat.whatsapp.com/EDGDKnA63F95EIEBXTPTRC',
     'chat.whatsapp.com/HyxDCggW5Go5zsBNVDNi4r',
-    'chat.whatsapp.com/GJidiHvjb0mBU2D6KnXw7C',
+    't.me/c/3988723362/1',
     'md-grp'
 )
 

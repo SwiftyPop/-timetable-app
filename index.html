@@ -175,9 +175,12 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
 .cs-btn.wa{background:hsl(142 70% 40%);color:#ffffff!important;border-color:hsl(142 70% 36%);box-shadow:0 4px 14px -2px hsl(142 70% 35% / .45);text-decoration:none}
 .cs-btn.wa:active{transform:scale(0.95)}
 @media(hover:hover){.cs-btn.wa:hover{background:hsl(142 70% 35%);box-shadow:var(--sh-md);transform:translateY(-1px)}}
+.cs-btn.wa.tg{background:hsl(200 85% 46%);border-color:hsl(200 85% 40%);box-shadow:0 4px 14px -2px hsl(200 85% 42% / .45)}
+@media(hover:hover){.cs-btn.wa.tg:hover{background:hsl(200 85% 40%)}}
 .cs-btn.wa.disabled{background:var(--card);color:var(--mute)!important;border-color:var(--line);box-shadow:var(--sh-sm);opacity:.85}
 .cs-chip-link{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:999px;background:hsl(142 70% 40%);color:#fff!important;text-decoration:none;font-size:11.5px;font-weight:700;transition:all .15s ease}
 .cs-chip-link:hover{filter:brightness(1.08)}
+.cs-chip-link.tg{background:hsl(200 85% 46%)}
 .cs-chip-btn{display:inline-flex;align-items:center;padding:4px 9px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--mute);cursor:pointer;font:inherit;font-size:11px;font-weight:600;transition:all .15s ease}
 .cs-chip-btn:hover{background:var(--line);color:var(--ink)}
 .grp-list{display:flex;flex-direction:column;gap:10px}
@@ -192,6 +195,8 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
 .grp-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:var(--r-sm);font-size:12px;font-weight:700;text-decoration:none;cursor:pointer;border:0;transition:all .15s ease}
 .grp-btn.wa{background:hsl(142 70% 40%);color:#fff!important}
 .grp-btn.wa:hover{background:hsl(142 70% 35%)}
+.grp-btn.tg{background:hsl(200 85% 46%);color:#fff!important}
+.grp-btn.tg:hover{background:hsl(200 85% 40%)}
 .grp-btn.alt{background:var(--card);border:1px solid var(--line);color:var(--ink)!important}
 .grp-btn.alt:hover{background:var(--line)}
 .grp-btn:active{transform:scale(0.96)}
@@ -1122,7 +1127,7 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
 
       <div class="cs-grid">
         <div class="cs-card" id="cs-wa-card">
-          <label>💬 WhatsApp Group</label>
+          <label id="cs-wa-label">💬 Class Group</label>
           <div id="cs-wa-info" style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap">
             <span id="cs-wa-status" style="font-size:12.5px;font-weight:600"></span>
             <div style="display:flex;gap:6px">
@@ -1212,14 +1217,14 @@ var DEFAULT_WA={
     name:'Mathematics for Eng. Technology 3',
     verified:true,
     cohort:'Class 1 (Y2G1, Y2G2, Y2G3)',
-    url:'https://chat.whatsapp.com/GJidiHvjb0mBU2D6KnXw7C',
+    url:'https://t.me/c/3988723362/1',
     altUrl:'https://chat.whatsapp.com/Fxkk5AK7x1X9dNLzyB4zVH',
-    altLabel:'Class 2 (Y2G4–G6)',
+    altLabel:'Class 2 WhatsApp ↗',
     coordinator:'Dr. Nurhidayah binti Omar',
     phone:'019-7903682',
     rawPhone:'0197903682',
     urlearn:'Maths for Eng. Technology 3 (IMQ21303)',
-    source:'JSM/FKC Official Math List (Sem 1 2026/27)'
+    source:'Class 1 Telegram Group (Sem 1 2026/27)'
   }
 };
 
@@ -1276,7 +1281,9 @@ function renderGroupsList(){
     var item=getWASubject(k);
     var sj=S[k];
     var badge=item.verified?'<span class="grp-badge verified">✓ Verified Official</span>':item.isCustom?'<span class="grp-badge">✏️ Custom Link</span>':'<span class="grp-badge">FKTE Course</span>';
-    var joinBtn=item.url?'<a href="'+item.url+'" target="_blank" rel="noopener noreferrer" class="grp-btn wa">💬 Join WhatsApp</a>':'<span style="font-size:12px;color:var(--mute);padding:6px 0">No link set yet</span>';
+    var isTg=item.url&&item.url.indexOf('t.me')!==-1;
+    var joinLabel=isTg?'✈️ Join Telegram':'💬 Join WhatsApp';
+    var joinBtn=item.url?'<a href="'+item.url+'" target="_blank" rel="noopener noreferrer" class="grp-btn '+(isTg?'tg':'wa')+'">'+joinLabel+'</a>':'<span style="font-size:12px;color:var(--mute);padding:6px 0">No link set yet</span>';
     var altBtn=item.altUrl?'<a href="'+item.altUrl+'" target="_blank" rel="noopener noreferrer" class="grp-btn alt">'+(item.altLabel||'Class 2 ↗')+'</a>':'';
     var editBtn='<button class="grp-btn alt" data-waedit="'+k+'">'+(item.isCustom?'Edit Link ✏️':'Custom Link ✏️')+'</button>';
     if(item.isCustom){
@@ -1357,14 +1364,20 @@ function updateClassSheetWA(subjKey){
   if($('cs-wa-card'))$('cs-wa-card').classList.remove('hide');
 
   if(waSubj.url){
+    var isTg=waSubj.url.indexOf('t.me')!==-1;
+    var csLabel=$('cs-wa-label');
+    if(csLabel)csLabel.textContent=isTg?'✈️ Telegram Group':'💬 WhatsApp Group';
     if(csWa){
       csWa.classList.remove('hide','disabled');
+      csWa.classList.toggle('tg',isTg);
       csWa.href=waSubj.url;
+      var csIcon=csWa.querySelector('.cs-icon');
+      if(csIcon)csIcon.textContent=isTg?'✈️':'💬';
     }
-    if(csWaText)csWaText.textContent='Join Group';
+    if(csWaText)csWaText.textContent=isTg?'Join Telegram':'Join Group';
     if(csWaStatus){
       var statusHtml=waSubj.verified 
-        ? '<span style="color:hsl(142 75% 36%)">✓ Verified Official Group</span>' 
+        ? '<span style="color:hsl('+(isTg?'200 85% 42%':'142 75% 36%')+')">✓ Verified Official '+(isTg?'Telegram':'WhatsApp')+' Group</span>' 
         : '<span style="color:var(--ink)">Active Custom Group Link</span>';
       if(waSubj.coordinator){
         statusHtml+='<div style="font-size:11.5px;color:var(--mute);margin-top:2px">Coordinator: '+waSubj.coordinator+(waSubj.phone?' ('+waSubj.phone+')':'')+'</div>';
@@ -1373,14 +1386,19 @@ function updateClassSheetWA(subjKey){
     }
     if(csWaLink){
       csWaLink.classList.remove('hide');
+      csWaLink.classList.toggle('tg',isTg);
       csWaLink.href=waSubj.url;
-      csWaLink.textContent='Open ↗';
+      csWaLink.textContent=isTg?'Telegram ↗':'Open ↗';
     }
   }else{
+    var csLabel=$('cs-wa-label');
+    if(csLabel)csLabel.textContent='💬 Class Group';
     if(csWa){
-      csWa.classList.remove('hide');
+      csWa.classList.remove('hide','tg');
       csWa.classList.add('disabled');
       csWa.removeAttribute('href');
+      var csIcon=csWa.querySelector('.cs-icon');
+      if(csIcon)csIcon.textContent='💬';
     }
     if(csWaText)csWaText.textContent='No Group Link';
     if(csWaStatus){

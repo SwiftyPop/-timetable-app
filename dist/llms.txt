@@ -21,7 +21,7 @@
 | **EMK21203** | Electric Circuit Theory 2 | 5 hrs (3h Lab + 2h Lec) | FKTE 2 (BK 1 & Simulator Lab) | [Circuit Theory 2 WhatsApp](https://chat.whatsapp.com/ENHgwoUmslh8aZuuk5agcN) · Yazhar Bin Yatim (013-9755628) |
 | **EMK21303** | Electronics 2 | 5 hrs (3h Lab + 2h Lec) | FKTE 2 / Pauh Putra DK 3 | [Electronics 2 WhatsApp](https://chat.whatsapp.com/EDGDKnA63F95EIEBXTPTRC) · Chanuri A/P Charin (019-5644578) |
 | **EMK21103** | Measurement & Instrumentation | 5 hrs (3h Lab + 2h Lec) | FKTE 2 / Pauh Putra DK 4 | [Measurement & Instrum WhatsApp](https://chat.whatsapp.com/HyxDCggW5Go5zsBNVDNi4r) · Muhammad Shakir (017-6856157) |
-| **IMQ21303** | Mathematics for Eng. Technology 3 | 3 hrs (2h Lec + 1h Online) | Pauh Putra DK 3 / Online | [Class 1 WhatsApp](https://chat.whatsapp.com/GJidiHvjb0mBU2D6KnXw7C) · Dr. Nurhidayah (019-7903682) |
+| **IMQ21303** | Mathematics for Eng. Technology 3 | 3 hrs (2h Lec + 1h Online) | Pauh Putra DK 3 / Online | [Class 1 Telegram](https://t.me/c/3988723362/1) · Dr. Nurhidayah (019-7903682) |
 
 ---
 
@@ -43,7 +43,7 @@
   - Coordinator: Muhammad Shakir Bin Laili (Phone: 017-6856157)
   - URLearn: `EMK21103 (RY31)(Sem 1-2026/2027)`
 - **IMQ21303 / IMQ20303 (Mathematics for Eng. Technology 3)**:
-  - Verified Class 1 WhatsApp Group: https://chat.whatsapp.com/GJidiHvjb0mBU2D6KnXw7C
+  - Verified Class 1 Telegram Group: https://t.me/c/3988723362/1
   - Alternative Class 2 WhatsApp Group (Y2G4, Y2G5, Y2G6): https://chat.whatsapp.com/Fxkk5AK7x1X9dNLzyB4zVH
   - Course Coordinator: Dr. Nurhidayah binti Omar (Phone: 019-7903682)
   - Official Source: Centre for Mathematical Sciences (JSM/FKC) Google Sheet (https://docs.google.com/spreadsheets/d/1-fxIQbSA-8m0zZHZliX4qZ44PXrOizmRJ57FzN8rjPE/edit?gid=2015827709#gid=2015827709)
