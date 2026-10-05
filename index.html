@@ -68,6 +68,13 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
 .slide-in-left{animation:slideL .24s cubic-bezier(.16,1,.3,1)}
 @keyframes slideR{from{opacity:.3;transform:translateX(22px)}to{opacity:1;transform:none}}
 @keyframes slideL{from{opacity:.3;transform:translateX(-22px)}to{opacity:1;transform:none}}
+/* staggered entrance - cards fade+rise with --i custom prop */
+@keyframes cardIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.timeline-item,.gap-card,.day-nowm{animation:cardIn .32s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i,0)*40ms)}
+/* week grid block entrance */
+@keyframes blkIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.blk-enter{animation:blkIn .28s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i,0)*40ms)}
+.v-blk-enter{animation:blkIn .28s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i,0)*40ms)}
 .day-timeline{position:relative;padding-left:14px;margin-top:6px}
 .day-timeline::before{content:"";position:absolute;left:4px;top:20px;bottom:24px;width:2px;background:var(--line);border-radius:2px}
 .timeline-item{position:relative;margin-bottom:14px}
@@ -286,19 +293,90 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
 .nowm{display:flex;align-items:center;gap:8px;margin:0 0 10px;font-size:12px;font-weight:700;color:hsl(8 85% 58%)}
 .nowm::after{content:"";flex:1;height:2px;border-radius:2px;background:hsl(8 85% 58% / .45)}
 .nowl{grid-row:1;grid-column:2/13;position:relative;pointer-events:none;z-index:3}
-.nl{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:hsl(8 85% 58%)}
+/* now-line: smooth left transition + glow */
+.nl{position:absolute;top:0;bottom:0;width:2px;margin-left:-1px;background:hsl(8 85% 58%);transition:left 1s linear;filter:drop-shadow(0 0 4px hsl(8 85% 58% / .7))}
 .nl::before{content:"";position:absolute;top:-4px;left:-4px;width:10px;height:10px;border-radius:50%;background:hsl(8 85% 58%);box-shadow:0 0 0 4px hsl(8 85% 58% / .25)}
 .nl i{position:absolute;bottom:6px;left:7px;font:700 10px/1 'Plus Jakarta Sans',system-ui,sans-serif;font-style:normal;background:hsl(8 85% 58%);color:#fff;padding:3px 6px;border-radius:99px;white-space:nowrap;font-variant-numeric:tabular-nums}
 .nl.r i{left:auto;right:7px}
+/* vertical now-line smooth */
+.v-nl{position:absolute;left:0;right:0;height:2px;background:hsl(8 85% 58%);margin-top:-1px;transition:top 1s linear;filter:drop-shadow(0 0 4px hsl(8 85% 58% / .7))}
+.v-nl::before{content:"";position:absolute;top:-4px;left:-4px;width:10px;height:10px;border-radius:50%;background:hsl(8 85% 58%);box-shadow:0 0 0 3px hsl(8 85% 58% / .25)}
+.v-nl i{position:absolute;right:4px;bottom:4px;font:700 9.5px/1 'Plus Jakarta Sans',system-ui,sans-serif;font-style:normal;background:hsl(8 85% 58%);color:#fff;padding:2px 5px;border-radius:99px;font-variant-numeric:tabular-nums;white-space:nowrap}
+/* ripple when class starts/ends */
+@keyframes nlRipple{0%{box-shadow:0 0 0 0 hsl(8 85% 58% / .7)}100%{box-shadow:0 0 0 18px hsl(8 85% 58% / 0)}}
+.nl.ripple::before,.v-nl.ripple::before{animation:nlRipple .6s ease-out forwards}
 .blk.past{opacity:.42}
 .blk.live{box-shadow:0 0 0 2px hsl(var(--h) 80% 55%),0 6px 18px hsl(var(--h) 80% 50% / .35)}
 .sh.cur{background:hsl(8 85% 58% / .1);color:hsl(8 78% 44%)}
 .dl.today::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--ac);margin-left:7px}
 *:focus-visible{outline:2px solid var(--ac);outline-offset:2px;border-radius:3px}
+/* ── Circular ring progress (now card) ─────────────────────────── */
+.ring-wrap{position:relative;width:52px;height:52px;flex:none}
+.ring-svg{width:52px;height:52px;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:var(--line);stroke-width:4}
+.ring-fg{fill:none;stroke:hsl(var(--h,8) 72% 52%);stroke-width:4;stroke-linecap:round;stroke-dasharray:136;stroke-dashoffset:136;transition:stroke-dashoffset 1s linear,stroke .4s}
+.ring-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0}
+.ring-min{font-size:13px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--ink);line-height:1;overflow:hidden;height:16px}
+.ring-unit{font-size:8px;font-weight:700;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;line-height:1}
+/* digit-roll animation */
+@keyframes rollUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.digit{display:inline-block;animation:rollUp .18s cubic-bezier(.16,1,.3,1)}
+/* class-moment states */
+@keyframes pulseAmber{0%,100%{box-shadow:0 0 0 0 hsl(38 95% 55% / .5)}50%{box-shadow:0 0 0 8px hsl(38 95% 55% / 0)}}
+.now.pre-class{border-color:hsl(38 90% 55% / .6)!important;animation:pulseAmber 1.2s ease-in-out 3}
+@keyframes sweepHL{0%{opacity:0;transform:translateX(-100%)}30%{opacity:1}100%{opacity:0;transform:translateX(100%)}}
+.now.class-start::after{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(90deg,transparent 0%,hsl(var(--h) 80% 60% / .22) 50%,transparent 100%);animation:sweepHL .8s ease-in-out forwards;pointer-events:none}
+.now{position:relative;overflow:hidden}
+.now .done-check{display:none;font-size:16px;margin-left:4px}
+.now.class-done .done-check{display:inline}
+.now.class-done .st{opacity:.7;transition:opacity .4s}
+/* tab sliding pill */
+.tabs-wrap{position:relative;display:flex;gap:0}
+.tab-pill{position:absolute;top:0;height:100%;border-radius:var(--r-sm);background:var(--ac);transition:left .22s cubic-bezier(.16,1,.3,1),width .22s cubic-bezier(.16,1,.3,1);pointer-events:none;box-shadow:0 2px 8px -1px color-mix(in srgb,var(--ac) 35%,transparent)}
+/* week-progress bar */
+.week-prog-bar{height:3px;border-radius:99px;background:var(--line);margin-bottom:6px;overflow:hidden}
+.week-prog-bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--ac),hsl(var(--h,220) 80% 65%));transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+/* ambient time-of-day bg gradient */
+@keyframes ambientShift{from{opacity:0}to{opacity:1}}
+.ambient-bg{position:fixed;inset:0;pointer-events:none;z-index:-1;transition:background 90s linear;will-change:background}
+/* skeleton shimmer for canvas */
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.cv-skeleton{position:relative}
+.cv-skeleton::after{content:"";position:absolute;inset:0;border-radius:18px;background:linear-gradient(90deg,transparent 20%,color-mix(in srgb,var(--card) 80%,var(--ac)) 50%,transparent 80%);background-size:200% 100%;animation:shimmer 1.5s infinite linear;pointer-events:none}
+/* long-press quick-action menu */
+.lp-menu{position:fixed;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:6px;box-shadow:var(--sh-lg);z-index:200;min-width:160px;display:none;flex-direction:column;gap:2px}
+.lp-menu.open{display:flex}
+.lp-item{border:0;background:none;font:inherit;font-size:13px;font-weight:600;padding:10px 14px;border-radius:8px;cursor:pointer;color:var(--ink);text-align:left;display:flex;align-items:center;gap:8px;transition:background .1s}
+.lp-item:hover,.lp-item:active{background:var(--line)}
+/* card tilt ripple on touch */
+@keyframes cardRipple{0%{opacity:.4;transform:scale(0)}100%{opacity:0;transform:scale(2.5)}}
+.card-ripple{position:absolute;width:40px;height:40px;border-radius:50%;background:hsl(var(--h,8) 80% 55% / .35);transform:scale(0);pointer-events:none;animation:cardRipple .45s ease-out forwards}
+/* wallpaper theme crossfade */
+.wp-fade{transition:opacity .35s ease}
+/* confetti particle */
+.confetti-p{position:fixed;top:-10px;pointer-events:none;z-index:999;border-radius:2px;animation:confettiFall linear forwards}
+@keyframes confettiFall{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+/* Friday done celebration */
+@keyframes fridayGlow{0%,100%{box-shadow:var(--sh-sm)}50%{box-shadow:0 0 0 4px hsl(145 70% 50% / .3),var(--sh-md)}}
+.now.friday-done{animation:fridayGlow 1.5s ease 2}
+/* free-day animated scene */
+.free-day-scene{text-align:center;padding:40px 20px 28px}
+@keyframes floatBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.free-day-icon{font-size:56px;display:block;animation:floatBob 3s ease-in-out infinite}
+/* wallpaper device frame */
+.wp-frame{position:relative;display:inline-block}
+.wp-frame-chrome{position:absolute;inset:-10px;border-radius:28px;border:10px solid color-mix(in srgb,var(--ink) 18%,transparent);pointer-events:none}
+.wp-frame-clock{position:absolute;top:18px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:700;color:rgba(255,255,255,.85);text-shadow:0 1px 4px rgba(0,0,0,.5);white-space:nowrap;pointer-events:none;font-variant-numeric:tabular-nums}
+/* title easter-egg flash */
+@keyframes eggFlash{0%,100%{color:var(--ink)}25%{color:hsl(330 90% 60%)}50%{color:hsl(200 90% 55%)}75%{color:hsl(60 90% 50%)}}
+.egg-active{animation:eggFlash .5s ease 2}
+/* reduce-motion: disable everything extra */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}
-  .dot,.day-nowm::before,.gap-card.live::before{animation:none!important}
-  .ev,.card,.blk,.tt-vert .v-blk,.bottom-sheet,.sheet-scrim,.toast,.mob-dock button,.android-expand,.wp,.set-card{transition:none!important}
+  .dot,.day-nowm::before,.gap-card.live::before,.confetti-p,.free-day-icon,.nl,.v-nl{animation:none!important}
+  .ev,.card,.blk,.tt-vert .v-blk,.bottom-sheet,.sheet-scrim,.toast,.mob-dock button,.android-expand,.wp,.set-card,.ring-fg,.nl,.v-nl,.tab-pill,.week-prog-bar i,.ambient-bg{transition:none!important}
+  .now.pre-class,.now.class-start::after,.now.friday-done{animation:none!important}
+  .timeline-item,.gap-card,.day-nowm,.blk-enter,.v-blk-enter{animation:none!important}
 }
   .hide{display:none}
   .mob-dock{display:none}
