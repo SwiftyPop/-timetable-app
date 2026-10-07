@@ -1,26 +1,29 @@
 [package]
 name = "timetable-app"
 version = "1.0.0"
-description = "UniMAP Class Timetable with Native System Tray & Wallpaper Setter"
+description = "Campus Timetable (Unofficial) with Native System Tray & Wallpaper Setter"
 authors = ["swifty"]
 edition = "2021"
 
 [lib]
 name = "timetable_app_lib"
-crate-type = ["staticlib", "cdylib", "rlib"]
+crate-type = ["lib"]
 
 [build-dependencies]
-tauri-build = { version = "2.0.0", features = [] }
+tauri-build = { version = "2", features = [] }
 
 [dependencies]
-tauri = { version = "2.0.0", features = ["tray-icon"] }
-tauri-plugin-notification = "2.0.0"
-tauri-plugin-shell = "2.0.0"
-serde = { version = "1.0", features = ["derive"] }
-serde_json = "1.0"
+tauri = { version = "2", features = ["tray-icon"] }
+tauri-plugin-notification = "2"
+tauri-plugin-single-instance = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
 chrono = "0.4"
+thiserror = "2"
+open = "5"
 
 [target.'cfg(windows)'.dependencies]
+winreg = "0.55"
 windows = { version = "0.58", features = [
     "Win32_UI_WindowsAndMessaging",
     "Win32_Foundation",

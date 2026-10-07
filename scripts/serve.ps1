@@ -10,7 +10,7 @@ try {
     $listener.Start()
 }
 Write-Host "HTTP server running on http://127.0.0.1:$port/"
-$root = (Resolve-Path "$PSScriptRoot\..").Path
+$root = (Resolve-Path "$PSScriptRoot\..\web").Path
 
 $mime = @{
     ".html" = "text/html; charset=utf-8"

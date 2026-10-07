@@ -1,16 +1,17 @@
 {
   "$schema": "https://raw.githubusercontent.com/tauri-apps/tauri/dev/tooling/cli/schema.json",
-  "productName": "UniMAP Timetable",
+  "productName": "Campus Timetable",
   "version": "1.0.0",
-  "identifier": "com.unimap.timetable",
+  "identifier": "io.github.swiftypop.campustimetable",
   "build": {
-    "frontendDist": "../dist"
+    "frontendDist": "../web"
   },
   "app": {
-    "withGlobalTauri": true,
+    "withGlobalTauri": false,
     "windows": [
       {
-        "title": "My Timetable · UniMAP",
+        "title": "Campus Timetable · UniMAP (Unofficial)",
+        "label": "main",
         "width": 1380,
         "height": 860,
         "minWidth": 420,
@@ -21,7 +22,7 @@
       }
     ],
     "security": {
-      "csp": null
+      "csp": "default-src 'self'; script-src 'self' 'unsafe-inline' https://accounts.google.com https://apis.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://accounts.google.com https://apis.google.com https://www.googleapis.com; frame-src https://accounts.google.com;"
     }
   },
   "bundle": {

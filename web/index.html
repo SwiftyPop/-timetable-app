@@ -372,12 +372,17 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
 .egg-active{animation:eggFlash .5s ease 2}
 /* reduce-motion: disable everything extra */
 @media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}
-  .dot,.day-nowm::before,.gap-card.live::before,.confetti-p,.free-day-icon,.nl,.v-nl{animation:none!important}
-  .ev,.card,.blk,.tt-vert .v-blk,.bottom-sheet,.sheet-scrim,.toast,.mob-dock button,.android-expand,.wp,.set-card,.ring-fg,.nl,.v-nl,.tab-pill,.week-prog-bar i,.ambient-bg{transition:none!important}
-  .now.pre-class,.now.class-start::after,.now.friday-done{animation:none!important}
-  .timeline-item,.gap-card,.day-nowm,.blk-enter,.v-blk-enter{animation:none!important}
+  :root:not(.force-motion) *,:root:not(.force-motion) *::before,:root:not(.force-motion) *::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}
+  :root:not(.force-motion) .dot,:root:not(.force-motion) .day-nowm::before,:root:not(.force-motion) .gap-card.live::before,:root:not(.force-motion) .confetti-p,:root:not(.force-motion) .free-day-icon,:root:not(.force-motion) .nl,:root:not(.force-motion) .v-nl{animation:none!important}
+  :root:not(.force-motion) .ev,:root:not(.force-motion) .card,:root:not(.force-motion) .blk,:root:not(.force-motion) .tt-vert .v-blk,:root:not(.force-motion) .bottom-sheet,:root:not(.force-motion) .sheet-scrim,:root:not(.force-motion) .toast,:root:not(.force-motion) .mob-dock button,:root:not(.force-motion) .android-expand,:root:not(.force-motion) .wp,:root:not(.force-motion) .set-card,:root:not(.force-motion) .ring-fg,:root:not(.force-motion) .nl,:root:not(.force-motion) .v-nl,:root:not(.force-motion) .tab-pill,:root:not(.force-motion) .week-prog-bar i,:root:not(.force-motion) .ambient-bg{transition:none!important}
+  :root:not(.force-motion) .now.pre-class,:root:not(.force-motion) .now.class-start::after,:root:not(.force-motion) .now.friday-done{animation:none!important}
+  :root:not(.force-motion) .timeline-item,:root:not(.force-motion) .gap-card,:root:not(.force-motion) .day-nowm,:root:not(.force-motion) .blk-enter,:root:not(.force-motion) .v-blk-enter{animation:none!important}
 }
+html.reduce-motion *,html.reduce-motion *::before,html.reduce-motion *::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}
+html.reduce-motion .dot,html.reduce-motion .day-nowm::before,html.reduce-motion .gap-card.live::before,html.reduce-motion .confetti-p,html.reduce-motion .free-day-icon,html.reduce-motion .nl,html.reduce-motion .v-nl{animation:none!important}
+html.reduce-motion .ev,html.reduce-motion .card,html.reduce-motion .blk,html.reduce-motion .tt-vert .v-blk,html.reduce-motion .bottom-sheet,html.reduce-motion .sheet-scrim,html.reduce-motion .toast,html.reduce-motion .mob-dock button,html.reduce-motion .android-expand,html.reduce-motion .wp,html.reduce-motion .set-card,html.reduce-motion .ring-fg,html.reduce-motion .nl,html.reduce-motion .v-nl,html.reduce-motion .tab-pill,html.reduce-motion .week-prog-bar i,html.reduce-motion .ambient-bg{transition:none!important}
+html.reduce-motion .now.pre-class,html.reduce-motion .now.class-start::after,html.reduce-motion .now.friday-done{animation:none!important}
+html.reduce-motion .timeline-item,html.reduce-motion .gap-card,html.reduce-motion .day-nowm,html.reduce-motion .blk-enter,html.reduce-motion .v-blk-enter{animation:none!important}
   .hide{display:none}
   .mob-dock{display:none}
   .jump-pill{display:none}
@@ -1141,6 +1146,17 @@ h1{font-size:24px;line-height:1.1;margin:2px 0 0;font-weight:800;letter-spacing:
         </div>
         <div class="set-row">
           <div class="set-info">
+            <b>Reduce Motion</b>
+            <span>Minimize animations, transitions, and particle effects</span>
+          </div>
+          <div class="seg" id="seg-mot">
+            <button data-mot="system" id="mot-sys" class="on">Auto</button>
+            <button data-mot="on" id="mot-on">On</button>
+            <button data-mot="off" id="mot-off">Off</button>
+          </div>
+        </div>
+        <div class="set-row">
+          <div class="set-info">
             <b>Utilities &amp; Print</b>
             <span>Print weekly timetable or install app shortcut</span>
           </div>
@@ -1592,6 +1608,25 @@ if(location.search.indexOf('v=w')!==-1){view='w'}
 if(location.search.indexOf('v=d')!==-1){view='d'}
 var timeFormat=localStorage.getItem('tt_time_format')||'24h';
 var weekLayout=localStorage.getItem('tt_week_layout')||'horizontal';
+var reduceMotion=localStorage.getItem('tt_reduce_motion')||'system';
+function isReducedMotion(){
+  if(reduceMotion==='on')return true;
+  if(reduceMotion==='off')return false;
+  return !!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+}
+function applyMotionPreference(){
+  var reduced=isReducedMotion();
+  document.documentElement.classList.toggle('reduce-motion',reduced);
+  document.documentElement.classList.toggle('force-motion',reduceMotion==='off');
+  try{window.dispatchEvent(new CustomEvent('motionchange'));}catch(e){}
+}
+applyMotionPreference();
+if(window.matchMedia){
+  var mql=window.matchMedia('(prefers-reduced-motion: reduce)');
+  var onMediaChange=function(){if(reduceMotion==='system')applyMotionPreference();};
+  if(mql.addEventListener){mql.addEventListener('change',onMediaChange);}
+  else if(mql.addListener){mql.addListener(onMediaChange);}
+}
 
 function p(h){return (h<10?'0':'')+h}
 function fmtTime(h,m){
@@ -1828,17 +1863,17 @@ function autoCenterWeek(){
     if(I.td>=1&&I.td<=5){
       var colWidth=(sc.scrollWidth-60)/5;
       var targetLeft=60+(I.td-1)*colWidth-(sc.clientWidth-colWidth)/2;
-      sc.scrollTo({left:Math.max(0,targetLeft),behavior:'smooth'});
+      sc.scrollTo({left:Math.max(0,targetLeft),behavior:isReducedMotion()?'auto':'smooth'});
     }
   }else{
     var curH=(I.td>=1&&I.td<=5&&I.m>=480&&I.m<1140)?Math.floor(I.m/60):8;
     var hourWidth=(sc.scrollWidth-60)/11;
     var targetLeft=60+(curH-8)*hourWidth-(sc.clientWidth-hourWidth)/2;
-    sc.scrollTo({left:Math.max(0,targetLeft),behavior:'smooth'});
+    sc.scrollTo({left:Math.max(0,targetLeft),behavior:isReducedMotion()?'auto':'smooth'});
   }
 }
 function transitionView(fn){
-  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  if(isReducedMotion()){
     fn();
     return;
   }
@@ -1847,7 +1882,7 @@ function transitionView(fn){
 var slideDir='';
 function setDay(d,dir){
   if(d<1||d>5||d===day)return;
-  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  if(isReducedMotion()){
     slideDir='';
   }else{
     slideDir=dir||(d>day?'r':'l');
@@ -2314,6 +2349,9 @@ function updateSettingsUI(){
   if($('tf-12'))$('tf-12').className=(timeFormat==='12h'?'on':'');
   if($('wl-h'))$('wl-h').className=(weekLayout==='horizontal'?'on':'');
   if($('wl-v'))$('wl-v').className=(weekLayout==='vertical'?'on':'');
+  if($('mot-sys'))$('mot-sys').className=(reduceMotion==='system'?'on':'');
+  if($('mot-on'))$('mot-on').className=(reduceMotion==='on'?'on':'');
+  if($('mot-off'))$('mot-off').className=(reduceMotion==='off'?'on':'');
 }
 function toggleSettings(open){
   var sheet=$('set-sheet'),btn=$('setb');
@@ -2404,6 +2442,18 @@ if($('wl-v'))$('wl-v').onclick=function(){
   $('week').innerHTML=weekHtml();
   tick();
 };
+
+function setReduceMotionPref(val){
+  vib(12);
+  reduceMotion=val;
+  try{localStorage.setItem('tt_reduce_motion',val)}catch(e){}
+  applyMotionPreference();
+  updateSettingsUI();
+}
+if($('mot-sys'))$('mot-sys').onclick=function(){setReduceMotionPref('system')};
+if($('mot-on'))$('mot-on').onclick=function(){setReduceMotionPref('on')};
+if($('mot-off'))$('mot-off').onclick=function(){setReduceMotionPref('off')};
+
 updateSettingsUI();
 
 $('sv').onclick=async function(){
@@ -2435,8 +2485,25 @@ function tauriInvoke(cmd,args){
   if(window.__TAURI__&&window.__TAURI__.core&&window.__TAURI__.core.invoke){
     return window.__TAURI__.core.invoke(cmd,args);
   }
+  if(window.__TAURI_INTERNALS__&&window.__TAURI_INTERNALS__.invoke){
+    return window.__TAURI_INTERNALS__.invoke(cmd,args);
+  }
   return Promise.reject('Not in Tauri');
 }
+
+// Stop external navigation in webview; open in default system browser
+if(isTauri){
+  document.addEventListener('click',function(e){
+    var a=e.target&&e.target.closest?e.target.closest('a'):null;
+    if(a&&a.href&&(a.href.indexOf('http://')===0||a.href.indexOf('https://')===0)){
+      e.preventDefault();
+      tauriInvoke('open_external_url',{url:a.href}).catch(function(){
+        window.open(a.href,'_blank');
+      });
+    }
+  },true);
+}
+
 if(isTauri&&!$('nwp')){
   var nwp=document.createElement('button');
   nwp.id='nwp';nwp.className='pb';nwp.textContent='🖥 Set as Desktop Wallpaper';
@@ -2446,14 +2513,19 @@ if(isTauri&&!$('nwp')){
     try{
       var b=await new Promise(function(r){cv.toBlob(r,'image/png')});
       var buf=await b.arrayBuffer();
-      var bytes=Array.from(new Uint8Array(buf));
-      await tauriInvoke('set_desktop_wallpaper',{imageBytes:bytes});
+      // Pass raw Uint8Array binary directly over Tauri 2 IPC
+      await tauriInvoke('set_desktop_wallpaper',new Uint8Array(buf));
       m.textContent='Desktop wallpaper updated successfully ✓';
     }catch(e){
-      m.textContent='Error setting wallpaper: '+e;
+      var errStr=(e&&e.message)?e.message:(typeof e==='object'?JSON.stringify(e):e);
+      m.textContent='Error setting wallpaper: '+errStr;
     }
   };
   $('sv').parentNode.insertBefore(nwp,$('sv').nextSibling);
+}
+if(isTauri){
+  if($('ib'))$('ib').classList.add('hide');
+  if($('set-ib'))$('set-ib').classList.add('hide');
 }
 var dp=null;
 window.addEventListener('beforeinstallprompt',function(e){

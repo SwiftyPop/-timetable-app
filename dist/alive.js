@@ -4,7 +4,10 @@
 (function(){
 'use strict';
 var mq=window.matchMedia?matchMedia('(prefers-reduced-motion: reduce)'):{matches:false};
-function still(){return mq.matches}
+function still(){
+  if(typeof isReducedMotion==='function')return isReducedMotion();
+  return mq.matches;
+}
 var fine=!!(window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches);
 function $(i){return document.getElementById(i)}
 function gone(el){return function(){el.remove()}}
@@ -56,12 +59,17 @@ body{overscroll-behavior-y:contain}\
 .al-sp{position:fixed;top:0;left:0;right:0;height:3px;z-index:80;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,hsl(var(--ah) 90% 60%),hsl(calc(var(--ah) + 60) 90% 62%));pointer-events:none}\
 .al-hidden .al-blobs i,.al-hidden .timeline-item.live .ev::before{animation-play-state:paused}\
 @media print{.al-blobs,.al-jump,.al-ptr,.al-sp,.al-greet{display:none!important}}\
-@media(prefers-reduced-motion:reduce){.al-blobs i,.al-sun text,.timeline-item.live .ev::before,.now.al-ending .clk b,.al-jump i{animation:none!important}.al-ch,.al-pop,.al-swap,.al-in{animation:none!important;opacity:1!important;transform:none!important}.al-sp{display:none}}';
+@media(prefers-reduced-motion:reduce){:root:not(.force-motion) .al-blobs i,:root:not(.force-motion) .al-sun text,:root:not(.force-motion) .timeline-item.live .ev::before,:root:not(.force-motion) .now.al-ending .clk b,:root:not(.force-motion) .al-jump i{animation:none!important}:root:not(.force-motion) .al-ch,:root:not(.force-motion) .al-pop,:root:not(.force-motion) .al-swap,:root:not(.force-motion) .al-in{animation:none!important;opacity:1!important;transform:none!important}:root:not(.force-motion) .al-sp{display:none}:root:not(.force-motion) .al-blobs{display:none!important}}\
+html.reduce-motion .al-blobs i,html.reduce-motion .al-sun text,html.reduce-motion .timeline-item.live .ev::before,html.reduce-motion .now.al-ending .clk b,html.reduce-motion .al-jump i{animation:none!important}\
+html.reduce-motion .al-ch,html.reduce-motion .al-pop,html.reduce-motion .al-swap,html.reduce-motion .al-in{animation:none!important;opacity:1!important;transform:none!important}\
+html.reduce-motion .al-sp{display:none}\
+html.reduce-motion .al-blobs{display:none!important}';
 var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 
 /* ambient blobs, tinted by the current subject */
-var bl=document.createElement('div');bl.className='al-blobs';bl.setAttribute('aria-hidden','true');bl.innerHTML='<i></i><i></i><i></i>';document.body.appendChild(bl);
+var bl=document.createElement('div');bl.className='al-blobs';bl.setAttribute('aria-hidden','true');bl.innerHTML='<i></i><i></i><i></i>';if(still())bl.style.display='none';document.body.appendChild(bl);
 document.addEventListener('visibilitychange',function(){document.documentElement.classList.toggle('al-hidden',document.hidden)});
+window.addEventListener('motionchange',function(){if(bl)bl.style.display=still()?'none':'';if(still()){var j=document.querySelector('.al-jump');if(j)j.classList.remove('on')}pulse()});
 
 /* intro: letters spring in, pills pop, numbers count up */
 (function(){

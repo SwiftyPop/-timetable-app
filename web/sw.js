@@ -1,4 +1,4 @@
-const V='timetable-v8';
+const V='timetable-v9';
 const FILES=[
   './',
   'index.html',

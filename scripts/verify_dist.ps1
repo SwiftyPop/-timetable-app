@@ -54,7 +54,7 @@ $requiredPatterns = @(
     'EMK22003 / EMK31103',
     'set_desktop_wallpaper',
     'update_tray_status',
-    'timetable-v8',
+    'timetable-v9',
     'reminders.js',
     'alive.js',
     'mob-dock',

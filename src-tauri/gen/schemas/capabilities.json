@@ -1,1 +1,1 @@
-{"default":{"identifier":"default","description":"Default permissions for Timetable App","local":true,"windows":["main"],"permissions":["core:default","notification:default","shell:default"]}}
+{"desktop-capability":{"identifier":"desktop-capability","description":"Permissions for desktop platforms","local":true,"windows":["main"],"permissions":["core:default","notification:default"],"platforms":["windows","macOS","linux"]}}

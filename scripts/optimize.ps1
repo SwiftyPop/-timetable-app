@@ -9,6 +9,7 @@ $ErrorActionPreference = "Stop"
 
 $root = $PSScriptRoot + "\.."
 Set-Location $root
+$srcRoot = if (Test-Path (Join-Path $root "web")) { Join-Path $root "web" } else { $root }
 
 Write-Host "=== Starting Web Optimization Pipeline ===" -ForegroundColor Cyan
 
@@ -24,26 +25,29 @@ New-Item -ItemType Directory -Path (Join-Path $dist "icons") -Force | Out-Null
 # 2. Copy optimized font files (400, 600, 800)
 $fontsToKeep = @("pjs-400.woff2", "pjs-600.woff2", "pjs-800.woff2")
 foreach ($f in $fontsToKeep) {
-    $srcFont = Join-Path (Join-Path $root "fonts") $f
+    $srcFont = Join-Path (Join-Path $srcRoot "fonts") $f
+    if (-not (Test-Path $srcFont)) { $srcFont = Join-Path (Join-Path $root "fonts") $f }
     if (Test-Path $srcFont) {
         Copy-Item $srcFont (Join-Path $dist "fonts") -Force
     }
 }
 
 # 3. Copy icons
-Copy-Item (Join-Path (Join-Path $root "icons") "*") (Join-Path $dist "icons") -Force
+$srcIcons = if (Test-Path (Join-Path $srcRoot "icons")) { Join-Path $srcRoot "icons" } else { Join-Path $root "icons" }
+Copy-Item (Join-Path $srcIcons "*") (Join-Path $dist "icons") -Force
 
 # 3b. Copy AI & machine-readable data files
 $aiFiles = @("schedule.json", "llms.txt", "robots.txt", "schedule.ics")
 foreach ($af in $aiFiles) {
-    $srcAf = Join-Path $root $af
+    $srcAf = Join-Path $srcRoot $af
+    if (-not (Test-Path $srcAf)) { $srcAf = Join-Path $root $af }
     if (Test-Path $srcAf) {
         Copy-Item $srcAf $dist -Force
     }
 }
 
 # 3c. Copy shortlink redirect pages
-$linksDir = Join-Path $root "links"
+$linksDir = if (Test-Path (Join-Path $srcRoot "links")) { Join-Path $srcRoot "links" } else { Join-Path $root "links" }
 if (Test-Path $linksDir) {
     $distLinks = Join-Path $dist "links"
     New-Item -ItemType Directory -Path $distLinks -Force | Out-Null
@@ -51,7 +55,7 @@ if (Test-Path $linksDir) {
 }
 
 # 4. Read source index.html
-$srcHtml = Get-Content (Join-Path $root "index.html") -Raw -Encoding UTF8
+$srcHtml = Get-Content (Join-Path $srcRoot "index.html") -Raw -Encoding UTF8
 $origLength = [System.Text.Encoding]::UTF8.GetByteCount($srcHtml)
 
 # 5. Minify HTML, inlined CSS, and inlined JS
@@ -171,7 +175,8 @@ $distHtmlPath = Join-Path $dist "index.html"
 $minLength = (Get-Item $distHtmlPath).Length
 
 # 6. Minify and copy sw.js and manifest.webmanifest
-$rawSw = Get-Content (Join-Path $root "sw.js") -Raw -Encoding UTF8
+$srcSw = if (Test-Path (Join-Path $srcRoot "sw.js")) { Join-Path $srcRoot "sw.js" } else { Join-Path $root "sw.js" }
+$rawSw = Get-Content $srcSw -Raw -Encoding UTF8
 $minSw = Invoke-MinifyJs $rawSw
 $distSwPath = Join-Path $dist "sw.js"
 [System.IO.File]::WriteAllText($distSwPath, $minSw, [System.Text.Encoding]::UTF8)
@@ -179,13 +184,15 @@ $distSwPath = Join-Path $dist "sw.js"
 # Copy auxiliary modules (reminders.js, alive.js)
 $auxFiles = @("reminders.js", "alive.js")
 foreach ($aux in $auxFiles) {
-    $srcAux = Join-Path $root $aux
+    $srcAux = Join-Path $srcRoot $aux
+    if (-not (Test-Path $srcAux)) { $srcAux = Join-Path $root $aux }
     if (Test-Path $srcAux) {
         Copy-Item $srcAux $dist -Force
     }
 }
 
-$rawManifest = Get-Content (Join-Path $root "manifest.webmanifest") -Raw -Encoding UTF8
+$srcManifest = if (Test-Path (Join-Path $srcRoot "manifest.webmanifest")) { Join-Path $srcRoot "manifest.webmanifest" } else { Join-Path $root "manifest.webmanifest" }
+$rawManifest = Get-Content $srcManifest -Raw -Encoding UTF8
 # Compact JSON whitespace
 $minManifest = [System.Text.RegularExpressions.Regex]::Replace($rawManifest, '\s+', ' ')
 $minManifest = [System.Text.RegularExpressions.Regex]::Replace($minManifest, '\s*([\{\}\[\]:,])\s*', '$1')
