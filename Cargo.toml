@@ -1,0 +1,14 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/timetable-core",
+    "crates/timetable-wasm",
+    "src-tauri",
+]
+
+[profile.release]
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

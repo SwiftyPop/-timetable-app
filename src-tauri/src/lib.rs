@@ -6,6 +6,10 @@ use commands::tray::setup_tray;
 use commands::tray::update_tray_status;
 use commands::wallpaper::set_desktop_wallpaper;
 use commands::open_external_url;
+use commands::schedule::{
+    export_calendar_ics, get_free_gaps, get_now_next, get_sessions_for_day, get_week_stats,
+    validate_schedule,
+};
 use tauri::Manager;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -40,7 +44,13 @@ pub fn run() {
             set_desktop_wallpaper,
             update_tray_status,
             notify_class_start,
-            open_external_url
+            open_external_url,
+            get_now_next,
+            get_sessions_for_day,
+            get_free_gaps,
+            get_week_stats,
+            export_calendar_ics,
+            validate_schedule
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

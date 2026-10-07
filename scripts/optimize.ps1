@@ -37,7 +37,7 @@ $srcIcons = if (Test-Path (Join-Path $srcRoot "icons")) { Join-Path $srcRoot "ic
 Copy-Item (Join-Path $srcIcons "*") (Join-Path $dist "icons") -Force
 
 # 3b. Copy AI & machine-readable data files
-$aiFiles = @("schedule.json", "llms.txt", "robots.txt", "schedule.ics")
+$aiFiles = @("schedule.json", "llms.txt", "robots.txt", "schedule.ics", "qr.svg")
 foreach ($af in $aiFiles) {
     $srcAf = Join-Path $srcRoot $af
     if (-not (Test-Path $srcAf)) { $srcAf = Join-Path $root $af }
@@ -181,8 +181,8 @@ $minSw = Invoke-MinifyJs $rawSw
 $distSwPath = Join-Path $dist "sw.js"
 [System.IO.File]::WriteAllText($distSwPath, $minSw, [System.Text.Encoding]::UTF8)
 
-# Copy auxiliary modules (reminders.js, alive.js)
-$auxFiles = @("reminders.js", "alive.js")
+# Copy auxiliary modules (reminders.js, alive.js, backend.js, print.css)
+$auxFiles = @("reminders.js", "alive.js", "backend.js", "print.css")
 foreach ($aux in $auxFiles) {
     $srcAux = Join-Path $srcRoot $aux
     if (-not (Test-Path $srcAux)) { $srcAux = Join-Path $root $aux }
@@ -219,6 +219,9 @@ if (Test-Path (Join-Path $dist "robots.txt")) { Invoke-GzipCompression (Join-Pat
 if (Test-Path (Join-Path $dist "schedule.ics")) { Invoke-GzipCompression (Join-Path $dist "schedule.ics") }
 if (Test-Path (Join-Path $dist "reminders.js")) { Invoke-GzipCompression (Join-Path $dist "reminders.js") }
 if (Test-Path (Join-Path $dist "alive.js")) { Invoke-GzipCompression (Join-Path $dist "alive.js") }
+if (Test-Path (Join-Path $dist "backend.js")) { Invoke-GzipCompression (Join-Path $dist "backend.js") }
+if (Test-Path (Join-Path $dist "print.css")) { Invoke-GzipCompression (Join-Path $dist "print.css") }
+if (Test-Path (Join-Path $dist "qr.svg")) { Invoke-GzipCompression (Join-Path $dist "qr.svg") }
 
 $gzLength = (Get-Item ($distHtmlPath + ".gz")).Length
 

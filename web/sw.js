@@ -1,7 +1,10 @@
-const V='timetable-v9';
+const V='timetable-v10';
 const FILES=[
   './',
   'index.html',
+  'print.css',
+  'qr.svg',
+  'backend.js',
   'alive.js',
   'reminders.js',
   'schedule.ics',

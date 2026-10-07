@@ -1,0 +1,311 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UniMAP Academic Timetable (Unofficial Personal Copy)",
+  "institution": {
+    "name": "Universiti Malaysia Perlis (UniMAP)",
+    "faculty": "Faculty of Electronic Engineering Technology (FKTE)",
+    "campus": "Pauh Putra, Perlis, Malaysia"
+  },
+  "program": {
+    "code": "UR6522002",
+    "year": 2,
+    "group": "Y2G3",
+    "academicTerm": "Semester 1 2026/2027"
+  },
+  "summary": {
+    "totalClassHours": 23,
+    "numberOfSubjects": 5,
+    "totalSessions": 10,
+    "firstClass": "Tuesday 11:00",
+    "lastClass": "Friday 17:00",
+    "note": "English, Malay and Philosophy classes left out."
+  },
+  "subjects": {
+    "EMK22003": {
+      "code": "EMK22003 / EMK31103",
+      "name": "Control System Technology",
+      "shortName": "Control System",
+      "faculty": "FKTE",
+      "groupLink": "links/ctrl.html",
+      "coordinator": "Mazwin Binti Mazlan",
+      "urlearnSubject": "Control System Technology (EMK22003)"
+    },
+    "EMK21203": {
+      "code": "EMK21203",
+      "name": "Electric Circuit Theory 2",
+      "shortName": "Circuit Theory 2",
+      "faculty": "FKTE",
+      "groupLink": "links/ect.html",
+      "coordinator": "Yazhar Bin Yatim",
+      "urlearnSubject": "Electric Circuit Theory 2 (EMK21203)"
+    },
+    "EMK21303": {
+      "code": "EMK21303",
+      "name": "Electronics 2",
+      "shortName": "Electronics 2",
+      "faculty": "FKTE",
+      "groupLink": "links/el2.html",
+      "coordinator": "Chanuri A/P Charin",
+      "urlearnSubject": "Electronics 2 (EMK21303)"
+    },
+    "EMK21103": {
+      "code": "EMK21103",
+      "name": "Measurement & Instrumentation",
+      "shortName": "Measurement & Instrum.",
+      "faculty": "FKTE",
+      "groupLink": "links/mi.html",
+      "coordinator": "Muhammad Shakir Bin Laili",
+      "urlearnSubject": "EMK21103 (RY31)(Sem 1-2026/2027)"
+    },
+    "IMQ21303": {
+      "code": "IMQ21303",
+      "name": "Mathematics for Eng. Technology 3",
+      "shortName": "Maths Eng Tech 3",
+      "faculty": "Centre for Mathematical Sciences (JSM / FKC)",
+      "groupLink": "links/mt.html",
+      "groupLinkAlt": "links/mt-class2.html",
+      "cohort": "Class 1 (Y2G1, Y2G2, Y2G3)",
+      "coordinator": "Dr. Nurhidayah binti Omar",
+      "urlearnSubject": "Maths for Eng. Technology 3 (IMQ21303)"
+    }
+  },
+  "communityChannels": {
+    "fkteSubjectsSheet": "GROUP SUBJEK SEM 1, 2026-2027",
+    "jsmMathsSheetUrl": "https://docs.google.com/spreadsheets/d/1-fxIQbSA-8m0zZHZliX4qZ44PXrOizmRJ57FzN8rjPE/edit?gid=2015827709#gid=2015827709",
+    "controlSystemGroup": "links/ctrl.html",
+    "circuitTheory2Group": "links/ect.html",
+    "electronics2Group": "links/el2.html",
+    "measurementInstrumGroup": "links/mi.html",
+    "mathClass1Group": "links/mt.html",
+    "mathClass2Group": "links/mt-class2.html"
+  },
+  "schedule": [
+    {
+      "id": "tue-1100-ctrl-lab",
+      "dayOfWeek": "Tuesday",
+      "dayIndex": 2,
+      "startTime": "11:00",
+      "endTime": "14:00",
+      "startHour": 11,
+      "endHour": 14,
+      "durationHours": 3,
+      "courseCode": "EMK22003 / EMK31103",
+      "courseName": "Control System Technology",
+      "type": "Lab",
+      "venue": "FKTE 2 · Industrial Control Lab",
+      "building": "FKTE 2",
+      "room": "Industrial Control Lab",
+      "roomShort": "IC Lab",
+      "groupLink": "links/ctrl.html",
+      "instructors": [
+        "Mazwin Binti Mazlan",
+        "Mardianaliza Binti Othman"
+      ]
+    },
+    {
+      "id": "tue-1500-mt-lec",
+      "dayOfWeek": "Tuesday",
+      "dayIndex": 2,
+      "startTime": "15:00",
+      "endTime": "17:00",
+      "startHour": 15,
+      "endHour": 17,
+      "durationHours": 2,
+      "courseCode": "IMQ21303",
+      "courseName": "Mathematics for Eng. Technology 3",
+      "type": "Lecture",
+      "venue": "Pauh Putra · DK 3",
+      "building": "Pauh Putra",
+      "room": "DK 3",
+      "roomShort": "DK 3",
+      "groupLink": "links/mt.html",
+      "instructors": [
+        "Zabidi Bin Abu Hasan"
+      ]
+    },
+    {
+      "id": "wed-1000-mt-online",
+      "dayOfWeek": "Wednesday",
+      "dayIndex": 3,
+      "startTime": "10:00",
+      "endTime": "11:00",
+      "startHour": 10,
+      "endHour": 11,
+      "durationHours": 1,
+      "courseCode": "IMQ21303",
+      "courseName": "Mathematics for Eng. Technology 3",
+      "type": "Lecture · Online",
+      "venue": "Online",
+      "building": "Online",
+      "room": "Online",
+      "roomShort": "Online",
+      "groupLink": "links/mt.html",
+      "instructors": [
+        "Zabidi Bin Abu Hasan"
+      ]
+    },
+    {
+      "id": "wed-1100-el2-lab",
+      "dayOfWeek": "Wednesday",
+      "dayIndex": 3,
+      "startTime": "11:00",
+      "endTime": "14:00",
+      "startHour": 11,
+      "endHour": 14,
+      "durationHours": 3,
+      "courseCode": "EMK21303",
+      "courseName": "Electronics 2",
+      "type": "Lab",
+      "venue": "FKTE 2 · Power Electronics Lab",
+      "building": "FKTE 2",
+      "room": "Power Electronics Lab",
+      "roomShort": "Power Elec Lab",
+      "groupLink": "links/el2.html",
+      "instructors": [
+        "Chanuri A/P Charin",
+        "Abdul Rahim Bin Abdul Razak"
+      ]
+    },
+    {
+      "id": "thu-0800-ect-lecc",
+      "dayOfWeek": "Thursday",
+      "dayIndex": 4,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "startHour": 8,
+      "endHour": 10,
+      "durationHours": 2,
+      "courseCode": "EMK21203",
+      "courseName": "Electric Circuit Theory 2",
+      "type": "Lecture C",
+      "venue": "FKTE 2 · BK 1",
+      "building": "FKTE 2",
+      "room": "BK 1",
+      "roomShort": "BK 1",
+      "groupLink": "links/ect.html",
+      "instructors": [
+        "Mohamad Zhafran Bin Zakariya"
+      ]
+    },
+    {
+      "id": "thu-1100-ect-lab",
+      "dayOfWeek": "Thursday",
+      "dayIndex": 4,
+      "startTime": "11:00",
+      "endTime": "14:00",
+      "startHour": 11,
+      "endHour": 14,
+      "durationHours": 3,
+      "courseCode": "EMK21203",
+      "courseName": "Electric Circuit Theory 2",
+      "type": "Lab",
+      "venue": "FKTE 2 · Electrical Machines Simulator Lab",
+      "building": "FKTE 2",
+      "room": "Electrical Machines Simulator Lab",
+      "roomShort": "EM Sim Lab",
+      "groupLink": "links/ect.html",
+      "instructors": [
+        "Mohamad Zhafran Bin Zakariya",
+        "Junaidah Binti Ali Mohd Jobran"
+      ]
+    },
+    {
+      "id": "thu-1400-mi-lab",
+      "dayOfWeek": "Thursday",
+      "dayIndex": 4,
+      "startTime": "14:00",
+      "endTime": "17:00",
+      "startHour": 14,
+      "endHour": 17,
+      "durationHours": 3,
+      "courseCode": "EMK21103",
+      "courseName": "Measurement & Instrumentation",
+      "type": "Lab",
+      "venue": "FKTE 2 · Electrical Technology Lab",
+      "building": "FKTE 2",
+      "room": "Electrical Technology Lab",
+      "roomShort": "Elec Tech Lab",
+      "groupLink": "links/mi.html",
+      "instructors": [
+        "Muhammad Shakir Bin Laili",
+        "Chanuri A/P Charin"
+      ]
+    },
+    {
+      "id": "thu-1700-mi-leca",
+      "dayOfWeek": "Thursday",
+      "dayIndex": 4,
+      "startTime": "17:00",
+      "endTime": "19:00",
+      "startHour": 17,
+      "endHour": 19,
+      "durationHours": 2,
+      "courseCode": "EMK21103",
+      "courseName": "Measurement & Instrumentation",
+      "type": "Lecture A",
+      "venue": "Pauh Putra · DK 4",
+      "building": "Pauh Putra",
+      "room": "DK 4",
+      "roomShort": "DK 4",
+      "groupLink": "links/mi.html",
+      "instructors": [
+        "Muhammad Shakir Bin Laili"
+      ]
+    },
+    {
+      "id": "fri-0800-el2-leca",
+      "dayOfWeek": "Friday",
+      "dayIndex": 5,
+      "startTime": "08:00",
+      "endTime": "10:00",
+      "startHour": 8,
+      "endHour": 10,
+      "durationHours": 2,
+      "courseCode": "EMK21303",
+      "courseName": "Electronics 2",
+      "type": "Lecture A",
+      "venue": "Pauh Putra · DK 3",
+      "building": "Pauh Putra",
+      "room": "DK 3",
+      "roomShort": "DK 3",
+      "groupLink": "links/el2.html",
+      "instructors": [
+        "Chanuri A/P Charin",
+        "Abdul Rahim Bin Abdul Razak"
+      ]
+    },
+    {
+      "id": "fri-1500-ctrl-leca",
+      "dayOfWeek": "Friday",
+      "dayIndex": 5,
+      "startTime": "15:00",
+      "endTime": "17:00",
+      "startHour": 15,
+      "endHour": 17,
+      "durationHours": 2,
+      "courseCode": "EMK22003 / EMK31103",
+      "courseName": "Control System Technology",
+      "type": "Lecture A",
+      "venue": "Pauh Putra · DK 5",
+      "building": "Pauh Putra",
+      "room": "DK 5",
+      "roomShort": "DK 5",
+      "groupLink": "links/ctrl.html",
+      "instructors": [
+        "Mazwin Binti Mazlan"
+      ]
+    }
+  ],
+  "breaksAndFreeDays": [
+    {
+      "dayOfWeek": "Monday",
+      "status": "Free Day (No scheduled classes)"
+    },
+    {
+      "dayOfWeek": "Friday",
+      "startTime": "12:00",
+      "endTime": "15:00",
+      "status": "Friday Prayer & Lunch Break"
+    }
+  ]
+}
