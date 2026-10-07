@@ -23,6 +23,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="print.css" media="print">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -542,29 +543,7 @@ html.reduce-motion .timeline-item,html.reduce-motion .gap-card,html.reduce-motio
 @media(min-width:700px){h1{font-size:28px}}
 @page{size:A4 landscape;margin:9mm}
 @media print{
-  :root,:root[data-theme="dark"],:root:not([data-theme="light"]){--bg:#fff!important;--card:#fff!important;--ink:#111!important;--mute:#555!important;--line:#cfcfcf!important;--tl:28%!important;padding:0!important}
-  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  body{background:#fff}
-  .wrap{max-width:none;padding:0}
-  h1{font-size:22px;margin:2px 0 8px}
-  .stats,.bar,#day,.wp,.now,.nowl,.android-expand{display:none!important}
-  .blk.past,.v-blk.past{opacity:1!important}.blk.live,.v-blk.live{box-shadow:none!important}.sh.cur,.v-rh.cur{background:none!important}.dl.today::after{display:none}
-  #week{display:block!important}
-  .scroll{overflow:visible;border-radius:10px}
-  .tt,.tt-vert{min-width:0}
-  .row{grid-template-columns:70px repeat(11,minmax(0,1fr))}
-  .cell{min-height:92px}
-  .sh{font-size:9.5px;padding:6px 1px}
-  .dl{font-size:11px;padding:0 6px;color:#111}
-  .blk,.v-blk{font-size:8.5px;padding:3px 4px;line-height:1.25;margin:3px 2px}
-  .blk b,.v-blk b{font-size:9px}
-  .legend{margin-top:10px;font-size:10px}
-  .legend span{background:none!important;border:none!important;box-shadow:none!important;padding:2px 6px!important}
-  .note{margin-top:6px;font-size:9.5px}
-  .note::before{display:none!important}
-  .site-header{position:static!important;background:none!important;border:none!important;box-shadow:none!important;padding:0!important;margin:0!important}
-  .site-brand{padding:0!important}
-  .mob-dock,.jump-pill{display:none!important}
+  body > *:not(#print-sheet){display:none!important;visibility:hidden!important}
 }
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:normal;border:0}
 </style>
@@ -1247,6 +1226,50 @@ html.reduce-motion .timeline-item,html.reduce-motion .gap-card,html.reduce-motio
           <label>👨‍🏫 Lecturers</label>
           <div id="cs-lecturers">Mazwin Binti Mazlan, Mardianaliza Binti Othman</div>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-sheet" id="print-sheet-modal" role="dialog" aria-modal="true" aria-labelledby="ptm-title">
+    <div class="sheet-inner" style="max-width:540px;margin:0 auto">
+      <div class="sheet-handle"></div>
+      <div class="sheet-head">
+        <span class="sheet-code">A4 LANDSCAPE · 1-PAGE FIT</span>
+        <button class="wp-close" id="ptm-close" aria-label="Close">✕</button>
+      </div>
+      <h2 class="sheet-title" id="ptm-title" style="margin-bottom:6px">Print Timetable</h2>
+      <div style="font-size:12.5px;color:var(--mute);margin-bottom:16px">Clean, publication-ready A4 layout with sharp typography, Friday prayer notice, and QR code.</div>
+
+      <div class="set-row">
+        <div class="set-info">
+          <b>Color Style</b>
+          <span>Choose ink intensity for printing or PDF</span>
+        </div>
+        <div class="seg" id="ptm-seg-color">
+          <button data-cm="color" id="ptm-c-color" class="on">🎨 Full Color</button>
+          <button data-cm="ink-saver" id="ptm-c-ink">💧 Ink-Saver</button>
+          <button data-cm="mono" id="ptm-c-mono">🖨 B&amp;W</button>
+        </div>
+      </div>
+
+      <div class="set-row">
+        <div class="set-info">
+          <b>Class Details</b>
+          <span>Include lecturers on class cards</span>
+        </div>
+        <button class="pb on" id="ptm-opt-lect">✓ Lecturers</button>
+      </div>
+
+      <div class="set-row">
+        <div class="set-info">
+          <b>QR Code</b>
+          <span>Include QR code link in page footer</span>
+        </div>
+        <button class="pb on" id="ptm-opt-qr">✓ QR Code</button>
+      </div>
+
+      <div style="margin-top:20px;display:flex;gap:10px">
+        <button class="pb" id="ptm-do-print" style="flex:1;background:var(--ac);color:var(--acink);font-weight:700;font-size:14px;padding:12px;text-align:center">🖨 Print / Save as PDF</button>
+        <button class="pb" id="ptm-cancel" style="padding:12px 18px">Cancel</button>
       </div>
     </div>
   </div>
