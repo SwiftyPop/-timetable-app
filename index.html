@@ -2136,7 +2136,7 @@ function buildVEvent(x, dtstamp){
   var dtEnd=fmtICSTime(targetDate, x[2]);
   var uid='class-'+x[0]+'-'+x[1]+'-'+x[3]+'-2026@timetable.local';
   var summary=s.n+' ('+x[4]+')';
-  var desc=s.c+'\\nVenue: '+x[5]+'\\nLecturers: '+(x[6]||'—');
+  var desc=s.c+'\nVenue: '+x[5]+'\nLecturers: '+(x[6]||'—');
   var loc=x[5];
 
   var lines=[
@@ -2630,5 +2630,7 @@ window.addEventListener('keydown',function(e){
   else if(e.key==='ArrowRight'&&day<5){setDay(day+1,'r')}
 });
 </script>
+<script src="reminders.js" defer></script>
+<script src="alive.js" defer></script>
 </body>
 </html>

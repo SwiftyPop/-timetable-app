@@ -9,4 +9,12 @@ Install as an app on phone AND desktop (needs https hosting, free options):
     iPhone/iPad Safari: Share > Add to Home Screen.
  After that it opens offline like a normal app.
 
-To change classes later, edit the list "var E=[...]" in index.html. If you update files, bump the version in sw.js (timetable-v1 -> v2).
+To change classes later, edit the list "var E=[...]" in index.html.
+Regenerate calendar: python tools/make_ics.py
+Then rebuild dist: powershell -File scripts/optimize.ps1
+Bump cache version in sw.js (e.g. timetable-v8 -> timetable-v9).
+
+New Features:
+- Class Reminders & Google Calendar Sync: see SETUP.md
+- Alive Motion & Ambient Layer (alive.js): console helpers alive.celebrate(), alive.spark(x,y)
+

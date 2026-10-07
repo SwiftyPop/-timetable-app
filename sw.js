@@ -1,7 +1,10 @@
-const V='timetable-v6';
+const V='timetable-v8';
 const FILES=[
   './',
   'index.html',
+  'alive.js',
+  'reminders.js',
+  'schedule.ics',
   'manifest.webmanifest',
   'icons/icon-192.png',
   'icons/icon-512.png',
@@ -53,4 +56,14 @@ self.addEventListener('fetch', e => {
       });
     })
   );
+});
+
+// Tapping a class reminder focuses the app (or opens it).
+self.addEventListener('notificationclick', e => {
+  e.notification.close();
+  const url = (e.notification.data && e.notification.data.url) || './';
+  e.waitUntil(self.clients.matchAll({type: 'window', includeUncontrolled: true}).then(cs => {
+    for (const c of cs) { if ('focus' in c) { if (c.navigate) c.navigate(url).catch(() => {}); return c.focus(); } }
+    return self.clients.openWindow(url);
+  }));
 });

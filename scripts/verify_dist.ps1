@@ -54,7 +54,9 @@ $requiredPatterns = @(
     'EMK22003 / EMK31103',
     'set_desktop_wallpaper',
     'update_tray_status',
-    'timetable-v6',
+    'timetable-v8',
+    'reminders.js',
+    'alive.js',
     'mob-dock',
     'class-sheet',
     'jump-today',
@@ -80,14 +82,17 @@ foreach ($pat in $requiredPatterns) {
     Write-Host "Found required pattern: $pat" -ForegroundColor Green
 }
 
-# Verify AI files exist in dist
-$requiredAiFiles = @("schedule.json", "llms.txt", "robots.txt")
-foreach ($f in $requiredAiFiles) {
+# Verify distribution files exist in dist (including .gz)
+$requiredDistFiles = @("schedule.json", "llms.txt", "robots.txt", "schedule.ics", "reminders.js", "alive.js")
+foreach ($f in $requiredDistFiles) {
     $fPath = Join-Path $dist $f
     if (-not (Test-Path $fPath)) {
-        throw "Missing AI distribution file: $f"
+        throw "Missing distribution file: $f"
     }
-    Write-Host "Found distribution file: $f" -ForegroundColor Green
+    if (-not (Test-Path ($fPath + ".gz"))) {
+        throw "Missing compressed distribution file: $f.gz"
+    }
+    Write-Host "Found distribution file and .gz: $f" -ForegroundColor Green
 }
 
 Write-Host "`nAll verification checks PASSED!" -ForegroundColor Green

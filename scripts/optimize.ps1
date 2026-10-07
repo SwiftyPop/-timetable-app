@@ -34,7 +34,7 @@ foreach ($f in $fontsToKeep) {
 Copy-Item (Join-Path (Join-Path $root "icons") "*") (Join-Path $dist "icons") -Force
 
 # 3b. Copy AI & machine-readable data files
-$aiFiles = @("schedule.json", "llms.txt", "robots.txt")
+$aiFiles = @("schedule.json", "llms.txt", "robots.txt", "schedule.ics")
 foreach ($af in $aiFiles) {
     $srcAf = Join-Path $root $af
     if (Test-Path $srcAf) {
@@ -176,6 +176,15 @@ $minSw = Invoke-MinifyJs $rawSw
 $distSwPath = Join-Path $dist "sw.js"
 [System.IO.File]::WriteAllText($distSwPath, $minSw, [System.Text.Encoding]::UTF8)
 
+# Copy auxiliary modules (reminders.js, alive.js)
+$auxFiles = @("reminders.js", "alive.js")
+foreach ($aux in $auxFiles) {
+    $srcAux = Join-Path $root $aux
+    if (Test-Path $srcAux) {
+        Copy-Item $srcAux $dist -Force
+    }
+}
+
 $rawManifest = Get-Content (Join-Path $root "manifest.webmanifest") -Raw -Encoding UTF8
 # Compact JSON whitespace
 $minManifest = [System.Text.RegularExpressions.Regex]::Replace($rawManifest, '\s+', ' ')
@@ -200,6 +209,9 @@ Invoke-GzipCompression (Join-Path $dist "manifest.webmanifest")
 if (Test-Path (Join-Path $dist "schedule.json")) { Invoke-GzipCompression (Join-Path $dist "schedule.json") }
 if (Test-Path (Join-Path $dist "llms.txt")) { Invoke-GzipCompression (Join-Path $dist "llms.txt") }
 if (Test-Path (Join-Path $dist "robots.txt")) { Invoke-GzipCompression (Join-Path $dist "robots.txt") }
+if (Test-Path (Join-Path $dist "schedule.ics")) { Invoke-GzipCompression (Join-Path $dist "schedule.ics") }
+if (Test-Path (Join-Path $dist "reminders.js")) { Invoke-GzipCompression (Join-Path $dist "reminders.js") }
+if (Test-Path (Join-Path $dist "alive.js")) { Invoke-GzipCompression (Join-Path $dist "alive.js") }
 
 $gzLength = (Get-Item ($distHtmlPath + ".gz")).Length
 
