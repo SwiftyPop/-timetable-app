@@ -54,7 +54,7 @@ $requiredPatterns = @(
     'EMK22003 / EMK31103',
     'set_desktop_wallpaper',
     'update_tray_status',
-    'timetable-v9',
+    'timetable-v10',
     'reminders.js',
     'alive.js',
     'mob-dock',
@@ -83,7 +83,7 @@ foreach ($pat in $requiredPatterns) {
 }
 
 # Verify distribution files exist in dist (including .gz)
-$requiredDistFiles = @("schedule.json", "llms.txt", "robots.txt", "schedule.ics", "reminders.js", "alive.js")
+$requiredDistFiles = @("schedule.json", "llms.txt", "robots.txt", "schedule.ics", "reminders.js", "alive.js", "print.css", "qr.svg")
 foreach ($f in $requiredDistFiles) {
     $fPath = Join-Path $dist $f
     if (-not (Test-Path $fPath)) {

@@ -1967,7 +1967,240 @@ if($('md-tb'))$('md-tb').onclick=function(){$('tb').click()};
 if($('jump-today'))$('jump-today').onclick=function(){if(today>=1&&today<=5){setDay(today)}};
 if($('set-pr'))$('set-pr').onclick=function(){$('pr').click()};
 if($('set-ib'))$('set-ib').onclick=function(){$('ib').click()};
-$('pr').onclick=function(){vib(10);try{window.print()}catch(e){alert('Open this page in your browser and use Print (Ctrl/Cmd+P).')}};
+// Dedicated Print Engine & Modal Sheet
+var printOptions = (function(){
+  try {
+    var raw = localStorage.getItem('tt_print_options');
+    if(raw){
+      var parsed = JSON.parse(raw);
+      return {
+        colorMode: (parsed.colorMode === 'ink-saver' || parsed.colorMode === 'mono') ? parsed.colorMode : 'color',
+        includeLecturers: parsed.includeLecturers !== false,
+        includeQr: parsed.includeQr !== false
+      };
+    }
+  }catch(e){}
+  return { colorMode: 'color', includeLecturers: true, includeQr: true };
+})();
+
+function savePrintOptions(){
+  try{ localStorage.setItem('tt_print_options', JSON.stringify(printOptions)); }catch(e){}
+}
+
+function updatePrintModalUI(){
+  if($('ptm-c-color')) $('ptm-c-color').className = printOptions.colorMode === 'color' ? 'on' : '';
+  if($('ptm-c-ink')) $('ptm-c-ink').className = printOptions.colorMode === 'ink-saver' ? 'on' : '';
+  if($('ptm-c-mono')) $('ptm-c-mono').className = printOptions.colorMode === 'mono' ? 'on' : '';
+
+  var lectBtn = $('ptm-opt-lect');
+  if(lectBtn){
+    lectBtn.className = 'pb ' + (printOptions.includeLecturers ? 'on' : '');
+    lectBtn.textContent = printOptions.includeLecturers ? '✓ Lecturers' : '✕ Lecturers';
+  }
+
+  var qrBtn = $('ptm-opt-qr');
+  if(qrBtn){
+    qrBtn.className = 'pb ' + (printOptions.includeQr ? 'on' : '');
+    qrBtn.textContent = printOptions.includeQr ? '✓ QR Code' : '✕ QR Code';
+  }
+}
+
+function openPrintDialog(){
+  vib(12);
+  if($('class-sheet') && $('class-sheet').classList.contains('open')) closeClassDetails();
+  if($('grp-sheet') && $('grp-sheet').classList.contains('open')) toggleGroups(false);
+  if($('wp-sheet') && $('wp-sheet').classList.contains('open')) toggleWallpaper(false);
+  if($('set-sheet') && $('set-sheet').classList.contains('open')) toggleSettings(false);
+
+  updatePrintModalUI();
+  var sheet = $('print-sheet-modal');
+  if(sheet) sheet.classList.add('open');
+  var scrim = $('sheet-scrim');
+  if(scrim) scrim.classList.add('open');
+  if($('ptm-do-print')) try{ $('ptm-do-print').focus(); }catch(e){}
+}
+
+function closePrintDialog(){
+  var sheet = $('print-sheet-modal');
+  if(sheet) sheet.classList.remove('open');
+  var scrim = $('sheet-scrim');
+  if(scrim) scrim.classList.remove('open');
+  vib(8);
+}
+
+function buildPrintSheet(opt){
+  var existing = document.getElementById('print-sheet');
+  if(existing) existing.remove();
+
+  var curOpt = opt || printOptions || {colorMode:'color',includeLecturers:true,includeQr:true};
+  var myT = getMalaysiaTime();
+  var dateOpts = {timeZone:'Asia/Kuala_Lumpur',day:'2-digit',month:'short',year:'numeric'};
+  var genDateStr = myT.date.toLocaleDateString('en-GB', dateOpts);
+  var genTimeStr = fmtTime(myT.hours, myT.minutes);
+
+  var ps = document.createElement('div');
+  ps.id = 'print-sheet';
+  ps.className = 'pt-mode-' + (curOpt.colorMode || 'color');
+
+  var headHtml = '<div class="pt-head">' +
+    '<div>' +
+      '<div class="pt-uni">Universiti Malaysia Perlis (UniMAP)</div>' +
+      '<div class="pt-title">Faculty of Electrical Technology &amp; Engineering</div>' +
+      '<div class="pt-sub">RK23 - Bachelor of Electrical Engineering Technology · Year 2 Semester 1</div>' +
+    '</div>' +
+    '<div class="pt-meta">' +
+      '<span class="pt-badge">Unofficial Personal Copy</span>' +
+      '<div>Group: <b>R1 / L1</b></div>' +
+      '<div>Generated: ' + genDateStr + ', ' + genTimeStr + ' MYT</div>' +
+    '</div>' +
+  '</div>';
+
+  var gridHtml = '<div class="pt-grid-wrap">' +
+    '<div class="pt-grid-row pt-grid-hd">' +
+      '<div class="pt-cell-th" style="width:24mm">Time</div>';
+
+  for(var k=8; k<19; k++){
+    gridHtml += '<div class="pt-cell-th">' + fmtTime(k,0) + ' – ' + fmtTime(k+1,0) + '</div>';
+  }
+  gridHtml += '</div>';
+
+  for(var d=1; d<=5; d++){
+    gridHtml += '<div class="pt-grid-row pt-day-row">' +
+      '<div class="pt-day-lbl">' +
+        '<span class="pt-day-name">' + DF[d-1] + '</span>' +
+        '<span class="pt-day-sub">' + D[d-1] + '</span>' +
+      '</div>' +
+      '<div class="pt-day-slots">';
+
+    if(d === 5){
+      gridHtml += '<div class="pt-fri-break"><b>Solat Jumaat &amp; Lunch Break</b><br>12:00 PM – 3:00 PM</div>';
+    }
+
+    var dayClasses = E.filter(function(x){ return x[0] === d; });
+    dayClasses.forEach(function(x){
+      var s = S[x[3]];
+      var span = x[2] - x[1];
+      var leftPct = (((x[1] - 8) / 11) * 100).toFixed(4);
+      var widthPct = ((span / 11) * 100).toFixed(4);
+
+      gridHtml += '<div class="pt-blk" style="--h:' + s.h + ';left:calc(' + leftPct + '% + 0.8mm);width:calc(' + widthPct + '% - 1.6mm)">' +
+        '<div class="pt-blk-top">' +
+          '<span class="pt-blk-code">' + s.c.split(' / ')[0] + '</span>' +
+          '<span class="pt-blk-type">' + x[4].toUpperCase() + '</span>' +
+        '</div>' +
+        '<div class="pt-blk-name">' + s.n + '</div>' +
+        '<div class="pt-blk-bottom">' +
+          '<div class="pt-blk-room">📍 ' + x[5] + '</div>' +
+          (curOpt.includeLecturers && x[6] && x[6] !== '—' ? '<div class="pt-blk-lect">👤 ' + x[6] + '</div>' : '') +
+        '</div>' +
+      '</div>';
+    });
+
+    gridHtml += '</div></div>';
+  }
+  gridHtml += '</div>';
+
+  var legHtml = '<div class="pt-info-row">' +
+    '<div class="pt-legend">';
+  Object.keys(S).forEach(function(key){
+    var s = S[key];
+    legHtml += '<span class="pt-leg-item">' +
+      '<span class="pt-leg-swatch" style="--h:' + s.h + '"></span>' +
+      '<b>' + s.c.split(' / ')[0] + '</b> · ' + s.n +
+    '</span>';
+  });
+  legHtml += '</div>' +
+    '<div style="font-weight:600;color:#555555">Friday Break: 12:00 – 15:00</div>' +
+  '</div>';
+
+  var footHtml = '<div class="pt-foot">' +
+    '<div class="pt-foot-left">' +
+      '<b>UniMAP Class Schedule Web App · Semester 1</b>' +
+      '<span>https://swiftypop.github.io/-timetable-app/</span>' +
+    '</div>' +
+    '<div class="pt-foot-center">Page 1 of 1</div>' +
+    '<div class="pt-foot-right">' +
+      (curOpt.includeQr ? '<img src="qr.svg" class="pt-qr" alt="QR Code to Timetable" width="40" height="40">' : '') +
+    '</div>' +
+  '</div>';
+
+  ps.innerHTML = headHtml + gridHtml + legHtml + footHtml;
+  document.body.appendChild(ps);
+  return ps;
+}
+
+async function executePrint(){
+  closePrintDialog();
+  buildPrintSheet(printOptions);
+  if(tickTimer) clearTimeout(tickTimer);
+  if(document.fonts && document.fonts.ready){
+    try {
+      await document.fonts.ready;
+    } catch(e){}
+  }
+  setTimeout(function(){
+    try {
+      window.print();
+    } catch(err) {
+      showToast('Printing unavailable. Use browser Print (Ctrl/Cmd+P).', '⚠️');
+    }
+    scheduleNextTick();
+  }, 50);
+}
+
+window.addEventListener('beforeprint', function(){
+  if(!document.getElementById('print-sheet')){
+    buildPrintSheet(printOptions);
+  }
+  if(tickTimer) clearTimeout(tickTimer);
+});
+
+window.addEventListener('afterprint', function(){
+  var ps = document.getElementById('print-sheet');
+  if(ps) ps.remove();
+  scheduleNextTick();
+});
+
+if($('pr')) $('pr').onclick = function(){ openPrintDialog(); };
+if($('set-pr')) $('set-pr').onclick = function(){ openPrintDialog(); };
+if($('ptm-close')) $('ptm-close').onclick = function(){ closePrintDialog(); };
+if($('ptm-cancel')) $('ptm-cancel').onclick = function(){ closePrintDialog(); };
+
+if($('ptm-c-color')) $('ptm-c-color').onclick = function(){
+  vib(10);
+  printOptions.colorMode = 'color';
+  savePrintOptions();
+  updatePrintModalUI();
+};
+if($('ptm-c-ink')) $('ptm-c-ink').onclick = function(){
+  vib(10);
+  printOptions.colorMode = 'ink-saver';
+  savePrintOptions();
+  updatePrintModalUI();
+};
+if($('ptm-c-mono')) $('ptm-c-mono').onclick = function(){
+  vib(10);
+  printOptions.colorMode = 'mono';
+  savePrintOptions();
+  updatePrintModalUI();
+};
+
+if($('ptm-opt-lect')) $('ptm-opt-lect').onclick = function(){
+  vib(10);
+  printOptions.includeLecturers = !printOptions.includeLecturers;
+  savePrintOptions();
+  updatePrintModalUI();
+};
+if($('ptm-opt-qr')) $('ptm-opt-qr').onclick = function(){
+  vib(10);
+  printOptions.includeQr = !printOptions.includeQr;
+  savePrintOptions();
+  updatePrintModalUI();
+};
+
+if($('ptm-do-print')) $('ptm-do-print').onclick = function(){
+  executePrint();
+};
 
 // Class Details Bottom Sheet & Quick Actions
 var curClassEvent=null;
@@ -2047,6 +2280,10 @@ document.addEventListener('click',function(e){
 
 document.addEventListener('keydown',function(e){
   if(e.key==='Escape'){
+    if($('print-sheet-modal')&&$('print-sheet-modal').classList.contains('open')){
+      closePrintDialog();
+      return;
+    }
     if($('class-sheet')&&$('class-sheet').classList.contains('open')){
       closeClassDetails();
       return;
@@ -2077,7 +2314,13 @@ document.addEventListener('keydown',function(e){
 });
 
 if($('cs-close'))$('cs-close').onclick=function(){closeClassDetails()};
-if($('sheet-scrim'))$('sheet-scrim').onclick=function(){closeClassDetails()};
+if($('sheet-scrim'))$('sheet-scrim').onclick=function(){
+  closeClassDetails();
+  closePrintDialog();
+  toggleGroups(false);
+  toggleSettings(false);
+  toggleWallpaper(false);
+};
 
 function copyText(txt,successMsg){
   if(navigator.clipboard&&navigator.clipboard.writeText){
@@ -2716,6 +2959,7 @@ dayEl.addEventListener('touchend',function(e){
 // Keyboard left/right arrow navigation and escape dismiss
 window.addEventListener('keydown',function(e){
   if(e.key==='Escape'){
+    if($('print-sheet-modal')&&$('print-sheet-modal').classList.contains('open')){closePrintDialog();return}
     if($('class-sheet')&&$('class-sheet').classList.contains('open')){closeClassDetails();return}
     if($('grp-sheet')&&$('grp-sheet').classList.contains('open')){toggleGroups(false);return}
     if($('set-sheet')&&$('set-sheet').classList.contains('open')){toggleSettings(false);return}

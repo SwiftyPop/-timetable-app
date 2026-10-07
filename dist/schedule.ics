@@ -1,11 +1,8 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//UniMAP Timetable App//EN
+PRODID:-//Campus Timetable (Unofficial)//EN
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
-X-WR-CALNAME:UniMAP Timetable
-X-WR-TIMEZONE:Asia/Kuala_Lumpur
-REFRESH-INTERVAL;VALUE=DURATION:PT12H
 BEGIN:VTIMEZONE
 TZID:Asia/Kuala_Lumpur
 BEGIN:STANDARD
@@ -16,75 +13,71 @@ TZNAME:MYT
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
-UID:class-2-11-ctrl-2026@timetable.local
-DTSTAMP:20261007T072713Z
+UID:class-tue-1100-ctrl-lab-2026-10-13-2@campustimetable.local
+DTSTAMP:20261007T082812Z
 SUMMARY:Control System Technology (Lab)
 DESCRIPTION:EMK22003 / EMK31103\nVenue: FKTE 2 · Industrial Control Lab\nL
- ecturers: Mazwin Binti Mazlan\, Mardianaliza Binti Othman
+ ecturers: Mazwin Binti Mazlan, Mardianaliza Binti Othman
 LOCATION:FKTE 2 · Industrial Control Lab
-DTSTART;TZID=Asia/Kuala_Lumpur:20261006T110000
-DTEND;TZID=Asia/Kuala_Lumpur:20261006T140000
+DTSTART;TZID=Asia/Kuala_Lumpur:20261013T110000
+DTEND;TZID=Asia/Kuala_Lumpur:20261013T140000
 RRULE:FREQ=WEEKLY;UNTIL=20270228T160000Z;BYDAY=TU
-STATUS:CONFIRMED
 BEGIN:VALARM
-TRIGGER:-PT15M
 ACTION:DISPLAY
-DESCRIPTION:Control System Technology starts in 15 minutes
+DESCRIPTION:Class Reminder: Control System Technology
+TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:class-2-15-mt-2026@timetable.local
-DTSTAMP:20261007T072713Z
+UID:class-tue-1500-mt-lec-2026-10-13-2@campustimetable.local
+DTSTAMP:20261007T082812Z
 SUMMARY:Mathematics for Eng. Technology 3 (Lecture)
 DESCRIPTION:IMQ21303\nVenue: Pauh Putra · DK 3\nLecturers: Zabidi Bin Abu 
  Hasan
 LOCATION:Pauh Putra · DK 3
-DTSTART;TZID=Asia/Kuala_Lumpur:20261006T150000
-DTEND;TZID=Asia/Kuala_Lumpur:20261006T170000
+DTSTART;TZID=Asia/Kuala_Lumpur:20261013T150000
+DTEND;TZID=Asia/Kuala_Lumpur:20261013T170000
 RRULE:FREQ=WEEKLY;UNTIL=20270228T160000Z;BYDAY=TU
-STATUS:CONFIRMED
 BEGIN:VALARM
-TRIGGER:-PT15M
 ACTION:DISPLAY
-DESCRIPTION:Mathematics for Eng. Technology 3 starts in 15 minutes
+DESCRIPTION:Class Reminder: Mathematics for Eng. Technology 3
+TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:class-3-10-mt-2026@timetable.local
-DTSTAMP:20261007T072713Z
+UID:class-wed-1000-mt-online-2026-10-07-3@campustimetable.local
+DTSTAMP:20261007T082812Z
 SUMMARY:Mathematics for Eng. Technology 3 (Lecture · Online)
 DESCRIPTION:IMQ21303\nVenue: Online\nLecturers: Zabidi Bin Abu Hasan
 LOCATION:Online
 DTSTART;TZID=Asia/Kuala_Lumpur:20261007T100000
 DTEND;TZID=Asia/Kuala_Lumpur:20261007T110000
 RRULE:FREQ=WEEKLY;UNTIL=20270228T160000Z;BYDAY=WE
-STATUS:CONFIRMED
 BEGIN:VALARM
-TRIGGER:-PT15M
 ACTION:DISPLAY
-DESCRIPTION:Mathematics for Eng. Technology 3 starts in 15 minutes
+DESCRIPTION:Class Reminder: Mathematics for Eng. Technology 3
+TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:class-3-11-el2-2026@timetable.local
-DTSTAMP:20261007T072713Z
+UID:class-wed-1100-el2-lab-2026-10-07-3@campustimetable.local
+DTSTAMP:20261007T082812Z
 SUMMARY:Electronics 2 (Lab)
 DESCRIPTION:EMK21303\nVenue: FKTE 2 · Power Electronics Lab\nLecturers: Ch
- anuri A/P Charin\, Abdul Rahim Bin Abdul Razak
+ anuri A/P Charin, Abdul Rahim Bin Abdul Razak
 LOCATION:FKTE 2 · Power Electronics Lab
 DTSTART;TZID=Asia/Kuala_Lumpur:20261007T110000
 DTEND;TZID=Asia/Kuala_Lumpur:20261007T140000
 RRULE:FREQ=WEEKLY;UNTIL=20270228T160000Z;BYDAY=WE
-STATUS:CONFIRMED
 BEGIN:VALARM
-TRIGGER:-PT15M
 ACTION:DISPLAY
-DESCRIPTION:Electronics 2 starts in 15 minutes
+DESCRIPTION:Class Reminder: Electronics 2
+TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:class-4-8-ect-2026@timetable.local
-DTSTAMP:20261007T072713Z
+UID:class-thu-0800-ect-lecc-2026-10-08-4@campustimetable.local
+DTSTAMP:20261007T082812Z
 SUMMARY:Electric Circuit Theory 2 (Lecture C)
 DESCRIPTION:EMK21203\nVenue: FKTE 2 · BK 1\nLecturers: Mohamad Zhafran Bin
   Zakariya
@@ -92,50 +85,47 @@ LOCATION:FKTE 2 · BK 1
 DTSTART;TZID=Asia/Kuala_Lumpur:20261008T080000
 DTEND;TZID=Asia/Kuala_Lumpur:20261008T100000
 RRULE:FREQ=WEEKLY;UNTIL=20270228T160000Z;BYDAY=TH
-STATUS:CONFIRMED
 BEGIN:VALARM
-TRIGGER:-PT15M
 ACTION:DISPLAY
-DESCRIPTION:Electric Circuit Theory 2 starts in 15 minutes
+DESCRIPTION:Class Reminder: Electric Circuit Theory 2
+TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:class-4-11-ect-2026@timetable.local
-DTSTAMP:20261007T072713Z
+UID:class-thu-1100-ect-lab-2026-10-08-4@campustimetable.local
+DTSTAMP:20261007T082812Z
 SUMMARY:Electric Circuit Theory 2 (Lab)
 DESCRIPTION:EMK21203\nVenue: FKTE 2 · Electrical Machines Simulator Lab\nL
- ecturers: Mohamad Zhafran Bin Zakariya\, Junaidah Binti Ali Mohd Jobran
+ ecturers: Mohamad Zhafran Bin Zakariya, Junaidah Binti Ali Mohd Jobran
 LOCATION:FKTE 2 · Electrical Machines Simulator Lab
 DTSTART;TZID=Asia/Kuala_Lumpur:20261008T110000
 DTEND;TZID=Asia/Kuala_Lumpur:20261008T140000
 RRULE:FREQ=WEEKLY;UNTIL=20270228T160000Z;BYDAY=TH
-STATUS:CONFIRMED
 BEGIN:VALARM
-TRIGGER:-PT15M
 ACTION:DISPLAY
-DESCRIPTION:Electric Circuit Theory 2 starts in 15 minutes
+DESCRIPTION:Class Reminder: Electric Circuit Theory 2
+TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:class-4-14-mi-2026@timetable.local
-DTSTAMP:20261007T072713Z
+UID:class-thu-1400-mi-lab-2026-10-08-4@campustimetable.local
+DTSTAMP:20261007T082812Z
 SUMMARY:Measurement & Instrumentation (Lab)
 DESCRIPTION:EMK21103\nVenue: FKTE 2 · Electrical Technology Lab\nLecturers
- : Muhammad Shakir Bin Laili\, Chanuri A/P Charin
+ : Muhammad Shakir Bin Laili, Chanuri A/P Charin
 LOCATION:FKTE 2 · Electrical Technology Lab
 DTSTART;TZID=Asia/Kuala_Lumpur:20261008T140000
 DTEND;TZID=Asia/Kuala_Lumpur:20261008T170000
 RRULE:FREQ=WEEKLY;UNTIL=20270228T160000Z;BYDAY=TH
-STATUS:CONFIRMED
 BEGIN:VALARM
-TRIGGER:-PT15M
 ACTION:DISPLAY
-DESCRIPTION:Measurement & Instrumentation starts in 15 minutes
+DESCRIPTION:Class Reminder: Measurement & Instrumentation
+TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:class-4-17-mi-2026@timetable.local
-DTSTAMP:20261007T072713Z
+UID:class-thu-1700-mi-leca-2026-10-08-4@campustimetable.local
+DTSTAMP:20261007T082812Z
 SUMMARY:Measurement & Instrumentation (Lecture A)
 DESCRIPTION:EMK21103\nVenue: Pauh Putra · DK 4\nLecturers: Muhammad Shakir
   Bin Laili
@@ -143,33 +133,31 @@ LOCATION:Pauh Putra · DK 4
 DTSTART;TZID=Asia/Kuala_Lumpur:20261008T170000
 DTEND;TZID=Asia/Kuala_Lumpur:20261008T190000
 RRULE:FREQ=WEEKLY;UNTIL=20270228T160000Z;BYDAY=TH
-STATUS:CONFIRMED
 BEGIN:VALARM
-TRIGGER:-PT15M
 ACTION:DISPLAY
-DESCRIPTION:Measurement & Instrumentation starts in 15 minutes
+DESCRIPTION:Class Reminder: Measurement & Instrumentation
+TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:class-5-8-el2-2026@timetable.local
-DTSTAMP:20261007T072713Z
+UID:class-fri-0800-el2-leca-2026-10-09-5@campustimetable.local
+DTSTAMP:20261007T082812Z
 SUMMARY:Electronics 2 (Lecture A)
 DESCRIPTION:EMK21303\nVenue: Pauh Putra · DK 3\nLecturers: Chanuri A/P Cha
- rin\, Abdul Rahim Bin Abdul Razak
+ rin, Abdul Rahim Bin Abdul Razak
 LOCATION:Pauh Putra · DK 3
 DTSTART;TZID=Asia/Kuala_Lumpur:20261009T080000
 DTEND;TZID=Asia/Kuala_Lumpur:20261009T100000
 RRULE:FREQ=WEEKLY;UNTIL=20270228T160000Z;BYDAY=FR
-STATUS:CONFIRMED
 BEGIN:VALARM
-TRIGGER:-PT15M
 ACTION:DISPLAY
-DESCRIPTION:Electronics 2 starts in 15 minutes
+DESCRIPTION:Class Reminder: Electronics 2
+TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
-UID:class-5-15-ctrl-2026@timetable.local
-DTSTAMP:20261007T072713Z
+UID:class-fri-1500-ctrl-leca-2026-10-09-5@campustimetable.local
+DTSTAMP:20261007T082812Z
 SUMMARY:Control System Technology (Lecture A)
 DESCRIPTION:EMK22003 / EMK31103\nVenue: Pauh Putra · DK 5\nLecturers: Mazw
  in Binti Mazlan
@@ -177,11 +165,10 @@ LOCATION:Pauh Putra · DK 5
 DTSTART;TZID=Asia/Kuala_Lumpur:20261009T150000
 DTEND;TZID=Asia/Kuala_Lumpur:20261009T170000
 RRULE:FREQ=WEEKLY;UNTIL=20270228T160000Z;BYDAY=FR
-STATUS:CONFIRMED
 BEGIN:VALARM
-TRIGGER:-PT15M
 ACTION:DISPLAY
-DESCRIPTION:Control System Technology starts in 15 minutes
+DESCRIPTION:Class Reminder: Control System Technology
+TRIGGER:-PT15M
 END:VALARM
 END:VEVENT
 END:VCALENDAR
