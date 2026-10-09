@@ -17,7 +17,7 @@ var css='\
 @property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}\
 :root{--ah:150;transition:--ah 2.4s ease}\
 body{overscroll-behavior-y:contain}\
-.al-blobs{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}\
+.al-blobs{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;contain:strict}\
 .al-blobs i{position:absolute;width:52vmax;height:52vmax;border-radius:50%;opacity:.2;will-change:transform}\
 .al-blobs i:nth-child(1){left:-14vmax;top:-12vmax;background:radial-gradient(circle,hsl(var(--ah) 85% 60%),transparent 68%);animation:alD1 28s ease-in-out infinite alternate}\
 .al-blobs i:nth-child(2){right:-16vmax;top:28vh;background:radial-gradient(circle,hsl(calc(var(--ah) + 70) 80% 62%),transparent 68%);animation:alD2 34s ease-in-out infinite alternate}\
@@ -92,7 +92,7 @@ function greetBuild(){
   G.innerHTML='<svg width="68" height="38" viewBox="0 0 80 44" aria-hidden="true"><path d="M6 40A34 34 0 0 1 74 40" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="2" stroke-dasharray="2 5" stroke-linecap="round"/><g class="al-sun"><text></text></g></svg><div><b></b><span></span></div>';
   h.insertAdjacentElement('afterend',G);
 }
-function swap(el,txt){if(el.textContent===txt)return;el.textContent=txt;if(still())return;el.classList.remove('al-swap');void el.offsetWidth;el.classList.add('al-swap')}
+function swap(el,txt){if(el.textContent===txt)return;el.textContent=txt;if(still())return;el.classList.remove('al-swap');requestAnimationFrame(function(){el.classList.add('al-swap')})}
 var prev=null,doneFor='';
 function pulse(){
   if(typeof nowInfo!=='function'||typeof S==='undefined')return;
@@ -162,8 +162,14 @@ function celebrate(){
 /* staggered reveal when sheets open */
 function stagger(root){
   if(still())return;
-  [].forEach.call(root.querySelectorAll('.set-row,.wp-head,.wpc>*,.bottom-sheet h2,.bottom-sheet h3,.bottom-sheet p,.bottom-sheet button'),function(e,i){
-    e.style.setProperty('--k',Math.min(i,12));e.classList.remove('al-in');void e.offsetWidth;e.classList.add('al-in')});
+  var items=root.querySelectorAll('.set-row,.wp-head,.wpc>*,.bottom-sheet h2,.bottom-sheet h3,.bottom-sheet p,.bottom-sheet button');
+  [].forEach.call(items,function(e,i){
+    e.style.setProperty('--k',Math.min(i,12));
+    e.classList.remove('al-in');
+  });
+  requestAnimationFrame(function(){
+    [].forEach.call(items,function(e){ e.classList.add('al-in'); });
+  });
 }
 var mo=new MutationObserver(function(ms){ms.forEach(function(m){
   var t=m.target;if(!t.classList.contains('open')||(m.oldValue&&/\bopen\b/.test(m.oldValue)))return;stagger(t)})});
